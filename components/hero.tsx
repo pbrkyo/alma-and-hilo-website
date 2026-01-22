@@ -59,43 +59,21 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Right Content - Hero Images */}
+          {/* Right Content - Etiquetas */}
           <div
             className={`relative flex justify-center lg:justify-end transition-all duration-1000 delay-300 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
-            <div className="relative grid grid-cols-3 gap-3 md:gap-4">
-              {/* Main lifestyle image */}
-              <div className="col-span-2 row-span-2 relative aspect-[3/4] overflow-hidden">
-                <Image
-                  src="/images/hero-lifestyle.png"
-                  alt="Mujer con vestido de crochet artesanal"
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              </div>
-              {/* Logo */}
-              <div className="relative aspect-square bg-[#F7F5F0] overflow-hidden flex items-center justify-center p-4">
-                <Image
-                  src="/images/logo.png"
-                  alt="Alma & Hilo Logo"
-                  width={300}
-                  height={300}
-                  className="w-full h-full object-contain"
-                  priority
-                />
-              </div>
-              {/* Product preview */}
-              <div className="relative aspect-square overflow-hidden">
-                <Image
-                  src="/images/product-bag.jpg"
-                  alt="Bolso tejido a mano"
-                  fill
-                  className="object-cover"
-                />
-              </div>
+            <div className="relative max-w-md">
+              <Image
+                src="/images/etiquetas.png"
+                alt="Etiquetas Alma & Hilo - Tejido con amor, Hecho a mano, Costa Rica"
+                width={400}
+                height={600}
+                className="w-full h-auto"
+                priority
+              />
             </div>
           </div>
         </div>

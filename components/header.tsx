@@ -34,14 +34,14 @@ export function Header() {
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <nav className="flex items-center justify-between">
-          {/* Logo */}
+          {/* Logo Circular */}
           <Link href="/" className="relative z-10">
             <Image
-              src="/images/logo-horizontal.png"
-              alt="Alma & Hilo - Tejido con Amor"
-              width={180}
-              height={120}
-              className="h-10 md:h-12 w-auto object-contain"
+              src="/images/logo.png"
+              alt="Alma & Hilo"
+              width={60}
+              height={60}
+              className="h-12 md:h-14 w-12 md:w-14 object-contain"
               priority
             />
           </Link>

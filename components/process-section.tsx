@@ -110,38 +110,36 @@ export function ProcessSection() {
         </div>
 
         {/* Images Row */}
-        <div className="mt-16 md:mt-20 grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="relative aspect-square overflow-hidden opacity-80">
+        <div className="mt-16 md:mt-20 grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
+          <div className="relative aspect-square overflow-hidden rounded-lg">
             <Image
               src="/images/yarn-materials.png"
-              alt="Hilos y materiales naturales"
+              alt="Materiales naturales - hilos de algodón"
               fill
               className="object-cover"
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#2F4F3E]/60 to-transparent" />
+            <p className="absolute bottom-4 left-4 text-[#F7F5F0] font-mono text-sm">Materiales</p>
           </div>
-          <div className="relative aspect-square overflow-hidden opacity-80">
+          <div className="relative aspect-square overflow-hidden rounded-lg">
             <Image
               src="/images/hands-crochet.png"
-              alt="Manos tejiendo a crochet"
+              alt="Implementos de crochet - agujas y herramientas"
               fill
               className="object-cover"
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#2F4F3E]/60 to-transparent" />
+            <p className="absolute bottom-4 left-4 text-[#F7F5F0] font-mono text-sm">Implementos</p>
           </div>
-          <div className="relative aspect-square overflow-hidden opacity-80">
+          <div className="relative aspect-square overflow-hidden rounded-lg">
             <Image
               src="/images/product-top.jpg"
-              alt="Top tejido terminado"
+              alt="Producto final - top tejido a mano"
               fill
               className="object-cover"
             />
-          </div>
-          <div className="relative aspect-square overflow-hidden opacity-80">
-            <Image
-              src="/images/etiquetas.png"
-              alt="Etiqueta Alma & Hilo"
-              fill
-              className="object-contain bg-[#F7F5F0]/10 p-4"
-            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#2F4F3E]/60 to-transparent" />
+            <p className="absolute bottom-4 left-4 text-[#F7F5F0] font-mono text-sm">Producto Final</p>
           </div>
         </div>
 
