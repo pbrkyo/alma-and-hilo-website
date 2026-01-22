@@ -59,20 +59,21 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Right Content - Etiquetas */}
+          {/* Right Content - Hero Image */}
           <div
             className={`relative flex justify-center lg:justify-end transition-all duration-1000 delay-300 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
-            <div className="relative max-w-md">
+            <div className="relative w-full max-w-md lg:max-w-lg">
               <Image
-                src="/images/etiquetas.png"
-                alt="Etiquetas Alma & Hilo - Tejido con amor, Hecho a mano, Costa Rica"
-                width={400}
-                height={600}
-                className="w-full h-auto"
+                src="/images/heroah.png"
+                alt="Alma & Hilo - Tejido con amor"
+                width={800}
+                height={800}
+                className="w-full h-auto rounded-lg shadow-2xl"
                 priority
+                quality={95}
               />
             </div>
           </div>

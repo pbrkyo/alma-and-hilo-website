@@ -33,21 +33,22 @@ export function Header() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <nav className="flex items-center justify-between">
-          {/* Logo Circular */}
+        <nav className="flex items-center justify-between md:justify-center">
+          {/* Logo Circular - Más grande y mejor calidad */}
           <Link href="/" className="relative z-10">
             <Image
               src="/images/logo.png"
               alt="Alma & Hilo"
-              width={120}
-              height={120}
-              className="h-16 md:h-20 w-16 md:w-20 object-contain"
+              width={200}
+              height={200}
+              className="h-20 md:h-28 lg:h-32 w-20 md:w-28 lg:w-32 object-contain"
               priority
+              quality={100}
             />
           </Link>
 
-          {/* Desktop Navigation */}
-          <ul className="hidden md:flex items-center gap-8 lg:gap-12">
+          {/* Desktop Navigation - Centrada */}
+          <ul className="hidden md:flex items-center gap-8 lg:gap-12 ml-8">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
@@ -66,7 +67,7 @@ export function Header() {
             className="md:hidden relative z-10 p-2 text-[#2F4F3E]"
             aria-label={isMobileMenuOpen ? "Cerrar menú" : "Abrir menú"}
           >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </nav>
 

@@ -50,12 +50,13 @@ export function StorySection() {
           >
             <div className="grid grid-cols-5 gap-4">
               {/* Main Image - Mother and Daughter */}
-              <div className="col-span-3 relative aspect-[3/4] overflow-hidden">
+              <div className="col-span-3 relative aspect-[3/4] overflow-hidden rounded-lg shadow-xl">
                 <Image
-                  src="/images/mother-daughter.png"
-                  alt="María y Sofía tejiendo juntas"
+                  src="/images/madreehija.png"
+                  alt="Velia y Yen - Fundadoras de Alma & Hilo"
                   fill
                   className="object-cover"
+                  quality={95}
                 />
               </div>
               {/* Side Image - Tags */}
@@ -111,7 +112,7 @@ export function StorySection() {
                 Con amor,
               </p>
               <p className="text-[#2F4F3E] font-serif text-2xl mt-2">
-                María & Sofía
+                Velia & Yen
               </p>
               <p className="text-[#8FAE9A] font-mono text-sm tracking-wider uppercase mt-1">
                 Fundadoras de Alma & Hilo
