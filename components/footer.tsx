@@ -12,11 +12,11 @@ export function Footer() {
           {/* Brand */}
           <div className="md:col-span-1">
             <Image
-              src="/images/banner.png"
+              src="/images/logo-horizontal.png"
               alt="Alma & Hilo"
-              width={140}
-              height={50}
-              className="h-12 w-auto mb-4"
+              width={180}
+              height={120}
+              className="h-10 w-auto object-contain mb-4"
             />
             <p className="text-[#5A7A6A] font-mono text-sm font-light leading-relaxed max-w-xs">
               Tejido con amor en Costa Rica. Cada puntada cuenta una historia de 

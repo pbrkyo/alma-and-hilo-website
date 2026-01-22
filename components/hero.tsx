@@ -77,13 +77,13 @@ export function Hero() {
                 />
               </div>
               {/* Logo */}
-              <div className="relative aspect-square bg-[#F7F5F0] overflow-hidden flex items-center justify-center">
+              <div className="relative aspect-square bg-[#F7F5F0] overflow-hidden flex items-center justify-center p-4">
                 <Image
                   src="/images/logo.png"
                   alt="Alma & Hilo Logo"
-                  width={200}
-                  height={200}
-                  className="w-full h-auto p-2"
+                  width={300}
+                  height={300}
+                  className="w-full h-full object-contain"
                   priority
                 />
               </div>

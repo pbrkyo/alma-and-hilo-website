@@ -37,11 +37,11 @@ export function Header() {
           {/* Logo */}
           <Link href="/" className="relative z-10">
             <Image
-              src="/images/banner.png"
+              src="/images/logo-horizontal.png"
               alt="Alma & Hilo - Tejido con Amor"
-              width={160}
-              height={60}
-              className="h-12 md:h-14 w-auto"
+              width={180}
+              height={120}
+              className="h-10 md:h-12 w-auto object-contain"
               priority
             />
           </Link>
