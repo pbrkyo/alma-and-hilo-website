@@ -39,9 +39,9 @@ export function Header() {
             <Image
               src="/images/logo.png"
               alt="Alma & Hilo"
-              width={60}
-              height={60}
-              className="h-12 md:h-14 w-12 md:w-14 object-contain"
+              width={120}
+              height={120}
+              className="h-16 md:h-20 w-16 md:w-20 object-contain"
               priority
             />
           </Link>
