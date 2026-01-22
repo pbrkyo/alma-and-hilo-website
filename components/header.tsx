@@ -33,21 +33,21 @@ export function Header() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <nav className="flex items-center justify-between">
-          {/* Logo Circular */}
+        <nav className="flex items-center justify-center md:justify-between">
+          {/* Logo Circular - 250% más grande */}
           <Link href="/" className="relative z-10">
             <Image
               src="/images/logo.png"
               alt="Alma & Hilo"
-              width={120}
-              height={120}
-              className="h-16 md:h-20 w-16 md:w-20 object-contain"
+              width={200}
+              height={200}
+              className="h-24 md:h-32 w-24 md:w-32 object-contain"
               priority
             />
           </Link>
 
           {/* Desktop Navigation */}
-          <ul className="hidden md:flex items-center gap-8 lg:gap-12">
+          <ul className="hidden md:flex items-center gap-8 lg:gap-12 ml-auto">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link

@@ -22,7 +22,7 @@ export function Hero() {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 py-32 md:py-40">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center justify-center">
           {/* Left Content */}
           <div
             className={`text-center lg:text-left transition-all duration-1000 ${
@@ -59,19 +59,19 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Right Content - Etiquetas */}
+          {/* Right Content - Etiqueta Hero */}
           <div
             className={`relative flex justify-center lg:justify-end transition-all duration-1000 delay-300 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
-            <div className="relative max-w-md">
+            <div className="relative max-w-md lg:max-w-lg">
               <Image
-                src="/images/etiquetas.png"
-                alt="Etiquetas Alma & Hilo - Tejido con amor, Hecho a mano, Costa Rica"
-                width={400}
-                height={600}
-                className="w-full h-auto"
+                src="/images/hero-etiqueta.png"
+                alt="Alma & Hilo - Tejido con amor"
+                width={600}
+                height={900}
+                className="w-full h-auto rounded-lg shadow-xl"
                 priority
               />
             </div>
