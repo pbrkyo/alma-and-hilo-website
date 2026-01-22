@@ -1,0 +1,432 @@
+# Cursor Rules - Alma & Hilo Website
+
+## ⚠️ IMPORTANTE: LEER SIEMPRE AL INICIO
+**TODOS LOS AGENTES DEBEN LEER Y CARGAR ESTAS REGLAS ANTES DE COMENZAR CUALQUIER TRABAJO**
+
+Este archivo contiene las reglas y contexto específico del proyecto. Siempre revisa este archivo al inicio de cada sesión o cuando un nuevo agente comience a trabajar.
+
+---
+
+## Información del Proyecto
+
+### Nombre del Proyecto
+**Alma & Hilo** - Sitio web de crochet artesanal madre-hija
+
+### Descripción
+Sitio web para una marca de crochet artesanal de Costa Rica, fundada por María y Sofía (madre e hija). Productos tejidos a mano con amor y tradición.
+
+### Stack Tecnológico
+- **Framework**: Next.js 16.0.10
+- **React**: 19.2.0
+- **TypeScript**: 5.x
+- **Styling**: Tailwind CSS 4.1.9
+- **UI Components**: Radix UI + shadcn/ui
+- **Package Manager**: pnpm
+- **Node Version**: Compatible con Node 22+
+
+---
+
+## Ambiente de Desarrollo
+
+### Sistema Operativo
+- **OS**: Windows 11 (win32 10.0.26200) con WSL2
+- **WSL**: Ubuntu 22.04.5 LTS
+- **Shell**: zsh 5.9 (⚠️ **CRITICAL: ALWAYS use WSL Ubuntu-22.04 with zsh**)
+- **Workspace**: `c:\Users\p_bre\alma-and-hilo-website`
+- **Terminal**: WSL terminal (NOT PowerShell)
+
+### Comandos Principales
+```powershell
+# Desarrollo
+pnpm dev          # Inicia servidor de desarrollo (puerto 3000)
+
+# Build
+pnpm build        # Construye para producción
+
+# Producción
+pnpm start        # Inicia servidor de producción
+
+# Linting
+pnpm lint         # Ejecuta ESLint
+```
+
+### Estructura de Carpetas
+```
+alma-and-hilo-website/
+├── app/                    # App Router de Next.js
+│   ├── globals.css        # Estilos globales
+│   ├── layout.tsx         # Layout principal
+│   └── page.tsx           # Página principal
+├── components/            # Componentes React
+│   ├── ui/               # Componentes UI base (shadcn)
+│   ├── header.tsx        # Header del sitio
+│   ├── hero.tsx          # Sección hero
+│   ├── story-section.tsx # Historia
+│   ├── products-section.tsx
+│   ├── process-section.tsx
+│   └── ...
+├── public/
+│   └── images/           # ⚠️ IMÁGENES PÚBLICAS (usar esta carpeta)
+├── images/               # Recursos adicionales
+└── lib/                  # Utilidades
+```
+
+---
+
+## Reglas de Código
+
+### TypeScript
+- Usar TypeScript estricto
+- Definir tipos explícitos para props
+- Evitar `any`, usar tipos específicos
+- Usar interfaces para objetos complejos
+
+### React/Next.js
+- Usar **"use client"** para componentes con interactividad
+- Preferir componentes funcionales
+- Usar hooks de React apropiadamente
+- Optimizar imágenes con `next/image`
+
+### Estilos
+- Usar Tailwind CSS para todos los estilos
+- Seguir la paleta de colores del proyecto (ver abajo)
+- Usar clases de Tailwind, no CSS inline
+- Mantener consistencia con el diseño existente
+
+### Componentes
+- Componentes pequeños y reutilizables
+- Un componente por archivo
+- Nombres descriptivos en PascalCase
+- Exportar como named export o default según contexto
+
+---
+
+## Paleta de Colores (IMPORTANTE)
+
+### Colores Principales
+```css
+--forest: #2F4F3E      /* Verde bosque - Primary */
+--sage: #8FAE9A        /* Verde salvia - Accent */
+--ivory: #F7F5F0       /* Marfil - Background */
+--linen: #D2C4B2       /* Beige lino - Secondary */
+--cream: #FAF9F6       /* Crema */
+```
+
+### Uso en Tailwind
+- `bg-[#F7F5F0]` - Background ivory
+- `text-[#2F4F3E]` - Texto forest green
+- `text-[#8FAE9A]` - Texto sage green
+- `border-[#D2C4B2]` - Bordes linen
+
+### Estética del Sitio
+- **Estilo**: Natural, artesanal, cálido, auténtico
+- **Mood**: Amor maternal, tradición, hecho a mano
+- **Tipografía**: 
+  - Serif: Cormorant Garamond (títulos)
+  - Sans: Lato (texto)
+
+---
+
+## Manejo de Imágenes (MUY IMPORTANTE)
+
+### Ubicación de Imágenes
+**SIEMPRE usar**: `/public/images/`
+
+### Imágenes Requeridas
+```
+/public/images/
+├── logo.png ✅              # Logo principal
+├── banner.png ✅            # Banner para header/footer
+├── etiquetas.png ✅         # Etiquetas de marca
+├── hero-lifestyle.jpg ⚠️    # Hero principal
+├── mother-daughter.jpg ⚠️   # Historia (fundadoras)
+├── product-bag.jpg ⚠️       # Producto: bolso
+├── product-top.jpg ⚠️       # Producto: top
+├── product-dress.jpg ⚠️     # Producto: vestido
+├── product-accessory.jpg ⚠️ # Producto: accesorio
+├── hands-crochet.jpg ⚠️     # Proceso: manos tejiendo
+└── yarn-materials.jpg ⚠️    # Proceso: materiales
+```
+
+### Dimensiones Recomendadas
+- **Hero images**: 1920x1280px (3:2)
+- **Product images**: 1200x1500px (4:5)
+- **Process images**: 1200x1200px (1:1)
+- **Story images**: 1200x1600px (3:4)
+
+### Optimización
+- Formato: JPG para fotos, PNG para gráficos
+- Tamaño: < 500KB por imagen
+- Usar `next/image` con `fill` o dimensiones específicas
+- Agregar `priority` para imágenes above-the-fold
+
+### Referencias en Código
+```tsx
+// Correcto
+<Image src="/images/logo.png" alt="..." width={200} height={200} />
+
+// Incorrecto
+<Image src="../images/logo.png" alt="..." />
+<Image src="./logo.png" alt="..." />
+```
+
+---
+
+## Imágenes Placeholder
+
+### Estado Actual
+- ✅ Logo, banner, etiquetas: Imágenes reales de marca
+- ⚠️ Otras imágenes: Placeholders que necesitan reemplazo
+
+### Recursos para Placeholders
+- **Unsplash**: https://unsplash.com (mejor calidad)
+- **Pexels**: https://www.pexels.com (gran variedad)
+- **Pixabay**: https://pixabay.com
+
+### Términos de Búsqueda
+- "crochet dress woman"
+- "mother daughter crafts"
+- "crochet bag handmade"
+- "hands crocheting close up"
+- "cotton yarn natural colors"
+
+### Documentación
+Ver archivos de documentación en la raíz:
+- `START-HERE.md` - Inicio rápido
+- `IMAGES-README.md` - Guía de imágenes
+- `IMAGE-DOWNLOAD-CHECKLIST.md` - Checklist paso a paso
+- `STOCK-IMAGES-GUIDE.md` - Guía completa
+
+---
+
+## Reglas de Shell/Terminal
+
+### ⚠️ CRITICAL: SIEMPRE Usar WSL Ubuntu con zsh
+- **NUNCA usar PowerShell** para comandos de desarrollo
+- **SIEMPRE usar WSL Ubuntu-22.04 con zsh**
+- Este proyecto usa WSL2 con Ubuntu 22.04.5 LTS
+- Shell: zsh 5.9
+
+### Formato OBLIGATORIO de Comandos
+**TODOS los comandos DEBEN usar este formato:**
+```bash
+wsl -d Ubuntu-22.04 -- zsh -c "comando aquí"
+```
+
+- Ejemplos correctos:
+  ```bash
+  wsl -d Ubuntu-22.04 -- zsh -c "ls -lh"
+  wsl -d Ubuntu-22.04 -- zsh -c "cp file.txt dest/"
+  wsl -d Ubuntu-22.04 -- zsh -c "pnpm dev"
+  wsl -d Ubuntu-22.04 -- zsh -c "cd /mnt/c/Users/p_bre/alma-and-hilo-website && ls"
+  ```
+
+- Ejemplos INCORRECTOS:
+  ```bash
+  # ❌ NO usar PowerShell
+  Get-ChildItem
+  Copy-Item
+  
+  # ❌ NO usar comandos directos sin wsl
+  ls -lh
+  cp file.txt
+  ```
+
+### Rutas de Archivos
+- Usar rutas absolutas cuando sea necesario
+- Formato Windows: `c:\Users\p_bre\alma-and-hilo-website\`
+- En código Next.js: rutas relativas desde `/public/`
+
+---
+
+## Componentes Principales
+
+### Header (`components/header.tsx`)
+- Logo: `/images/banner.png`
+- Navegación fija con scroll effect
+- Menú móvil responsive
+
+### Hero (`components/hero.tsx`)
+- Imagen principal: `/images/hero-lifestyle.jpg`
+- Logo en grid: `/images/logo.png`
+- Preview producto: `/images/product-bag.jpg`
+
+### Story Section (`components/story-section.tsx`)
+- Imagen madre-hija: `/images/mother-daughter.jpg`
+- Etiquetas: `/images/etiquetas.png`
+
+### Products Section (`components/products-section.tsx`)
+- 4 productos con imágenes
+- Grid responsive
+- Hover effects
+
+### Process Section (`components/process-section.tsx`)
+- 4 pasos del proceso
+- 4 imágenes en grid
+- Fondo verde oscuro
+
+### Footer (`components/footer.tsx`)
+- Logo: `/images/banner.png`
+- Links sociales (Instagram, WhatsApp)
+
+---
+
+## Reglas de Git (Cuando se configure)
+
+### Commits
+- Mensajes en español
+- Formato: "tipo: descripción"
+- Ejemplos:
+  - "feat: agregar sección de productos"
+  - "fix: corregir responsive en hero"
+  - "docs: actualizar README"
+  - "style: ajustar colores de marca"
+
+### Branches
+- `main` - Producción
+- `dev` - Desarrollo
+- `feature/*` - Nuevas características
+
+---
+
+## Optimización y Performance
+
+### Imágenes
+- Usar `next/image` siempre
+- Lazy loading automático
+- Optimización automática de Next.js
+- Formatos modernos (WebP cuando sea posible)
+
+### CSS
+- Purgar clases no usadas (automático con Tailwind)
+- Minimizar CSS custom
+- Usar clases de Tailwind
+
+### JavaScript
+- Code splitting automático de Next.js
+- Componentes dinámicos cuando sea apropiado
+- Minimizar dependencias
+
+---
+
+## Testing y Debugging
+
+### Desarrollo Local
+```powershell
+pnpm dev
+# Abrir: http://localhost:3000
+```
+
+### Verificar Imágenes
+1. Revisar que existan en `/public/images/`
+2. Verificar referencias en componentes
+3. Comprobar en navegador (sin errores 404)
+4. Revisar consola del navegador
+
+### Errores Comunes
+- **Imagen no carga**: Verificar ruta y que archivo exista
+- **Estilos no aplican**: Verificar sintaxis de Tailwind
+- **Build falla**: Revisar errores de TypeScript
+
+---
+
+## Contenido del Sitio
+
+### Idioma
+- **Español** (Costa Rica)
+- Tono: Cálido, auténtico, familiar
+- Enfoque: Artesanía, tradición, amor
+
+### Secciones
+1. **Hero**: Presentación principal
+2. **Historia**: Madre e hija, tradición familiar
+3. **Valores**: Artesanía, calidad, amor
+4. **Colección**: Productos (bolsos, ropa, accesorios)
+5. **Proceso**: Cómo se crean las piezas
+6. **Instagram**: Galería social
+7. **Contacto**: Formulario y redes sociales
+
+### Textos Clave
+- "Tejido con amor"
+- "Hecho a mano en Costa Rica"
+- "Cada puntada cuenta una historia"
+- "María & Sofía" (fundadoras)
+
+---
+
+## Contacto y Redes Sociales
+
+### Instagram
+- Handle: `@almaayhilo`
+- URL: `https://instagram.com/almaayhilo`
+
+### WhatsApp
+- Número: `+506 1234 5678` (placeholder)
+- URL: `https://wa.me/50612345678`
+
+---
+
+## Notas Importantes
+
+### Placeholder Content
+- Las imágenes actuales son placeholders temporales
+- Deben ser reemplazadas con fotos reales de la marca
+- Documentación completa en archivos `.md` de la raíz
+
+### Próximos Pasos
+1. Reemplazar imágenes placeholder con fotos reales
+2. Actualizar información de contacto real
+3. Configurar analytics
+4. Optimizar SEO
+5. Configurar dominio y hosting
+
+### Mantenimiento
+- Revisar imágenes regularmente
+- Actualizar productos según colección
+- Mantener redes sociales actualizadas
+- Optimizar performance periódicamente
+
+---
+
+## Recursos Adicionales
+
+### Documentación del Proyecto
+- `START-HERE.md` - Punto de inicio
+- `IMAGES-README.md` - Guía rápida de imágenes
+- `IMAGE-DOWNLOAD-CHECKLIST.md` - Checklist de descarga
+- `IMAGE-LOCATIONS-MAP.md` - Mapa visual de imágenes
+- `STOCK-IMAGES-GUIDE.md` - Guía completa de stock
+- `PLACEHOLDER-IMAGES-INFO.md` - Info de placeholders
+- `/public/images/README.md` - Guía de reemplazo
+
+### Enlaces Útiles
+- Next.js Docs: https://nextjs.org/docs
+- Tailwind CSS: https://tailwindcss.com/docs
+- Radix UI: https://www.radix-ui.com/
+- shadcn/ui: https://ui.shadcn.com/
+
+---
+
+## Checklist para Nuevos Agentes
+
+Cuando un nuevo agente comience a trabajar:
+
+- [ ] Leer este archivo completo (.cursorrules)
+- [ ] Revisar `START-HERE.md`
+- [ ] Verificar ambiente de desarrollo (pnpm, Node.js)
+- [ ] Comprobar estructura de carpetas
+- [ ] Revisar estado de imágenes en `/public/images/`
+- [ ] Ejecutar `pnpm dev` para verificar que funciona
+- [ ] Familiarizarse con paleta de colores
+- [ ] Revisar componentes principales
+- [ ] Entender el flujo de imágenes
+
+---
+
+## Última Actualización
+**Fecha**: Enero 22, 2026
+**Versión**: 1.0.0
+
+---
+
+**RECORDATORIO FINAL**: Siempre lee este archivo al inicio de cada sesión. Contiene información crítica sobre el proyecto, ambiente de desarrollo, y reglas específicas que deben seguirse.
