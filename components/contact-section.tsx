@@ -67,7 +67,7 @@ export function ContactSection() {
                   <Mail className="w-5 h-5 text-[#2F4F3E]" />
                 </div>
                 <div>
-                  <p className="text-[#2F4F3E] font-serif">hola@almaayhilo.com</p>
+                  <p className="text-[#2F4F3E] font-serif">hola@almayhilo.com</p>
                   <p className="text-[#8FAE9A] font-mono text-sm">Te responderemos pronto</p>
                 </div>
               </div>
@@ -80,7 +80,7 @@ export function ContactSection() {
               </p>
               <div className="flex gap-4">
                 <a
-                  href="https://instagram.com/almaayhilo"
+                  href="https://instagram.com/almayhilo"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group flex items-center gap-3 px-6 py-3 bg-[#F7F5F0] hover:bg-[#2F4F3E] transition-all duration-300"
@@ -88,7 +88,7 @@ export function ContactSection() {
                 >
                   <Instagram className="w-5 h-5 text-[#2F4F3E] group-hover:text-[#F7F5F0] transition-colors duration-300" />
                   <span className="text-[#2F4F3E] group-hover:text-[#F7F5F0] font-mono text-sm transition-colors duration-300">
-                    @almaayhilo
+                    @almayhilo
                   </span>
                 </a>
                 <a

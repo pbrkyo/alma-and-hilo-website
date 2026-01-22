@@ -43,14 +43,14 @@ export function InstagramSection() {
         {/* Header */}
         <div className="text-center mb-12">
           <a
-            href="https://instagram.com/almaayhilo"
+            href="https://instagram.com/almayhilo"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 group"
           >
             <Instagram className="w-6 h-6 text-[#2F4F3E] group-hover:text-[#8FAE9A] transition-colors duration-300" />
             <span className="text-[#2F4F3E] font-mono text-lg tracking-wider group-hover:text-[#8FAE9A] transition-colors duration-300">
-              @almaayhilo
+              @almayhilo
             </span>
           </a>
           <p className="text-[#5A7A6A] font-mono text-sm mt-2">
@@ -63,7 +63,7 @@ export function InstagramSection() {
           {instagramPosts.map((post, index) => (
             <a
               key={post.id}
-              href="https://instagram.com/almaayhilo"
+              href="https://instagram.com/almayhilo"
               target="_blank"
               rel="noopener noreferrer"
               className={`group relative aspect-square bg-[#F7F5F0] overflow-hidden rounded-lg transition-all duration-700 hover:shadow-xl ${

@@ -120,7 +120,7 @@ export function ProductsSection() {
         {/* CTA */}
         <div className="text-center mt-16">
           <a
-            href="https://instagram.com/almaayhilo"
+            href="https://instagram.com/almayhilo"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-[#2F4F3E] text-sm tracking-widest uppercase font-mono hover:text-[#8FAE9A] transition-colors duration-300"
