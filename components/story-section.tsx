@@ -48,26 +48,15 @@ export function StorySection() {
               isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
             }`}
           >
-            <div className="grid grid-cols-5 gap-4">
-              {/* Main Image - Mother and Daughter */}
-              <div className="col-span-3 relative aspect-[3/4] overflow-hidden rounded-lg shadow-xl">
-                <Image
-                  src="/images/madreehija.png"
-                  alt="Velia y Yen - Fundadoras de Alma & Hilo"
-                  fill
-                  className="object-cover"
-                  quality={95}
-                />
-              </div>
-              {/* Side Image - Tags */}
-              <div className="col-span-2 relative aspect-[2/3] bg-[#F7F5F0] overflow-hidden self-end">
-                <Image
-                  src="/images/etiquetas.png"
-                  alt="Etiquetas Alma & Hilo - Tejido con amor, Hecho a mano, Costa Rica"
-                  fill
-                  className="object-contain p-4"
-                />
-              </div>
+            {/* Main Image - Mother and Daughter */}
+            <div className="relative aspect-[3/4] overflow-hidden">
+              <Image
+                src="/images/madreehija.png"
+                alt="Velia y Yen - Fundadoras de Alma & Hilo"
+                fill
+                className="object-cover"
+                quality={95}
+              />
             </div>
             {/* Decorative Element */}
             <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-[#8FAE9A]/20 rounded-full -z-10" />
