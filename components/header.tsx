@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
-import Image from "next/image"
 import { Menu, X } from "lucide-react"
 
 const navLinks = [
@@ -33,22 +32,26 @@ export function Header() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        <nav className="flex items-center justify-between md:justify-center">
-          {/* Logo Circular - Más grande y mejor calidad */}
-          <Link href="/" className="relative z-10">
-            <Image
-              src="/images/logo.png"
-              alt="Alma & Hilo"
-              width={200}
-              height={200}
-              className="h-20 md:h-28 lg:h-32 w-20 md:w-28 lg:w-32 object-contain"
-              priority
-              quality={100}
-            />
+        <nav className="flex items-center justify-between md:justify-center md:gap-12">
+          {/* Logo Text - Estilo del logo original */}
+          <Link href="/" className="relative z-10 group">
+            <div className="flex flex-col items-start">
+              <span className="text-3xl md:text-4xl font-serif text-[#2F4F3E] tracking-tight leading-none">
+                Alma
+              </span>
+              <div className="flex items-center gap-2 -mt-1">
+                <span className="text-2xl md:text-3xl text-[#8FAE9A] font-light">
+                  &
+                </span>
+                <span className="text-3xl md:text-4xl font-serif text-[#2F4F3E] tracking-tight">
+                  Hilo
+                </span>
+              </div>
+            </div>
           </Link>
 
-          {/* Desktop Navigation - Centrada */}
-          <ul className="hidden md:flex items-center gap-8 lg:gap-12 ml-8">
+          {/* Desktop Navigation */}
+          <ul className="hidden md:flex items-center gap-8 lg:gap-12">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link

@@ -59,22 +59,31 @@ export function Hero() {
             </div>
           </div>
 
-          {/* Right Content - Hero Image */}
+          {/* Right Content - Hero Image con animación */}
           <div
             className={`relative flex justify-center lg:justify-end transition-all duration-1000 delay-300 ${
               isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
-            <div className="relative w-full max-w-md lg:max-w-lg">
-              <Image
-                src="/images/heroah.png"
-                alt="Alma & Hilo - Tejido con amor"
-                width={800}
-                height={800}
-                className="w-full h-auto rounded-lg shadow-2xl"
-                priority
-                quality={95}
-              />
+            <div className="relative w-full max-w-sm lg:max-w-md group">
+              {/* Decorative background elements */}
+              <div className="absolute -inset-4 bg-gradient-to-br from-[#8FAE9A]/20 to-[#D2C4B2]/20 rounded-2xl blur-2xl group-hover:blur-3xl transition-all duration-500 animate-pulse" />
+              
+              <div className="relative">
+                <Image
+                  src="/images/heroah.png"
+                  alt="Alma & Hilo - Tejido con amor"
+                  width={600}
+                  height={600}
+                  className="w-full h-auto rounded-xl shadow-2xl transform group-hover:scale-[1.02] transition-transform duration-700 ease-out"
+                  priority
+                  quality={95}
+                />
+                
+                {/* Decorative corner accents */}
+                <div className="absolute -top-3 -left-3 w-20 h-20 border-l-2 border-t-2 border-[#8FAE9A] rounded-tl-2xl opacity-60" />
+                <div className="absolute -bottom-3 -right-3 w-20 h-20 border-r-2 border-b-2 border-[#8FAE9A] rounded-br-2xl opacity-60" />
+              </div>
             </div>
           </div>
         </div>
