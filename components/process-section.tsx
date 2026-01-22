@@ -113,7 +113,7 @@ export function ProcessSection() {
         <div className="mt-16 md:mt-20 grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="relative aspect-square overflow-hidden opacity-80">
             <Image
-              src="/images/yarn-materials.jpg"
+              src="/images/yarn-materials.png"
               alt="Hilos y materiales naturales"
               fill
               className="object-cover"
@@ -121,7 +121,7 @@ export function ProcessSection() {
           </div>
           <div className="relative aspect-square overflow-hidden opacity-80">
             <Image
-              src="/images/hands-crochet.jpg"
+              src="/images/hands-crochet.png"
               alt="Manos tejiendo a crochet"
               fill
               className="object-cover"

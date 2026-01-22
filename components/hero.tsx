@@ -69,7 +69,7 @@ export function Hero() {
               {/* Main lifestyle image */}
               <div className="col-span-2 row-span-2 relative aspect-[3/4] overflow-hidden">
                 <Image
-                  src="/images/hero-lifestyle.jpg"
+                  src="/images/hero-lifestyle.png"
                   alt="Mujer con vestido de crochet artesanal"
                   fill
                   className="object-cover"

@@ -52,7 +52,7 @@ export function StorySection() {
               {/* Main Image - Mother and Daughter */}
               <div className="col-span-3 relative aspect-[3/4] overflow-hidden">
                 <Image
-                  src="/images/mother-daughter.jpg"
+                  src="/images/mother-daughter.png"
                   alt="María y Sofía tejiendo juntas"
                   fill
                   className="object-cover"
