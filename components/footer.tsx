@@ -1,5 +1,4 @@
 import Link from "next/link"
-import Image from "next/image"
 import { Instagram, MessageCircle } from "lucide-react"
 
 export function Footer() {
@@ -11,13 +10,21 @@ export function Footer() {
         <div className="grid md:grid-cols-3 gap-12 md:gap-8 mb-12">
           {/* Brand */}
           <div className="md:col-span-1">
-            <Image
-              src="/images/logo-horizontal.png"
-              alt="Alma & Hilo"
-              width={180}
-              height={120}
-              className="h-10 w-auto object-contain mb-4"
-            />
+            <Link href="/" className="inline-block mb-4">
+              <div className="flex flex-col items-start">
+                <span className="text-3xl font-serif text-[#2F4F3E] tracking-tight leading-none">
+                  Alma
+                </span>
+                <div className="flex items-center gap-2 -mt-1">
+                  <span className="text-2xl text-[#8FAE9A] font-light">
+                    &
+                  </span>
+                  <span className="text-3xl font-serif text-[#2F4F3E] tracking-tight">
+                    Hilo
+                  </span>
+                </div>
+              </div>
+            </Link>
             <p className="text-[#5A7A6A] font-mono text-sm font-light leading-relaxed max-w-xs">
               Tejido con amor en Costa Rica. Cada puntada cuenta una historia de 
               tradición, dedicación y conexión familiar.
