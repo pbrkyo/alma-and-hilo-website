@@ -2,6 +2,7 @@ import React from "react"
 import type { Metadata } from 'next'
 import { Cormorant_Garamond, Lato } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { WhatsAppFab } from '@/components/whatsapp-fab'
 import './globals.css'
 
 const cormorant = Cormorant_Garamond({ 
@@ -37,6 +38,7 @@ export default function RootLayout({
     <html lang="es" className="scroll-smooth">
       <body className={`${cormorant.variable} ${lato.variable} font-serif antialiased`}>
         {children}
+        <WhatsAppFab />
         <Analytics />
       </body>
     </html>

@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
+import { MessageCircle } from "lucide-react"
+import { buildWhatsAppUrl, buildProductMessage } from "@/lib/whatsapp"
 
 const products = [
   {
@@ -105,27 +107,45 @@ export function ProductsSection() {
                 </span>
               </div>
 
-              <div className="space-y-2">
+              <div className="space-y-3">
                 <h3 className="text-2xl font-serif text-[#2F4F3E] group-hover:text-[#8FAE9A] transition-colors duration-300">
                   {product.name}
                 </h3>
                 <p className="text-[#5A7A6A] font-mono text-sm font-light">
                   {product.description}
                 </p>
+                <a
+                  href={buildWhatsAppUrl(buildProductMessage(product.name, product.category))}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 mt-2 px-5 py-2.5 bg-[#25D366] text-white text-xs tracking-wider uppercase font-mono hover:bg-[#1ebe5b] transition-all duration-300 rounded-sm"
+                >
+                  <MessageCircle className="w-4 h-4" />
+                  <span>Comprar por WhatsApp</span>
+                </a>
               </div>
             </div>
           ))}
         </div>
 
         {/* CTA */}
-        <div className="text-center mt-16">
+        <div className="text-center mt-16 flex flex-col sm:flex-row items-center justify-center gap-6">
+          <a
+            href={buildWhatsAppUrl("Hola! Me gustaría ver más piezas de la colección de Alma & Hilo. ¿Qué tienen disponible?")}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-[#2F4F3E] text-[#F7F5F0] text-sm tracking-widest uppercase font-mono hover:bg-[#3d6550] transition-all duration-300"
+          >
+            <MessageCircle className="w-4 h-4" />
+            <span>Consultar disponibilidad</span>
+          </a>
           <a
             href="https://instagram.com/almayhilo"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-[#2F4F3E] text-sm tracking-widest uppercase font-mono hover:text-[#8FAE9A] transition-colors duration-300"
           >
-            <span>Ver toda la colección en Instagram</span>
+            <span>Ver más en Instagram</span>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>

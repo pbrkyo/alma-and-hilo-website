@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { Instagram, MessageCircle } from "lucide-react"
+import { buildWhatsAppUrl, WHATSAPP_GENERAL_MESSAGE } from "@/lib/whatsapp"
 
 export function Footer() {
   const currentYear = new Date().getFullYear()
@@ -80,7 +81,7 @@ export function Footer() {
                 <Instagram className="w-5 h-5 text-[#F7F5F0]" />
               </a>
               <a
-                href="https://wa.me/50612345678"
+                href={buildWhatsAppUrl(WHATSAPP_GENERAL_MESSAGE)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-[#2F4F3E] flex items-center justify-center hover:bg-[#8FAE9A] transition-colors duration-300"

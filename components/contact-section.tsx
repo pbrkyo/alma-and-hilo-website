@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import { Instagram, MessageCircle, Mail, MapPin } from "lucide-react"
+import { buildWhatsAppUrl, WHATSAPP_GENERAL_MESSAGE } from "@/lib/whatsapp"
 
 export function ContactSection() {
   const [isVisible, setIsVisible] = useState(false)
@@ -92,7 +93,7 @@ export function ContactSection() {
                   </span>
                 </a>
                 <a
-                  href="https://wa.me/50612345678"
+                  href={buildWhatsAppUrl(WHATSAPP_GENERAL_MESSAGE)}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group flex items-center gap-3 px-6 py-3 bg-[#F7F5F0] hover:bg-[#2F4F3E] transition-all duration-300"
@@ -107,17 +108,33 @@ export function ContactSection() {
             </div>
           </div>
 
-          {/* Right Content - Message Form */}
+          {/* Right Content - WhatsApp Message Composer */}
           <div
             className={`transition-all duration-1000 delay-200 ${
               isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
             }`}
           >
             <div className="bg-[#F7F5F0] p-8 md:p-12">
-              <h3 className="text-2xl font-serif text-[#2F4F3E] mb-6">
-                Envíanos un mensaje
+              <h3 className="text-2xl font-serif text-[#2F4F3E] mb-2">
+                Escribínos por WhatsApp
               </h3>
-              <form className="space-y-6">
+              <p className="text-[#5A7A6A] font-mono text-sm mb-6">
+                Completá tu mensaje y te abrimos WhatsApp listo para enviar.
+              </p>
+              <form
+                className="space-y-6"
+                onSubmit={(e) => {
+                  e.preventDefault()
+                  const form = e.currentTarget
+                  const formData = new FormData(form)
+                  const nombre = (formData.get("name") as string).trim()
+                  const mensaje = (formData.get("message") as string).trim()
+                  const parts: string[] = ["Hola! Vengo desde la web de Alma & Hilo."]
+                  if (nombre) parts.push(`Mi nombre es ${nombre}.`)
+                  if (mensaje) parts.push(mensaje)
+                  window.open(buildWhatsAppUrl(parts.join(" ")), "_blank")
+                }}
+              >
                 <div>
                   <label
                     htmlFor="name"
@@ -135,21 +152,6 @@ export function ContactSection() {
                 </div>
                 <div>
                   <label
-                    htmlFor="email"
-                    className="block text-[#2F4F3E] font-mono text-sm mb-2"
-                  >
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    className="w-full px-4 py-3 bg-[#FFFFFF] border border-[#D2C4B2] text-[#2F4F3E] font-mono text-sm focus:outline-none focus:border-[#8FAE9A] transition-colors duration-300"
-                    placeholder="tu@email.com"
-                  />
-                </div>
-                <div>
-                  <label
                     htmlFor="message"
                     className="block text-[#2F4F3E] font-mono text-sm mb-2"
                   >
@@ -160,14 +162,15 @@ export function ContactSection() {
                     name="message"
                     rows={5}
                     className="w-full px-4 py-3 bg-[#FFFFFF] border border-[#D2C4B2] text-[#2F4F3E] font-mono text-sm focus:outline-none focus:border-[#8FAE9A] transition-colors duration-300 resize-none"
-                    placeholder="¿En qué podemos ayudarte?"
+                    placeholder="¿Qué pieza te interesa? ¿Tenés alguna consulta?"
                   />
                 </div>
                 <button
                   type="submit"
-                  className="w-full px-8 py-4 bg-[#2F4F3E] text-[#F7F5F0] text-sm tracking-widest uppercase font-mono hover:bg-[#3d6550] transition-all duration-300"
+                  className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#25D366] text-white text-sm tracking-widest uppercase font-mono hover:bg-[#1ebe5b] transition-all duration-300"
                 >
-                  Enviar Mensaje
+                  <MessageCircle className="w-5 h-5" />
+                  Enviar por WhatsApp
                 </button>
               </form>
             </div>
