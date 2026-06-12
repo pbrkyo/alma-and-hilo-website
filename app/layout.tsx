@@ -1,20 +1,21 @@
 import React from "react"
 import type { Metadata } from 'next'
-import { Cormorant_Garamond, Lato } from 'next/font/google'
+import { Fraunces, Karla } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { WhatsAppFab } from '@/components/whatsapp-fab'
 import './globals.css'
 
-const cormorant = Cormorant_Garamond({ 
+const fraunces = Fraunces({
   subsets: ["latin"],
-  weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-serif'
+  axes: ['SOFT', 'WONK', 'opsz'],
+  variable: '--font-fraunces',
+  display: 'swap',
 });
 
-const lato = Lato({ 
+const karla = Karla({
   subsets: ["latin"],
-  weight: ['300', '400', '700'],
-  variable: '--font-sans-body'
+  variable: '--font-karla',
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -36,7 +37,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className="scroll-smooth">
-      <body className={`${cormorant.variable} ${lato.variable} font-serif antialiased`}>
+      <body className={`${fraunces.variable} ${karla.variable} antialiased`}>
         {children}
         <WhatsAppFab />
         <Analytics />

@@ -6,27 +6,27 @@ export function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="py-16 md:py-20 bg-[#F7F5F0] border-t border-[#D2C4B2]">
+    <footer className="py-16 md:py-20 bg-[#F5F0E6] border-t border-[#D9C9AE]">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="grid md:grid-cols-3 gap-12 md:gap-8 mb-12">
           {/* Brand */}
           <div className="md:col-span-1">
             <Link href="/" className="inline-block mb-4">
               <div className="flex flex-col items-start">
-                <span className="text-3xl font-serif text-[#2F4F3E] tracking-tight leading-none">
+                <span className="text-3xl font-display text-[#2E4233] tracking-tight leading-none">
                   Alma
                 </span>
                 <div className="flex items-center gap-2 -mt-1">
-                  <span className="text-2xl text-[#8FAE9A] font-light">
+                  <span className="text-2xl text-[#7C8450] font-light">
                     &
                   </span>
-                  <span className="text-3xl font-serif text-[#2F4F3E] tracking-tight">
+                  <span className="text-3xl font-display text-[#2E4233] tracking-tight">
                     Hilo
                   </span>
                 </div>
               </div>
             </Link>
-            <p className="text-[#5A7A6A] font-mono text-sm font-light leading-relaxed max-w-xs">
+            <p className="text-[#5C5347] font-sans text-sm font-light leading-relaxed max-w-xs">
               Tejido con amor en Costa Rica. Cada puntada cuenta una historia de 
               tradición, dedicación y conexión familiar.
             </p>
@@ -34,31 +34,31 @@ export function Footer() {
 
           {/* Navigation */}
           <div>
-            <h4 className="text-[#2F4F3E] font-mono text-sm tracking-wider uppercase mb-4">
+            <h4 className="text-[#2E4233] font-sans text-sm tracking-wider uppercase mb-4">
               Navegación
             </h4>
             <nav className="space-y-3">
               <Link
                 href="#historia"
-                className="block text-[#5A7A6A] font-mono text-sm hover:text-[#2F4F3E] transition-colors duration-300"
+                className="block text-[#5C5347] font-sans text-sm hover:text-[#2E4233] transition-colors duration-300"
               >
                 Nuestra Historia
               </Link>
               <Link
                 href="#coleccion"
-                className="block text-[#5A7A6A] font-mono text-sm hover:text-[#2F4F3E] transition-colors duration-300"
+                className="block text-[#5C5347] font-sans text-sm hover:text-[#2E4233] transition-colors duration-300"
               >
                 Colección
               </Link>
               <Link
                 href="#proceso"
-                className="block text-[#5A7A6A] font-mono text-sm hover:text-[#2F4F3E] transition-colors duration-300"
+                className="block text-[#5C5347] font-sans text-sm hover:text-[#2E4233] transition-colors duration-300"
               >
                 Proceso
               </Link>
               <Link
                 href="#contacto"
-                className="block text-[#5A7A6A] font-mono text-sm hover:text-[#2F4F3E] transition-colors duration-300"
+                className="block text-[#5C5347] font-sans text-sm hover:text-[#2E4233] transition-colors duration-300"
               >
                 Contacto
               </Link>
@@ -67,7 +67,7 @@ export function Footer() {
 
           {/* Social */}
           <div>
-            <h4 className="text-[#2F4F3E] font-mono text-sm tracking-wider uppercase mb-4">
+            <h4 className="text-[#2E4233] font-sans text-sm tracking-wider uppercase mb-4">
               Conecta con nosotras
             </h4>
             <div className="flex gap-4">
@@ -75,30 +75,30 @@ export function Footer() {
                 href="https://instagram.com/almayhilo"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-[#2F4F3E] flex items-center justify-center hover:bg-[#8FAE9A] transition-colors duration-300"
+                className="w-10 h-10 rounded-full bg-[#2E4233] flex items-center justify-center hover:bg-[#7C8450] transition-colors duration-300"
                 aria-label="Instagram"
               >
-                <Instagram className="w-5 h-5 text-[#F7F5F0]" />
+                <Instagram className="w-5 h-5 text-[#F5F0E6]" />
               </a>
               <a
                 href={buildWhatsAppUrl(WHATSAPP_GENERAL_MESSAGE)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-full bg-[#2F4F3E] flex items-center justify-center hover:bg-[#8FAE9A] transition-colors duration-300"
+                className="w-10 h-10 rounded-full bg-[#2E4233] flex items-center justify-center hover:bg-[#7C8450] transition-colors duration-300"
                 aria-label="WhatsApp"
               >
-                <MessageCircle className="w-5 h-5 text-[#F7F5F0]" />
+                <MessageCircle className="w-5 h-5 text-[#F5F0E6]" />
               </a>
             </div>
           </div>
         </div>
 
         {/* Bottom */}
-        <div className="pt-8 border-t border-[#D2C4B2] flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-[#8FAE9A] font-mono text-xs">
+        <div className="pt-8 border-t border-[#D9C9AE] flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-[#7C8450] font-sans text-xs">
             © {currentYear} Alma & Hilo. Todos los derechos reservados.
           </p>
-          <p className="text-[#8FAE9A] font-mono text-xs">
+          <p className="text-[#7C8450] font-sans text-xs">
             Hecho a mano con amor en Costa Rica
           </p>
         </div>

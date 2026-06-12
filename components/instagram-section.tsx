@@ -37,7 +37,7 @@ export function InstagramSection() {
   return (
     <section
       ref={sectionRef}
-      className="py-20 md:py-28 bg-[#F7F5F0]"
+      className="py-20 md:py-28 bg-[#F5F0E6]"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Header */}
@@ -48,12 +48,12 @@ export function InstagramSection() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 group"
           >
-            <Instagram className="w-6 h-6 text-[#2F4F3E] group-hover:text-[#8FAE9A] transition-colors duration-300" />
-            <span className="text-[#2F4F3E] font-mono text-lg tracking-wider group-hover:text-[#8FAE9A] transition-colors duration-300">
+            <Instagram className="w-6 h-6 text-[#2E4233] group-hover:text-[#7C8450] transition-colors duration-300" />
+            <span className="text-[#2E4233] font-sans text-lg tracking-wider group-hover:text-[#7C8450] transition-colors duration-300">
               @almayhilo
             </span>
           </a>
-          <p className="text-[#5A7A6A] font-mono text-sm mt-2">
+          <p className="text-[#5C5347] font-sans text-sm mt-2">
             Síguenos para ver nuestras últimas creaciones
           </p>
         </div>
@@ -66,7 +66,7 @@ export function InstagramSection() {
               href="https://instagram.com/almayhilo"
               target="_blank"
               rel="noopener noreferrer"
-              className={`group relative aspect-square bg-[#F7F5F0] overflow-hidden rounded-lg transition-all duration-700 hover:shadow-xl ${
+              className={`group relative aspect-square bg-[#F5F0E6] overflow-hidden rounded-lg transition-all duration-700 hover:shadow-xl ${
                 isVisible
                   ? "opacity-100 scale-100"
                   : "opacity-0 scale-95"
@@ -81,8 +81,8 @@ export function InstagramSection() {
               />
 
               {/* Hover Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#2F4F3E]/80 via-[#2F4F3E]/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
-                <Instagram className="w-10 h-10 text-[#F7F5F0] transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#2E4233]/80 via-[#2E4233]/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
+                <Instagram className="w-10 h-10 text-[#F5F0E6] transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300" />
               </div>
             </a>
           ))}

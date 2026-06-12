@@ -4,90 +4,42 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Alma & Hilo - Natural & Sophisticated Palette */
-  --background: #F7F5F0; /* Marfil - Ivory */
-  --foreground: #2F4F3E; /* Verde bosque - Forest green */
-  --card: #FFFFFF;
-  --card-foreground: #2F4F3E;
-  --popover: #FFFFFF;
-  --popover-foreground: #2F4F3E;
-  --primary: #2F4F3E; /* Verde bosque - Primary */
-  --primary-foreground: #F7F5F0;
-  --secondary: #D2C4B2; /* Beige lino - Linen beige */
-  --secondary-foreground: #2F4F3E;
-  --muted: #F7F5F0;
-  --muted-foreground: #5A7A6A;
-  --accent: #8FAE9A; /* Verde salvia - Sage green */
-  --accent-foreground: #2F4F3E;
-  --destructive: #B85C5C;
-  --destructive-foreground: #F7F5F0;
-  --border: #D2C4B2;
-  --input: #E8E4DB;
-  --ring: #8FAE9A;
-  --radius: 0.25rem;
-  
-  /* Brand specific colors */
-  --forest: #2F4F3E;
-  --sage: #8FAE9A;
-  --ivory: #F7F5F0;
-  --linen: #D2C4B2;
-  --cream: #FAF9F6;
+  /* Alma & Hilo — paleta "Del cesto de hilos" (ver DESIGN.md) */
+  --verde-alma: #2E4233;
+  --crudo: #F5F0E6;
+  --oliva: #7C8450;
+  --arena: #D9C9AE;
+  --miel: #B8862B;
+  --cacao: #33291F;
+  --whatsapp: #25D366;
 
-  /* Shadcn/ui default variables (if not overridden above) */
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-}
- 
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.145 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.145 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.396 0.141 25.723);
-  --destructive-foreground: oklch(0.637 0.237 25.331);
-  --border: oklch(0.269 0 0);
-  --input: oklch(0.269 0 0);
-  --ring: oklch(0.439 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.269 0 0);
-  --sidebar-ring: oklch(0.439 0 0);
+  --background: var(--crudo);
+  --foreground: var(--cacao);
+  --card: #FFFDF8;
+  --card-foreground: var(--cacao);
+  --popover: #FFFDF8;
+  --popover-foreground: var(--cacao);
+  --primary: var(--verde-alma);
+  --primary-foreground: var(--crudo);
+  --secondary: var(--arena);
+  --secondary-foreground: var(--verde-alma);
+  --muted: #EDE6D8;
+  --muted-foreground: #5C5347;
+  --accent: var(--oliva);
+  --accent-foreground: var(--crudo);
+  --destructive: #B85C5C;
+  --destructive-foreground: var(--crudo);
+  --border: var(--arena);
+  --input: #E8E0D0;
+  --ring: var(--oliva);
+  --radius: 0.75rem;
 }
 
 @theme inline {
-  --font-sans: 'Cormorant Garamond', 'Georgia', serif;
-  --font-serif: 'Cormorant Garamond', 'Georgia', serif;
-  --font-mono: 'Lato', 'Helvetica Neue', sans-serif;
+  --font-sans: var(--font-body), 'Helvetica Neue', sans-serif;
+  --font-display: var(--font-fraunces), 'Georgia', serif;
+  --font-body: var(--font-karla), 'Helvetica Neue', sans-serif;
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -107,32 +59,19 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --radius-sm: calc(var(--radius) - 2px);
-  --radius-md: var(--radius);
-  --radius-lg: calc(var(--radius) + 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  
-  /* Brand colors */
-  --color-forest: var(--forest);
-  --color-sage: var(--sage);
-  --color-ivory: var(--ivory);
-  --color-linen: var(--linen);
-  --color-cream: var(--cream);
 
-  /* Shadcn/ui default variables */
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
+  /* Colores de marca */
+  --color-verde-alma: var(--verde-alma);
+  --color-crudo: var(--crudo);
+  --color-oliva: var(--oliva);
+  --color-arena: var(--arena);
+  --color-miel: var(--miel);
+  --color-cacao: var(--cacao);
+  --color-whatsapp: var(--whatsapp);
 }
 
 @layer base {
@@ -141,15 +80,31 @@
   }
   body {
     @apply bg-background text-foreground antialiased;
+    font-family: var(--font-body), 'Helvetica Neue', sans-serif;
   }
-  
+  h1, h2, h3, h4 {
+    font-family: var(--font-fraunces), 'Georgia', serif;
+  }
   html {
     scroll-behavior: smooth;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
   }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  .font-display {
+    font-family: var(--font-fraunces), 'Georgia', serif;
+  }
+  /* Textura de grano sutil para fondos (sin imágenes) */
+  .bg-grano {
+    background-image: radial-gradient(rgba(51, 41, 31, 0.04) 1px, transparent 1px);
+    background-size: 5px 5px;
   }
 }

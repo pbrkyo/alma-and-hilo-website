@@ -39,13 +39,13 @@ export function ContactSection() {
               isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
             }`}
           >
-            <span className="inline-block text-[#8FAE9A] text-sm tracking-[0.3em] uppercase font-mono mb-4">
+            <span className="inline-block text-[#7C8450] text-sm tracking-[0.3em] uppercase font-sans mb-4">
               Contacto
             </span>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-light text-[#2F4F3E] mb-6">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-light text-[#2E4233] mb-6">
               Conectemos
             </h2>
-            <p className="text-[#5A7A6A] font-mono font-light leading-relaxed mb-8 max-w-lg">
+            <p className="text-[#5C5347] font-sans font-light leading-relaxed mb-8 max-w-lg">
               Nos encantaría saber de ti. Ya sea que busques una pieza especial, 
               tengas una idea para un pedido personalizado, o simplemente quieras 
               saludarnos, estamos aquí para ti.
@@ -54,29 +54,29 @@ export function ContactSection() {
             {/* Contact Info */}
             <div className="space-y-6">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-[#F7F5F0] flex items-center justify-center">
-                  <MapPin className="w-5 h-5 text-[#2F4F3E]" />
+                <div className="w-12 h-12 rounded-full bg-[#F5F0E6] flex items-center justify-center">
+                  <MapPin className="w-5 h-5 text-[#2E4233]" />
                 </div>
                 <div>
-                  <p className="text-[#2F4F3E] font-serif">Costa Rica</p>
-                  <p className="text-[#8FAE9A] font-mono text-sm">Hecho con amor local</p>
+                  <p className="text-[#2E4233] font-display">Costa Rica</p>
+                  <p className="text-[#7C8450] font-sans text-sm">Hecho con amor local</p>
                 </div>
               </div>
 
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-[#F7F5F0] flex items-center justify-center">
-                  <Mail className="w-5 h-5 text-[#2F4F3E]" />
+                <div className="w-12 h-12 rounded-full bg-[#F5F0E6] flex items-center justify-center">
+                  <Mail className="w-5 h-5 text-[#2E4233]" />
                 </div>
                 <div>
-                  <p className="text-[#2F4F3E] font-serif">hola@almayhilo.com</p>
-                  <p className="text-[#8FAE9A] font-mono text-sm">Te responderemos pronto</p>
+                  <p className="text-[#2E4233] font-display">hola@almayhilo.com</p>
+                  <p className="text-[#7C8450] font-sans text-sm">Te responderemos pronto</p>
                 </div>
               </div>
             </div>
 
             {/* Social Links */}
-            <div className="mt-10 pt-8 border-t border-[#D2C4B2]">
-              <p className="text-[#2F4F3E] font-mono text-sm tracking-wider uppercase mb-4">
+            <div className="mt-10 pt-8 border-t border-[#D9C9AE]">
+              <p className="text-[#2E4233] font-sans text-sm tracking-wider uppercase mb-4">
                 Síguenos
               </p>
               <div className="flex gap-4">
@@ -84,11 +84,11 @@ export function ContactSection() {
                   href="https://instagram.com/almayhilo"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center gap-3 px-6 py-3 bg-[#F7F5F0] hover:bg-[#2F4F3E] transition-all duration-300"
+                  className="group flex items-center gap-3 px-6 py-3 bg-[#F5F0E6] hover:bg-[#2E4233] transition-all duration-300"
                   aria-label="Síguenos en Instagram"
                 >
-                  <Instagram className="w-5 h-5 text-[#2F4F3E] group-hover:text-[#F7F5F0] transition-colors duration-300" />
-                  <span className="text-[#2F4F3E] group-hover:text-[#F7F5F0] font-mono text-sm transition-colors duration-300">
+                  <Instagram className="w-5 h-5 text-[#2E4233] group-hover:text-[#F5F0E6] transition-colors duration-300" />
+                  <span className="text-[#2E4233] group-hover:text-[#F5F0E6] font-sans text-sm transition-colors duration-300">
                     @almayhilo
                   </span>
                 </a>
@@ -96,11 +96,11 @@ export function ContactSection() {
                   href={buildWhatsAppUrl(WHATSAPP_GENERAL_MESSAGE)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center gap-3 px-6 py-3 bg-[#F7F5F0] hover:bg-[#2F4F3E] transition-all duration-300"
+                  className="group flex items-center gap-3 px-6 py-3 bg-[#F5F0E6] hover:bg-[#2E4233] transition-all duration-300"
                   aria-label="Contáctanos por WhatsApp"
                 >
-                  <MessageCircle className="w-5 h-5 text-[#2F4F3E] group-hover:text-[#F7F5F0] transition-colors duration-300" />
-                  <span className="text-[#2F4F3E] group-hover:text-[#F7F5F0] font-mono text-sm transition-colors duration-300">
+                  <MessageCircle className="w-5 h-5 text-[#2E4233] group-hover:text-[#F5F0E6] transition-colors duration-300" />
+                  <span className="text-[#2E4233] group-hover:text-[#F5F0E6] font-sans text-sm transition-colors duration-300">
                     WhatsApp
                   </span>
                 </a>
@@ -114,11 +114,11 @@ export function ContactSection() {
               isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
             }`}
           >
-            <div className="bg-[#F7F5F0] p-8 md:p-12">
-              <h3 className="text-2xl font-serif text-[#2F4F3E] mb-2">
+            <div className="bg-[#F5F0E6] p-8 md:p-12">
+              <h3 className="text-2xl font-display text-[#2E4233] mb-2">
                 Escribínos por WhatsApp
               </h3>
-              <p className="text-[#5A7A6A] font-mono text-sm mb-6">
+              <p className="text-[#5C5347] font-sans text-sm mb-6">
                 Completá tu mensaje y te abrimos WhatsApp listo para enviar.
               </p>
               <form
@@ -138,7 +138,7 @@ export function ContactSection() {
                 <div>
                   <label
                     htmlFor="name"
-                    className="block text-[#2F4F3E] font-mono text-sm mb-2"
+                    className="block text-[#2E4233] font-sans text-sm mb-2"
                   >
                     Nombre
                   </label>
@@ -146,14 +146,14 @@ export function ContactSection() {
                     type="text"
                     id="name"
                     name="name"
-                    className="w-full px-4 py-3 bg-[#FFFFFF] border border-[#D2C4B2] text-[#2F4F3E] font-mono text-sm focus:outline-none focus:border-[#8FAE9A] transition-colors duration-300"
+                    className="w-full px-4 py-3 bg-[#FFFFFF] border border-[#D9C9AE] text-[#2E4233] font-sans text-sm focus:outline-none focus:border-[#7C8450] transition-colors duration-300"
                     placeholder="Tu nombre"
                   />
                 </div>
                 <div>
                   <label
                     htmlFor="message"
-                    className="block text-[#2F4F3E] font-mono text-sm mb-2"
+                    className="block text-[#2E4233] font-sans text-sm mb-2"
                   >
                     Mensaje
                   </label>
@@ -161,13 +161,13 @@ export function ContactSection() {
                     id="message"
                     name="message"
                     rows={5}
-                    className="w-full px-4 py-3 bg-[#FFFFFF] border border-[#D2C4B2] text-[#2F4F3E] font-mono text-sm focus:outline-none focus:border-[#8FAE9A] transition-colors duration-300 resize-none"
+                    className="w-full px-4 py-3 bg-[#FFFFFF] border border-[#D9C9AE] text-[#2E4233] font-sans text-sm focus:outline-none focus:border-[#7C8450] transition-colors duration-300 resize-none"
                     placeholder="¿Qué pieza te interesa? ¿Tenés alguna consulta?"
                   />
                 </div>
                 <button
                   type="submit"
-                  className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#25D366] text-white text-sm tracking-widest uppercase font-mono hover:bg-[#1ebe5b] transition-all duration-300"
+                  className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#25D366] text-white text-sm tracking-widest uppercase font-sans hover:bg-[#1ebe5b] transition-all duration-300"
                 >
                   <MessageCircle className="w-5 h-5" />
                   Enviar por WhatsApp

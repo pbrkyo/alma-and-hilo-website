@@ -50,7 +50,7 @@ export function ValuesSection() {
   return (
     <section
       ref={sectionRef}
-      className="py-20 md:py-28 bg-[#D2C4B2]/20"
+      className="py-20 md:py-28 bg-[#D9C9AE]/20"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6">
@@ -65,12 +65,12 @@ export function ValuesSection() {
               style={{ transitionDelay: `${index * 100}ms` }}
             >
               <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-[#FFFFFF] flex items-center justify-center shadow-sm">
-                <value.icon className="w-7 h-7 text-[#8FAE9A]" />
+                <value.icon className="w-7 h-7 text-[#7C8450]" />
               </div>
-              <h3 className="text-xl font-serif text-[#2F4F3E] mb-3">
+              <h3 className="text-xl font-display text-[#2E4233] mb-3">
                 {value.title}
               </h3>
-              <p className="text-[#5A7A6A] font-mono text-sm font-light leading-relaxed">
+              <p className="text-[#5C5347] font-sans text-sm font-light leading-relaxed">
                 {value.description}
               </p>
             </div>

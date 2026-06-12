@@ -61,18 +61,18 @@ export function ProductsSection() {
     <section
       id="coleccion"
       ref={sectionRef}
-      className="py-24 md:py-32 bg-[#F7F5F0]"
+      className="py-24 md:py-32 bg-[#F5F0E6]"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Section Header */}
         <div className="text-center mb-16 md:mb-24">
-          <span className="inline-block text-[#8FAE9A] text-sm tracking-[0.3em] uppercase font-mono mb-4">
+          <span className="inline-block text-[#7C8450] text-sm tracking-[0.3em] uppercase font-sans mb-4">
             Colección
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-light text-[#2F4F3E] mb-6">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-light text-[#2E4233] mb-6">
             Piezas <span className="italic">únicas</span>
           </h2>
-          <p className="text-[#5A7A6A] font-mono font-light max-w-2xl mx-auto">
+          <p className="text-[#5C5347] font-sans font-light max-w-2xl mx-auto">
             Cada creación es irrepetible. Tejidas con dedicación, nuestras piezas 
             llevan consigo la esencia de lo artesanal y el valor de lo hecho a mano.
           </p>
@@ -99,26 +99,26 @@ export function ProductsSection() {
                 />
                 
                 {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-[#2F4F3E]/0 group-hover:bg-[#2F4F3E]/10 transition-all duration-500" />
+                <div className="absolute inset-0 bg-[#2E4233]/0 group-hover:bg-[#2E4233]/10 transition-all duration-500" />
                 
                 {/* Category Tag */}
-                <span className="absolute top-4 left-4 bg-[#F7F5F0] px-3 py-1 text-[#2F4F3E] text-xs tracking-wider uppercase font-mono">
+                <span className="absolute top-4 left-4 bg-[#F5F0E6] px-3 py-1 text-[#2E4233] text-xs tracking-wider uppercase font-sans">
                   {product.category}
                 </span>
               </div>
 
               <div className="space-y-3">
-                <h3 className="text-2xl font-serif text-[#2F4F3E] group-hover:text-[#8FAE9A] transition-colors duration-300">
+                <h3 className="text-2xl font-display text-[#2E4233] group-hover:text-[#7C8450] transition-colors duration-300">
                   {product.name}
                 </h3>
-                <p className="text-[#5A7A6A] font-mono text-sm font-light">
+                <p className="text-[#5C5347] font-sans text-sm font-light">
                   {product.description}
                 </p>
                 <a
                   href={buildWhatsAppUrl(buildProductMessage(product.name, product.category))}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 mt-2 px-5 py-2.5 bg-[#25D366] text-white text-xs tracking-wider uppercase font-mono hover:bg-[#1ebe5b] transition-all duration-300 rounded-sm"
+                  className="inline-flex items-center gap-2 mt-2 px-5 py-2.5 bg-[#25D366] text-white text-xs tracking-wider uppercase font-sans hover:bg-[#1ebe5b] transition-all duration-300 rounded-sm"
                 >
                   <MessageCircle className="w-4 h-4" />
                   <span>Comprar por WhatsApp</span>
@@ -134,7 +134,7 @@ export function ProductsSection() {
             href={buildWhatsAppUrl("Hola! Me gustaría ver más piezas de la colección de Alma & Hilo. ¿Qué tienen disponible?")}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-[#2F4F3E] text-[#F7F5F0] text-sm tracking-widest uppercase font-mono hover:bg-[#3d6550] transition-all duration-300"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-[#2E4233] text-[#F5F0E6] text-sm tracking-widest uppercase font-sans hover:bg-[#3D5743] transition-all duration-300"
           >
             <MessageCircle className="w-4 h-4" />
             <span>Consultar disponibilidad</span>
@@ -143,7 +143,7 @@ export function ProductsSection() {
             href="https://instagram.com/almayhilo"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-[#2F4F3E] text-sm tracking-widest uppercase font-mono hover:text-[#8FAE9A] transition-colors duration-300"
+            className="inline-flex items-center gap-2 text-[#2E4233] text-sm tracking-widest uppercase font-sans hover:text-[#7C8450] transition-colors duration-300"
           >
             <span>Ver más en Instagram</span>
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

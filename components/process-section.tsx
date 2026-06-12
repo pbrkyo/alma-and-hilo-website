@@ -55,18 +55,18 @@ export function ProcessSection() {
     <section
       id="proceso"
       ref={sectionRef}
-      className="py-24 md:py-32 bg-[#2F4F3E]"
+      className="py-24 md:py-32 bg-[#2E4233]"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Section Header */}
         <div className="text-center mb-16 md:mb-24">
-          <span className="inline-block text-[#8FAE9A] text-sm tracking-[0.3em] uppercase font-mono mb-4">
+          <span className="inline-block text-[#7C8450] text-sm tracking-[0.3em] uppercase font-sans mb-4">
             Proceso Artesanal
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-light text-[#F7F5F0] mb-6">
-            Hecho con <span className="italic text-[#8FAE9A]">dedicación</span>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-light text-[#F5F0E6] mb-6">
+            Hecho con <span className="italic text-[#7C8450]">dedicación</span>
           </h2>
-          <p className="text-[#D2C4B2] font-mono font-light max-w-2xl mx-auto">
+          <p className="text-[#D9C9AE] font-sans font-light max-w-2xl mx-auto">
             Detrás de cada pieza hay horas de trabajo, paciencia y amor. 
             Te invitamos a conocer nuestro proceso creativo.
           </p>
@@ -86,22 +86,22 @@ export function ProcessSection() {
             >
               {/* Connector Line (hidden on mobile, last item) */}
               {index < steps.length - 1 && (
-                <div className="hidden lg:block absolute top-8 left-[calc(50%+2rem)] w-[calc(100%-4rem)] h-px bg-[#8FAE9A]/30" />
+                <div className="hidden lg:block absolute top-8 left-[calc(50%+2rem)] w-[calc(100%-4rem)] h-px bg-[#7C8450]/30" />
               )}
 
               <div className="text-center lg:text-left">
                 {/* Number */}
-                <span className="inline-block text-6xl md:text-7xl font-serif font-light text-[#8FAE9A]/30 mb-4">
+                <span className="inline-block text-6xl md:text-7xl font-display font-light text-[#7C8450]/30 mb-4">
                   {step.number}
                 </span>
 
                 {/* Title */}
-                <h3 className="text-xl md:text-2xl font-serif text-[#F7F5F0] mb-3">
+                <h3 className="text-xl md:text-2xl font-display text-[#F5F0E6] mb-3">
                   {step.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-[#D2C4B2]/80 font-mono text-sm font-light leading-relaxed">
+                <p className="text-[#D9C9AE]/80 font-sans text-sm font-light leading-relaxed">
                   {step.description}
                 </p>
               </div>
@@ -118,8 +118,8 @@ export function ProcessSection() {
               fill
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#2F4F3E]/60 to-transparent" />
-            <p className="absolute bottom-4 left-4 text-[#F7F5F0] font-mono text-sm">Materiales</p>
+            <div className="absolute inset-0 bg-gradient-to-t from-[#2E4233]/60 to-transparent" />
+            <p className="absolute bottom-4 left-4 text-[#F5F0E6] font-sans text-sm">Materiales</p>
           </div>
           <div className="relative aspect-square overflow-hidden rounded-lg">
             <Image
@@ -128,8 +128,8 @@ export function ProcessSection() {
               fill
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#2F4F3E]/60 to-transparent" />
-            <p className="absolute bottom-4 left-4 text-[#F7F5F0] font-mono text-sm">Implementos</p>
+            <div className="absolute inset-0 bg-gradient-to-t from-[#2E4233]/60 to-transparent" />
+            <p className="absolute bottom-4 left-4 text-[#F5F0E6] font-sans text-sm">Implementos</p>
           </div>
           <div className="relative aspect-square overflow-hidden rounded-lg">
             <Image
@@ -138,17 +138,17 @@ export function ProcessSection() {
               fill
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#2F4F3E]/60 to-transparent" />
-            <p className="absolute bottom-4 left-4 text-[#F7F5F0] font-mono text-sm">Producto Final</p>
+            <div className="absolute inset-0 bg-gradient-to-t from-[#2E4233]/60 to-transparent" />
+            <p className="absolute bottom-4 left-4 text-[#F5F0E6] font-sans text-sm">Producto Final</p>
           </div>
         </div>
 
         {/* Quote */}
         <div className="mt-16 md:mt-20 text-center">
-          <blockquote className="text-2xl md:text-3xl lg:text-4xl font-serif font-light text-[#F7F5F0] italic max-w-3xl mx-auto leading-relaxed">
+          <blockquote className="text-2xl md:text-3xl lg:text-4xl font-display font-light text-[#F5F0E6] italic max-w-3xl mx-auto leading-relaxed">
             "El tiempo que toma crear algo hermoso es parte de su valor"
           </blockquote>
-          <div className="mt-6 w-12 h-px bg-[#8FAE9A] mx-auto" />
+          <div className="mt-6 w-12 h-px bg-[#7C8450] mx-auto" />
         </div>
       </div>
     </section>

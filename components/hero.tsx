@@ -1,100 +1,154 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
+import dynamic from "next/dynamic"
 import Image from "next/image"
-import { ChevronDown } from "lucide-react"
+import gsap from "gsap"
+import { MessageCircle } from "lucide-react"
+import { buildWhatsAppUrl, WHATSAPP_GENERAL_MESSAGE } from "@/lib/whatsapp"
+
+// Three.js solo se descarga cuando el hero monta (code-splitting)
+const YarnScene = dynamic(() => import("@/components/hero/yarn-scene"), { ssr: false })
+
+function supportsWebGL(): boolean {
+  try {
+    const canvas = document.createElement("canvas")
+    return !!(canvas.getContext("webgl2") || canvas.getContext("webgl"))
+  } catch {
+    return false
+  }
+}
 
 export function Hero() {
-  const [isVisible, setIsVisible] = useState(false)
+  const rootRef = useRef<HTMLElement>(null)
+  const [webgl, setWebgl] = useState<boolean | null>(null)
+  const [knitted, setKnitted] = useState(false)
 
   useEffect(() => {
-    setIsVisible(true)
+    setWebgl(supportsWebGL())
+  }, [])
+
+  useEffect(() => {
+    const root = rootRef.current
+    if (!root) return
+    const targets = root.querySelectorAll<HTMLElement>("[data-hero-seq]")
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+
+    if (reduceMotion) {
+      gsap.set(targets, { opacity: 1, y: 0 })
+      return
+    }
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } })
+    tl.fromTo(
+      targets,
+      { opacity: 0, y: 28 },
+      { opacity: 1, y: 0, duration: 0.9, stagger: 0.14 },
+      0.3,
+    )
+    return () => {
+      tl.kill()
+    }
   }, [])
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-[#F7F5F0] overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M30 0C13.4 0 0 13.4 0 30s13.4 30 30 30 30-13.4 30-30S46.6 0 30 0zm0 54c-13.2 0-24-10.8-24-24S16.8 6 30 6s24 10.8 24 24-10.8 24-24 24z' fill='%232F4F3E' fillOpacity='0.4'/%3E%3C/svg%3E")`,
-          backgroundSize: '60px 60px'
-        }} />
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 py-32 md:py-40">
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Left Content */}
-          <div
-            className={`text-center lg:text-left transition-all duration-1000 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
-          >
-            <span className="inline-block text-[#8FAE9A] text-sm tracking-[0.3em] uppercase font-mono mb-6">
-              Hecho a mano en Costa Rica
-            </span>
-            
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-serif font-light text-[#2F4F3E] leading-tight mb-6">
-              <span className="block">Tejido con</span>
-              <span className="block italic text-[#8FAE9A]">amor</span>
-            </h1>
-            
-            <p className="text-lg md:text-xl text-[#5A7A6A] font-mono font-light leading-relaxed max-w-lg mx-auto lg:mx-0 mb-10">
-              Cada puntada cuenta una historia. Piezas únicas de crochet creadas por 
-              manos que tejen con el corazón, transmitiendo tradición y amor en cada detalle.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <a
-                href="#coleccion"
-                className="inline-flex items-center justify-center px-8 py-4 bg-[#2F4F3E] text-[#F7F5F0] text-sm tracking-widest uppercase font-mono hover:bg-[#3d6550] transition-all duration-300"
-              >
-                Ver Colección
-              </a>
-              <a
-                href="#historia"
-                className="inline-flex items-center justify-center px-8 py-4 border border-[#2F4F3E] text-[#2F4F3E] text-sm tracking-widest uppercase font-mono hover:bg-[#2F4F3E] hover:text-[#F7F5F0] transition-all duration-300"
-              >
-                Nuestra Historia
-              </a>
-            </div>
-          </div>
-
-          {/* Right Content - Hero Image con animación */}
-          <div
-            className={`relative flex justify-center lg:justify-end transition-all duration-1000 delay-300 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
-          >
-            <div className="relative w-full max-w-sm lg:max-w-md group">
-              {/* Decorative background elements */}
-              <div className="absolute -inset-4 bg-gradient-to-br from-[#8FAE9A]/20 to-[#D2C4B2]/20 rounded-2xl blur-2xl group-hover:blur-3xl transition-all duration-500 animate-pulse" />
-              
-              <div className="relative">
-                <Image
-                  src="/images/heroah.png"
-                  alt="Alma & Hilo - Tejido con amor"
-                  width={600}
-                  height={600}
-                  className="w-full h-auto rounded-xl shadow-2xl transform group-hover:scale-[1.02] transition-transform duration-700 ease-out"
-                  priority
-                  quality={95}
-                />
-                
-                {/* Decorative corner accents */}
-                <div className="absolute -top-3 -left-3 w-20 h-20 border-l-2 border-t-2 border-[#8FAE9A] rounded-tl-2xl opacity-60" />
-                <div className="absolute -bottom-3 -right-3 w-20 h-20 border-r-2 border-b-2 border-[#8FAE9A] rounded-br-2xl opacity-60" />
-              </div>
-            </div>
-          </div>
+    <section
+      ref={rootRef}
+      className="relative min-h-screen flex items-center justify-center bg-[#F5F0E6] bg-grano overflow-hidden"
+    >
+      {/* Escena 3D de fondo (o fallback de foto si no hay WebGL) */}
+      {webgl === true && <YarnScene onKnitted={() => setKnitted(true)} />}
+      {webgl === false && (
+        <div className="absolute inset-0" aria-hidden="true">
+          <Image
+            src="/products/beige_top_asset.webp"
+            alt=""
+            fill
+            className="object-cover opacity-25"
+            priority
+          />
         </div>
+      )}
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-          <a href="#historia" aria-label="Desplazarse hacia abajo">
-            <ChevronDown className="w-8 h-8 text-[#8FAE9A]" />
+      <div className="relative z-10 max-w-4xl mx-auto px-6 py-32 text-center">
+        <span
+          data-hero-seq
+          className="inline-block opacity-0 text-[#7C8450] text-xs md:text-sm tracking-[0.3em] uppercase font-sans mb-6"
+        >
+          Crochet artesanal · Cartago, Costa Rica
+        </span>
+
+        <h1
+          data-hero-seq
+          className="opacity-0 text-5xl md:text-7xl lg:text-8xl font-display font-medium text-[#2E4233] leading-[1.05] text-balance mb-6"
+        >
+          Tejido con <span className="italic font-light">alma</span>,
+          <br />
+          hecho para vos
+        </h1>
+
+        <p
+          data-hero-seq
+          className="opacity-0 text-base md:text-lg text-[#5C5347] font-sans leading-relaxed max-w-xl mx-auto mb-10"
+        >
+          Bolsos, tops y gorros de crochet hechos a mano por madre e hija.
+          Elegís tu pieza, nos escribís por WhatsApp y la tejemos para vos, puntada por puntada.
+        </p>
+
+        <div data-hero-seq className="opacity-0 flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="#coleccion"
+            className="inline-flex items-center justify-center px-8 py-4 bg-[#2E4233] text-[#F5F0E6] text-sm tracking-widest uppercase font-sans rounded-lg hover:bg-[#3D5743] transition-colors duration-300"
+          >
+            Ver la colección
+          </a>
+          <a
+            href={buildWhatsAppUrl(WHATSAPP_GENERAL_MESSAGE)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-[#2E4233] text-[#2E4233] text-sm tracking-widest uppercase font-sans rounded-lg hover:bg-[#2E4233] hover:text-[#F5F0E6] transition-colors duration-300"
+          >
+            <MessageCircle className="w-4 h-4" aria-hidden="true" />
+            Escribinos
           </a>
         </div>
       </div>
+
+      {/* Etiqueta que aparece cuando el tejido 3D termina */}
+      <div
+        className={`hidden md:block absolute bottom-24 right-6 md:right-16 z-10 transition-all duration-700 ${
+          knitted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
+        }`}
+        aria-hidden="true"
+      >
+        <span className="inline-block bg-[#FFFDF8] border border-[#D9C9AE] rounded-md px-3 py-1.5 text-xs font-sans tracking-wider text-[#5C5347] rotate-2 shadow-sm">
+          tejido para vos 🧶
+        </span>
+      </div>
+
+      {/* Indicador de scroll */}
+      <a
+        href="#historia"
+        aria-label="Bajar a Nuestra Historia"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 text-[#7C8450] motion-safe:animate-bounce"
+      >
+        <svg width="22" height="30" viewBox="0 0 22 30" fill="none" aria-hidden="true">
+          <path
+            d="M2 8 L11 16 L20 8"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeDasharray="3 3"
+          />
+          <path
+            d="M2 17 L11 25 L20 17"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeDasharray="3 3"
+            opacity="0.5"
+          />
+        </svg>
+      </a>
     </section>
   )
 }

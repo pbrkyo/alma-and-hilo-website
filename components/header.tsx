@@ -27,8 +27,8 @@ export function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
         isScrolled
-          ? "bg-[#F7F5F0]/95 backdrop-blur-sm shadow-sm py-3"
-          : "bg-transparent py-6"
+          ? "bg-[#F5F0E6]/95 backdrop-blur-sm shadow-sm py-3"
+          : "bg-[#F5F0E6]/75 backdrop-blur-sm py-6"
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
@@ -36,14 +36,14 @@ export function Header() {
           {/* Logo Text - Estilo del logo original */}
           <Link href="/" className="relative z-10 group">
             <div className="flex flex-col items-start">
-              <span className="text-3xl md:text-4xl font-serif text-[#2F4F3E] tracking-tight leading-none">
+              <span className="text-3xl md:text-4xl font-display text-[#2E4233] tracking-tight leading-none">
                 Alma
               </span>
               <div className="flex items-center gap-2 -mt-1">
-                <span className="text-2xl md:text-3xl text-[#8FAE9A] font-light">
+                <span className="text-2xl md:text-3xl text-[#7C8450] font-light">
                   &
                 </span>
-                <span className="text-3xl md:text-4xl font-serif text-[#2F4F3E] tracking-tight">
+                <span className="text-3xl md:text-4xl font-display text-[#2E4233] tracking-tight">
                   Hilo
                 </span>
               </div>
@@ -56,7 +56,7 @@ export function Header() {
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className="text-[#2F4F3E] text-sm tracking-widest uppercase font-mono hover:text-[#8FAE9A] transition-colors duration-300"
+                  className="text-[#2E4233] text-sm tracking-widest uppercase font-sans hover:text-[#7C8450] transition-colors duration-300"
                 >
                   {link.label}
                 </Link>
@@ -67,7 +67,7 @@ export function Header() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden relative z-10 p-2 text-[#2F4F3E]"
+            className="md:hidden relative z-10 p-2 text-[#2E4233]"
             aria-label={isMobileMenuOpen ? "Cerrar menú" : "Abrir menú"}
           >
             {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
@@ -76,7 +76,7 @@ export function Header() {
 
         {/* Mobile Menu */}
         <div
-          className={`md:hidden fixed inset-0 bg-[#F7F5F0] transition-transform duration-500 ${
+          className={`md:hidden fixed inset-0 bg-[#F5F0E6] transition-transform duration-500 ${
             isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
@@ -86,7 +86,7 @@ export function Header() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="text-[#2F4F3E] text-2xl tracking-widest uppercase font-serif hover:text-[#8FAE9A] transition-colors duration-300"
+                className="text-[#2E4233] text-2xl tracking-widest uppercase font-display hover:text-[#7C8450] transition-colors duration-300"
               >
                 {link.label}
               </Link>

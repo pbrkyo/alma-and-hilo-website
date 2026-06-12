@@ -33,10 +33,10 @@ export function StorySection() {
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Section Header */}
         <div className="text-center mb-16 md:mb-24">
-          <span className="inline-block text-[#8FAE9A] text-sm tracking-[0.3em] uppercase font-mono mb-4">
+          <span className="inline-block text-[#7C8450] text-sm tracking-[0.3em] uppercase font-sans mb-4">
             Nuestra Historia
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-light text-[#2F4F3E]">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-light text-[#2E4233]">
             Un lazo de <span className="italic">amor</span>
           </h2>
         </div>
@@ -59,8 +59,8 @@ export function StorySection() {
               />
             </div>
             {/* Decorative Element */}
-            <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-[#8FAE9A]/20 rounded-full -z-10" />
-            <div className="absolute -top-6 -left-6 w-16 h-16 bg-[#D2C4B2]/30 rounded-full -z-10" />
+            <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-[#7C8450]/20 rounded-full -z-10" />
+            <div className="absolute -top-6 -left-6 w-16 h-16 bg-[#D9C9AE]/30 rounded-full -z-10" />
           </div>
 
           {/* Content */}
@@ -69,8 +69,8 @@ export function StorySection() {
               isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
             }`}
           >
-            <div className="space-y-6 text-[#5A7A6A] font-mono font-light leading-relaxed">
-              <p className="text-lg md:text-xl text-[#2F4F3E] font-serif italic">
+            <div className="space-y-6 text-[#5C5347] font-sans font-light leading-relaxed">
+              <p className="text-lg md:text-xl text-[#2E4233] font-display italic">
                 "Alma & Hilo nació de la conexión más pura: el amor entre una madre y su hija."
               </p>
               
@@ -96,14 +96,14 @@ export function StorySection() {
             </div>
 
             {/* Signature */}
-            <div className="mt-10 pt-8 border-t border-[#D2C4B2]">
-              <p className="text-[#2F4F3E] font-serif text-xl italic">
+            <div className="mt-10 pt-8 border-t border-[#D9C9AE]">
+              <p className="text-[#2E4233] font-display text-xl italic">
                 Con amor,
               </p>
-              <p className="text-[#2F4F3E] font-serif text-2xl mt-2">
+              <p className="text-[#2E4233] font-display text-2xl mt-2">
                 Velia & Yen
               </p>
-              <p className="text-[#8FAE9A] font-mono text-sm tracking-wider uppercase mt-1">
+              <p className="text-[#7C8450] font-sans text-sm tracking-wider uppercase mt-1">
                 Fundadoras de Alma & Hilo
               </p>
             </div>
