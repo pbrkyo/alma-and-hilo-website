@@ -1,7 +1,9 @@
-// Genera el video del hero con Veo (API de Gemini): recorrido entrando al
-// taller de crochet en Cartago. Prompt definido por el cliente.
-// Uso: GEMINI_API_KEY=... node scripts/generate-hero-video.mjs
+// Genera el video del hero con Veo 3.1 (API de Gemini): recorrido por el
+// taller de crochet en Cartago, VACÍO (sin personas), usando fotos reales
+// de producto como reference images para que las piezas del video sean las
+// de la marca. Uso: GEMINI_API_KEY=... node scripts/generate-hero-video.mjs
 import { writeFile, mkdir } from "node:fs/promises"
+import sharp from "sharp"
 
 const KEY = process.env.GEMINI_API_KEY
 if (!KEY) {
@@ -10,29 +12,49 @@ if (!KEY) {
 }
 
 const BASE = "https://generativelanguage.googleapis.com/v1beta"
-const MODELS = ["veo-3.1-generate-preview", "veo-3.0-generate-001", "veo-3.0-fast-generate-001"]
+// Solo Veo 3.1: es el único que soporta referenceImages (y con referencias
+// no se permite negativePrompt — el "sin personas" va en el prompt)
+const MODELS = ["veo-3.1-generate-preview"]
+
+// Fotos reales de producto (máx 3 referencias en Veo 3.1)
+const REFERENCE_PHOTOS = [
+  "products/green_shoulder_bag.jpeg",
+  "products/beige_top.jpeg",
+  "products/black_white_brown_sand_mesh_hats.jpeg",
+]
 
 const PROMPT =
   "Cinematic drone-glide camera moving forward through a beautiful, completely empty artisanal crochet " +
   "studio in Cartago, Costa Rica — the space is unoccupied, no people anywhere in the entire video. " +
-  "Beige and sage green color palette, tastefully decorated: handmade crochet pieces (bags, tops, hats) " +
-  "displayed on wooden shelves and hanging racks, lush green potted plants (monstera, ferns, pothos), " +
-  "warm soft window light. The camera glides in through the entrance, passes close to a wooden work table " +
-  "with crochet tools laid out — wooden crochet hooks, sage and beige yarn balls, scissors, measuring tape — " +
-  "and then pulls back to end in a steady, perfectly composed wide shot of the empty studio, " +
+  "The studio displays the exact handmade crochet pieces from the reference images: the sage green " +
+  "drawstring bag with pompom cords, the beige halter crochet top with small flowers, and the open-mesh " +
+  "crochet hats in black, white, brown and sand — placed naturally on wooden shelves, hanging racks and stands. " +
+  "Beige and sage green color palette, tastefully decorated with lush green potted plants (monstera, ferns, " +
+  "pothos), warm soft window light. The camera glides in through the entrance, passes close to a wooden work " +
+  "table with crochet tools laid out — wooden crochet hooks, sage and beige yarn balls, scissors, measuring " +
+  "tape — and then pulls back to end in a steady, perfectly composed wide shot of the empty studio, " +
   "usable as a website hero background. Editorial interior cinematography, smooth gimbal movement. " +
-  "No people, no hands, no faces, no text, no captions, no watermark."
+  "The studio is completely unoccupied from the first frame to the last: no people, no person, no woman, " +
+  "no man, no hands, no faces, no silhouettes, no human figures of any kind. No text, no captions, no watermark."
 
-const NEGATIVE_PROMPT =
-  "person, woman, man, people, human, hands, face, human figure, silhouette, mannequin with face, text, watermark"
+// Reducir las fotos para el payload (1024px JPEG)
+const referenceImages = []
+for (const file of REFERENCE_PHOTOS) {
+  const buf = await sharp(file).resize({ width: 1024 }).jpeg({ quality: 85 }).toBuffer()
+  referenceImages.push({
+    image: { bytesBase64Encoded: buf.toString("base64"), mimeType: "image/jpeg" },
+    referenceType: "asset",
+  })
+  console.log(`Referencia: ${file} (${Math.round(buf.length / 1024)}KB)`)
+}
 
 async function startOperation(model) {
   const res = await fetch(`${BASE}/models/${model}:predictLongRunning`, {
     method: "POST",
     headers: { "Content-Type": "application/json", "x-goog-api-key": KEY },
     body: JSON.stringify({
-      instances: [{ prompt: PROMPT }],
-      parameters: { aspectRatio: "16:9", negativePrompt: NEGATIVE_PROMPT },
+      instances: [{ prompt: PROMPT, referenceImages }],
+      parameters: { aspectRatio: "16:9" },
     }),
   })
   const body = await res.text()
@@ -59,7 +81,6 @@ if (!opName) {
 }
 console.log(`Operación iniciada (${usedModel}): ${opName}`)
 
-// Poll hasta que termine (máx ~8 min)
 let result = null
 for (let i = 0; i < 96; i++) {
   await new Promise((r) => setTimeout(r, 5000))
