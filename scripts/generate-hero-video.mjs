@@ -13,14 +13,18 @@ const BASE = "https://generativelanguage.googleapis.com/v1beta"
 const MODELS = ["veo-3.1-generate-preview", "veo-3.0-generate-001", "veo-3.0-fast-generate-001"]
 
 const PROMPT =
-  "super stylish video going inside a beautiful artisanal crochet studio based in Cartago Costa Rica, " +
-  "with beige and sage colors influencing the scene, tastefully decorated with lush green potted plants " +
-  "(monstera, pothos, ferns) placed among the wooden shelves, smooth drone-like camera glide " +
-  "moving forward through the entrance, focusing on different handmade crochet pieces (bags, tops, hats), " +
-  "1 close-up shot focusing on the crochet tools with only the hands of a brown skin artisan working the yarn, no face, " +
-  "warm soft window light, editorial cinematography, the video has to end in a steady wide shot of the " +
-  "completely empty studio with absolutely no people in it, just the crochet pieces, the plants and the warm light, " +
-  "a shot that can be used as a hero section in a website. No people in the final shot, no text, no captions, no watermark."
+  "Cinematic drone-glide camera moving forward through a beautiful, completely empty artisanal crochet " +
+  "studio in Cartago, Costa Rica — the space is unoccupied, no people anywhere in the entire video. " +
+  "Beige and sage green color palette, tastefully decorated: handmade crochet pieces (bags, tops, hats) " +
+  "displayed on wooden shelves and hanging racks, lush green potted plants (monstera, ferns, pothos), " +
+  "warm soft window light. The camera glides in through the entrance, passes close to a wooden work table " +
+  "with crochet tools laid out — wooden crochet hooks, sage and beige yarn balls, scissors, measuring tape — " +
+  "and then pulls back to end in a steady, perfectly composed wide shot of the empty studio, " +
+  "usable as a website hero background. Editorial interior cinematography, smooth gimbal movement. " +
+  "No people, no hands, no faces, no text, no captions, no watermark."
+
+const NEGATIVE_PROMPT =
+  "person, woman, man, people, human, hands, face, human figure, silhouette, mannequin with face, text, watermark"
 
 async function startOperation(model) {
   const res = await fetch(`${BASE}/models/${model}:predictLongRunning`, {
@@ -28,7 +32,7 @@ async function startOperation(model) {
     headers: { "Content-Type": "application/json", "x-goog-api-key": KEY },
     body: JSON.stringify({
       instances: [{ prompt: PROMPT }],
-      parameters: { aspectRatio: "16:9" },
+      parameters: { aspectRatio: "16:9", negativePrompt: NEGATIVE_PROMPT },
     }),
   })
   const body = await res.text()
