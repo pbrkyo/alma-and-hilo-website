@@ -7,12 +7,10 @@ import { ProcessSection } from "@/components/process-section"
 import { InstagramSection } from "@/components/instagram-section"
 import { ContactSection } from "@/components/contact-section"
 import { Footer } from "@/components/footer"
-import { Hebra } from "@/components/hebra"
 
 export default function HomePage() {
   return (
     <main className="relative min-h-screen">
-      <Hebra />
       <Header />
       <Hero />
       <StorySection />

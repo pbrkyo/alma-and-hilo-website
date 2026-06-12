@@ -25,6 +25,9 @@ yarn-error.log*
 # fotos originales sin optimizar (las optimizadas van en public/products/)
 /products/
 
+# assets crudos generados (los procesados van en public/)
+/assets-raw/
+
 # editor
 .cursor/
 

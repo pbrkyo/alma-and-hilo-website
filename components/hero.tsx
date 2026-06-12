@@ -1,197 +1,162 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
-import dynamic from "next/dynamic"
-import Image from "next/image"
+// Hero "Entrada al taller": video generado con Veo (Gemini) entrando al
+// estudio de crochet en Cartago. El video termina en el plano amplio del
+// taller y se funde con la sección siguiente vía velo crudo + parallax.
+// Dirección ui-ux-pro-max: Storytelling + Hero-Centric, estilo Motion-Driven.
+
+import { useEffect, useRef } from "react"
 import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { MessageCircle } from "lucide-react"
 import { buildWhatsAppUrl, WHATSAPP_GENERAL_MESSAGE } from "@/lib/whatsapp"
 
-// Three.js solo se descarga cuando el hero monta (code-splitting)
-const YarnScene = dynamic(() => import("@/components/hero/yarn-scene"), { ssr: false })
-
-function supportsWebGL(): boolean {
-  try {
-    const canvas = document.createElement("canvas")
-    return !!(canvas.getContext("webgl2") || canvas.getContext("webgl"))
-  } catch {
-    return false
-  }
-}
+gsap.registerPlugin(ScrollTrigger)
 
 export function Hero() {
-  const rootRef = useRef<HTMLElement>(null)
-  const [webgl, setWebgl] = useState<boolean | null>(null)
-  const [knitted, setKnitted] = useState(false)
+  const sectionRef = useRef<HTMLElement>(null)
+  const videoRef = useRef<HTMLVideoElement>(null)
+  const contentRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    setWebgl(supportsWebGL())
-  }, [])
-
-  useEffect(() => {
-    const root = rootRef.current
-    if (!root) return
-    const targets = root.querySelectorAll<HTMLElement>("[data-hero-seq]")
-    const deco = root.querySelectorAll<HTMLElement>("[data-hero-deco]")
+    const section = sectionRef.current
+    const video = videoRef.current
+    const content = contentRef.current
+    if (!section || !video || !content) return
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    const targets = content.querySelectorAll<HTMLElement>("[data-hero-seq]")
 
     if (reduceMotion) {
-      gsap.set([...targets, ...deco], { opacity: 1, y: 0, scale: 1 })
+      // Sin movimiento: poster estático (plano final del taller) y texto visible
+      gsap.set(targets, { opacity: 1, y: 0 })
+      video.removeAttribute("autoplay")
+      video.pause()
       return
     }
+
+    // Entrada coreografiada: el video arranca solo (autoplay) y el texto
+    // aparece mientras la cámara entra al taller
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } })
-    tl.fromTo(
-      deco,
-      { opacity: 0, scale: 0.94 },
-      { opacity: 1, scale: 1, duration: 1.6, stagger: 0.3, ease: "power2.out" },
-      0.1,
-    ).fromTo(
-      targets,
-      { opacity: 0, y: 28 },
-      { opacity: 1, y: 0, duration: 0.9, stagger: 0.14 },
-      0.4,
-    )
+    tl.fromTo(targets, { opacity: 0, y: 32 }, { opacity: 1, y: 0, duration: 1, stagger: 0.16 }, 1.1)
+
+    // Parallax de salida: el video queda atrás (lento, leve zoom) y el texto
+    // sube más rápido — el hero se mezcla con la sección siguiente
+    const videoTween = gsap.to(video, {
+      yPercent: 18,
+      scale: 1.07,
+      ease: "none",
+      scrollTrigger: { trigger: section, start: "top top", end: "bottom top", scrub: true },
+    })
+    const contentTween = gsap.to(content, {
+      yPercent: -24,
+      opacity: 0.15,
+      ease: "none",
+      scrollTrigger: { trigger: section, start: "top top", end: "bottom top", scrub: true },
+    })
+
+    // Pausar el video fuera de viewport (guía de sostenibilidad ui-ux-pro-max)
+    const io = new IntersectionObserver(([entry]) => {
+      if (!entry.isIntersecting) {
+        video.pause()
+      } else if (!video.ended) {
+        video.play().catch(() => {})
+      }
+    })
+    io.observe(section)
+
     return () => {
       tl.kill()
+      videoTween.scrollTrigger?.kill()
+      videoTween.kill()
+      contentTween.scrollTrigger?.kill()
+      contentTween.kill()
+      io.disconnect()
     }
   }, [])
 
   return (
-    <section
-      ref={rootRef}
-      className="relative min-h-screen flex items-center justify-center bg-[#F5F0E6] overflow-hidden"
-    >
-      {/* La mesa de la artesana: lino con luz cálida (generado con Gemini) */}
-      <div className="absolute inset-0" aria-hidden="true">
-        <Image
-          src="/hero/ambiente-lino.webp"
-          alt=""
-          fill
-          className="object-cover opacity-60"
-          priority
-        />
-        {/* Velo crudo radial: el centro queda limpio para el texto */}
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(ellipse 75% 60% at 50% 48%, rgba(245,240,230,0.94) 35%, rgba(245,240,230,0.45) 100%)",
-          }}
-        />
-      </div>
-
-      {/* Guirnaldas de crochet en las esquinas (generadas con Gemini) */}
-      <img
-        data-hero-deco
-        src="/hero/guirnalda-sup.webp"
-        alt=""
-        className="absolute -top-4 -left-4 w-44 md:w-72 lg:w-[24rem] opacity-0 motion-safe:animate-flotar z-[1]"
-        aria-hidden="true"
-      />
-      <img
-        data-hero-deco
-        src="/hero/guirnalda-inf.webp"
-        alt=""
-        className="absolute -bottom-3 -right-3 w-40 md:w-64 lg:w-[20rem] opacity-0 motion-safe:animate-flotar-lento z-[1]"
-        aria-hidden="true"
+    <section ref={sectionRef} className="relative min-h-[100svh] overflow-hidden bg-[#F5F0E6]">
+      {/* Video: entrada al taller. Termina y se queda en el plano amplio */}
+      <video
+        ref={videoRef}
+        className="absolute inset-0 h-full w-full object-cover object-[center_30%]"
+        src="/hero/estudio.mp4"
+        poster="/hero/estudio-poster.jpg"
+        autoPlay
+        muted
+        playsInline
+        preload="auto"
+        aria-label="Video entrando al taller de crochet de Alma & Hilo en Cartago"
       />
 
-      {/* Escena 3D (o fallback de foto si no hay WebGL) */}
-      {webgl === true && (
-        <div className="absolute inset-0 z-[2]">
-          <YarnScene onKnitted={() => setKnitted(true)} />
-        </div>
-      )}
-      {webgl === false && (
-        <div className="absolute inset-0" aria-hidden="true">
-          <Image
-            src="/products/beige_top_asset.webp"
-            alt=""
-            fill
-            className="object-cover opacity-25"
-            priority
-          />
-        </div>
-      )}
-
-      <div className="relative z-10 max-w-4xl mx-auto px-6 py-32 text-center">
-        <span
-          data-hero-seq
-          className="inline-block opacity-0 text-[#7C8450] text-xs md:text-sm tracking-[0.3em] uppercase font-sans mb-6"
-        >
-          Crochet artesanal · Cartago, Costa Rica
-        </span>
-
-        <h1
-          data-hero-seq
-          className="opacity-0 text-5xl md:text-7xl lg:text-8xl font-display font-medium text-[#2E4233] leading-[1.05] text-balance mb-6"
-        >
-          Tejido con <span className="italic font-light">alma</span>,
-          <br />
-          hecho para vos
-        </h1>
-
-        <p
-          data-hero-seq
-          className="opacity-0 text-base md:text-lg text-[#5C5347] font-sans leading-relaxed max-w-xl mx-auto mb-10"
-        >
-          Bolsos, tops y gorros de crochet hechos a mano por madre e hija.
-          Elegís tu pieza, nos escribís por WhatsApp y la tejemos para vos, puntada por puntada.
-        </p>
-
-        <div data-hero-seq className="opacity-0 flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="#coleccion"
-            className="inline-flex items-center justify-center px-8 py-4 bg-[#2E4233] text-[#F5F0E6] text-sm tracking-widest uppercase font-sans rounded-lg hover:bg-[#3D5743] transition-colors duration-300"
-          >
-            Ver la colección
-          </a>
-          <a
-            href={buildWhatsAppUrl(WHATSAPP_GENERAL_MESSAGE)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-[#2E4233] text-[#2E4233] text-sm tracking-widest uppercase font-sans rounded-lg hover:bg-[#2E4233] hover:text-[#F5F0E6] transition-colors duration-300"
-          >
-            <MessageCircle className="w-4 h-4" aria-hidden="true" />
-            Escribinos
-          </a>
-        </div>
-      </div>
-
-      {/* Etiqueta que aparece cuando el tejido 3D termina */}
+      {/* Scrim superior sutil para el header */}
       <div
-        className={`hidden md:block absolute bottom-24 right-6 md:right-16 z-10 transition-all duration-700 ${
-          knitted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
-        }`}
+        className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#33291F]/30 to-transparent"
         aria-hidden="true"
-      >
-        <span className="inline-block bg-[#FFFDF8] border border-[#D9C9AE] rounded-md px-3 py-1.5 text-xs font-sans tracking-wider text-[#5C5347] rotate-2 shadow-sm">
-          tejido para vos 🧶
-        </span>
+      />
+
+      {/* Velo crudo inferior: legibilidad del texto + fundido con la sección siguiente */}
+      <div
+        className="absolute inset-x-0 bottom-0 h-[72%] bg-gradient-to-t from-[#F5F0E6] from-[34%] via-[#F5F0E6]/85 via-[62%] to-transparent md:h-[62%] md:from-[26%] md:via-[#F5F0E6]/80"
+        aria-hidden="true"
+      />
+
+      {/* Contenido sobre la zona de fundido */}
+      <div className="relative z-10 flex min-h-[100svh] items-end">
+        <div ref={contentRef} className="mx-auto w-full max-w-7xl px-6 pb-24 md:px-12 md:pb-28">
+          <div className="max-w-2xl">
+            <span
+              data-hero-seq
+              className="mb-4 inline-block font-sans text-xs uppercase tracking-[0.3em] text-[#4A5234] opacity-0 md:text-sm"
+            >
+              Taller de crochet · Cartago, Costa Rica
+            </span>
+
+            <h1
+              data-hero-seq
+              className="mb-5 font-display text-5xl font-medium leading-[1.05] text-[#2E4233] opacity-0 text-balance md:text-7xl"
+            >
+              Tejido con <span className="italic font-light">alma</span>, hecho para vos
+            </h1>
+
+            <p
+              data-hero-seq
+              className="mb-9 max-w-xl font-sans text-base leading-relaxed text-[#5C5347] opacity-0 md:text-lg"
+            >
+              Bolsos, tops y gorros de crochet hechos a mano por madre e hija.
+              Elegís tu pieza, nos escribís por WhatsApp y la tejemos para vos.
+            </p>
+
+            <div data-hero-seq className="flex flex-col gap-4 opacity-0 sm:flex-row">
+              <a
+                href="#coleccion"
+                className="inline-flex items-center justify-center rounded-lg bg-[#2E4233] px-8 py-4 font-sans text-sm uppercase tracking-widest text-[#F5F0E6] transition-colors duration-300 hover:bg-[#3D5743]"
+              >
+                Ver la colección
+              </a>
+              <a
+                href={buildWhatsAppUrl(WHATSAPP_GENERAL_MESSAGE)}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-lg border border-[#2E4233] px-8 py-4 font-sans text-sm uppercase tracking-widest text-[#2E4233] transition-colors duration-300 hover:bg-[#2E4233] hover:text-[#F5F0E6]"
+              >
+                <MessageCircle className="h-4 w-4" aria-hidden="true" />
+                Escribinos
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Indicador de scroll */}
       <a
         href="#historia"
         aria-label="Bajar a Nuestra Historia"
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 text-[#7C8450] motion-safe:animate-bounce"
+        className="absolute bottom-7 left-1/2 z-10 -translate-x-1/2 text-[#7C8450] motion-safe:animate-bounce"
       >
         <svg width="22" height="30" viewBox="0 0 22 30" fill="none" aria-hidden="true">
-          <path
-            d="M2 8 L11 16 L20 8"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeDasharray="3 3"
-          />
-          <path
-            d="M2 17 L11 25 L20 17"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeDasharray="3 3"
-            opacity="0.5"
-          />
+          <path d="M2 8 L11 16 L20 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeDasharray="3 3" />
+          <path d="M2 17 L11 25 L20 17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeDasharray="3 3" opacity="0.5" />
         </svg>
       </a>
     </section>
