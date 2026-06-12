@@ -32,18 +32,24 @@ export function Hero() {
     const root = rootRef.current
     if (!root) return
     const targets = root.querySelectorAll<HTMLElement>("[data-hero-seq]")
+    const deco = root.querySelectorAll<HTMLElement>("[data-hero-deco]")
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
 
     if (reduceMotion) {
-      gsap.set(targets, { opacity: 1, y: 0 })
+      gsap.set([...targets, ...deco], { opacity: 1, y: 0, scale: 1 })
       return
     }
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } })
     tl.fromTo(
+      deco,
+      { opacity: 0, scale: 0.94 },
+      { opacity: 1, scale: 1, duration: 1.6, stagger: 0.3, ease: "power2.out" },
+      0.1,
+    ).fromTo(
       targets,
       { opacity: 0, y: 28 },
       { opacity: 1, y: 0, duration: 0.9, stagger: 0.14 },
-      0.3,
+      0.4,
     )
     return () => {
       tl.kill()
@@ -53,10 +59,49 @@ export function Hero() {
   return (
     <section
       ref={rootRef}
-      className="relative min-h-screen flex items-center justify-center bg-[#F5F0E6] bg-grano overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center bg-[#F5F0E6] overflow-hidden"
     >
-      {/* Escena 3D de fondo (o fallback de foto si no hay WebGL) */}
-      {webgl === true && <YarnScene onKnitted={() => setKnitted(true)} />}
+      {/* La mesa de la artesana: lino con luz cálida (generado con Gemini) */}
+      <div className="absolute inset-0" aria-hidden="true">
+        <Image
+          src="/hero/ambiente-lino.webp"
+          alt=""
+          fill
+          className="object-cover opacity-60"
+          priority
+        />
+        {/* Velo crudo radial: el centro queda limpio para el texto */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 75% 60% at 50% 48%, rgba(245,240,230,0.94) 35%, rgba(245,240,230,0.45) 100%)",
+          }}
+        />
+      </div>
+
+      {/* Guirnaldas de crochet en las esquinas (generadas con Gemini) */}
+      <img
+        data-hero-deco
+        src="/hero/guirnalda-sup.webp"
+        alt=""
+        className="absolute -top-4 -left-4 w-44 md:w-72 lg:w-[24rem] opacity-0 motion-safe:animate-flotar z-[1]"
+        aria-hidden="true"
+      />
+      <img
+        data-hero-deco
+        src="/hero/guirnalda-inf.webp"
+        alt=""
+        className="absolute -bottom-3 -right-3 w-40 md:w-64 lg:w-[20rem] opacity-0 motion-safe:animate-flotar-lento z-[1]"
+        aria-hidden="true"
+      />
+
+      {/* Escena 3D (o fallback de foto si no hay WebGL) */}
+      {webgl === true && (
+        <div className="absolute inset-0 z-[2]">
+          <YarnScene onKnitted={() => setKnitted(true)} />
+        </div>
+      )}
       {webgl === false && (
         <div className="absolute inset-0" aria-hidden="true">
           <Image

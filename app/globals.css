@@ -107,4 +107,20 @@
     background-image: radial-gradient(rgba(51, 41, 31, 0.04) 1px, transparent 1px);
     background-size: 5px 5px;
   }
+  /* Flotación suave de las guirnaldas del hero */
+  .animate-flotar {
+    animation: flotar 7s ease-in-out infinite;
+  }
+  .animate-flotar-lento {
+    animation: flotar 11s ease-in-out infinite reverse;
+  }
+}
+
+@keyframes flotar {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-9px) rotate(0.6deg);
+  }
 }

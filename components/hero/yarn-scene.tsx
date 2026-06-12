@@ -138,10 +138,13 @@ export default function YarnScene({ onKnitted }: { onKnitted?: () => void }) {
       // En pantallas angostas alejamos la cámara para que quepa el tejido
       camera.position.z = w / h < 0.8 ? 13 : w / h < 1.2 ? 11 : 9
       camera.updateProjectionMatrix()
-      // Bandas arriba/abajo proporcionales a la altura visible
+      // Bandas arriba/abajo proporcionales a la altura visible.
+      // En móvil se pegan a los bordes para no rozar el texto.
+      const narrow = w / h < 0.8
       const halfH = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2)) * camera.position.z
       strands.forEach((s) => {
-        s.mesh.position.y = s.yRel * halfH
+        const yRel = narrow ? Math.sign(s.yRel) * (Math.abs(s.yRel) * 0.4 + 0.72) : s.yRel
+        s.mesh.position.y = yRel * halfH
       })
     }
     resize()
