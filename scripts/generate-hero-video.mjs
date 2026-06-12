@@ -14,11 +14,13 @@ const MODELS = ["veo-3.1-generate-preview", "veo-3.0-generate-001", "veo-3.0-fas
 
 const PROMPT =
   "super stylish video going inside a beautiful artisanal crochet studio based in Cartago Costa Rica, " +
-  "with beige and sage colors influencing the scene, tastefully decorated, smooth drone-like camera glide " +
+  "with beige and sage colors influencing the scene, tastefully decorated with lush green potted plants " +
+  "(monstera, pothos, ferns) placed among the wooden shelves, smooth drone-like camera glide " +
   "moving forward through the entrance, focusing on different handmade crochet pieces (bags, tops, hats), " +
-  "1 shot focusing on the crochet tools, dont show the face of the brown skin woman only the hands no face, " +
-  "warm soft window light, editorial cinematography, the video has to end in a steady wide shot of the studio " +
-  "that can be used as a hero section in a website. No text, no captions, no watermark."
+  "1 close-up shot focusing on the crochet tools with only the hands of a brown skin artisan working the yarn, no face, " +
+  "warm soft window light, editorial cinematography, the video has to end in a steady wide shot of the " +
+  "completely empty studio with absolutely no people in it, just the crochet pieces, the plants and the warm light, " +
+  "a shot that can be used as a hero section in a website. No people in the final shot, no text, no captions, no watermark."
 
 async function startOperation(model) {
   const res = await fetch(`${BASE}/models/${model}:predictLongRunning`, {

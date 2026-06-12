@@ -5,7 +5,7 @@
 // taller y se funde con la sección siguiente vía velo crudo + parallax.
 // Dirección ui-ux-pro-max: Storytelling + Hero-Centric, estilo Motion-Driven.
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { MessageCircle } from "lucide-react"
@@ -16,7 +16,11 @@ gsap.registerPlugin(ScrollTrigger)
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
   const videoRef = useRef<HTMLVideoElement>(null)
+  const mediaRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
+  // Al terminar el video, fundido al plano del taller sin gente y con plantas
+  // (frame editado con Nano Banana: ver scripts/clean-hero-frame.mjs)
+  const [ended, setEnded] = useState(false)
 
   useEffect(() => {
     const section = sectionRef.current
@@ -41,7 +45,7 @@ export function Hero() {
 
     // Parallax de salida: el video queda atrás (lento, leve zoom) y el texto
     // sube más rápido — el hero se mezcla con la sección siguiente
-    const videoTween = gsap.to(video, {
+    const videoTween = gsap.to(mediaRef.current, {
       yPercent: 18,
       scale: 1.07,
       ease: "none",
@@ -77,8 +81,9 @@ export function Hero() {
   return (
     <section ref={sectionRef} className="relative min-h-[100svh] overflow-hidden bg-[#F5F0E6]">
       {/* Video: entrada al taller. Termina y se queda en el plano amplio */}
-      <video
-        ref={videoRef}
+      <div ref={mediaRef} className="absolute inset-0">
+        <video
+          ref={videoRef}
         className="absolute inset-0 h-full w-full object-cover object-[center_30%]"
         src="/hero/estudio.mp4"
         poster="/hero/estudio-poster.jpg"
@@ -86,8 +91,20 @@ export function Hero() {
         muted
         playsInline
         preload="auto"
+        onEnded={() => setEnded(true)}
         aria-label="Video entrando al taller de crochet de Alma & Hilo en Cartago"
       />
+
+        {/* Plano final limpio (sin gente, con plantas): crossfade al terminar el video */}
+        <img
+          src="/hero/estudio-poster.jpg"
+          alt=""
+          aria-hidden="true"
+          className={`absolute inset-0 h-full w-full object-cover object-[center_30%] transition-opacity duration-[1400ms] ease-out ${
+            ended ? "opacity-100" : "opacity-0"
+          }`}
+        />
+      </div>
 
       {/* Scrim superior sutil para el header */}
       <div
