@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, type ReactNode } from "react"
+import Image from "next/image"
 import { ArrowLeft, ArrowRight, Check, MessageCircle, Sparkles } from "lucide-react"
 import { buildCustomPedido, buildWhatsAppUrl } from "@/lib/whatsapp"
 import { HILOS } from "@/lib/products"
@@ -19,14 +20,32 @@ const PASOS: Paso[] = [
 ]
 
 const PRENDAS = ["Top o blusa", "Bolso o cartera", "Gorro o accesorio", "Vestido", "Amigurumi", "Otra cosa"]
-const TEXTURAS = [
-  { nombre: "Punto calado", desc: "Aireado y fresco" },
-  { nombre: "Punto firme", desc: "Cerrado y con cuerpo" },
-  { nombre: "Trapillo grueso", desc: "Robusto, ideal bolsos" },
-  { nombre: "Granny squares", desc: "Cuadros con flores" },
-  { nombre: "Punto acanalado", desc: "Con relieve vertical" },
-  { nombre: "No estoy segura", desc: "Nos cuentan y los guiamos" },
+
+type Textura = { id: string; nombre: string; desc: string; img: string }
+const TEXTURAS: Textura[] = [
+  { id: "calado", nombre: "Punto calado", desc: "Aireado y fresco", img: "/stitches/calado.webp" },
+  { id: "firme", nombre: "Punto firme", desc: "Cerrado y con cuerpo", img: "/stitches/firme.webp" },
+  { id: "trapillo", nombre: "Trapillo grueso", desc: "Robusto, ideal bolsos", img: "/stitches/trapillo.webp" },
+  { id: "granny", nombre: "Granny squares", desc: "Cuadros con flores", img: "/stitches/granny.webp" },
+  { id: "acanalado", nombre: "Punto acanalado", desc: "Con relieve vertical", img: "/stitches/acanalado.webp" },
 ]
+
+// Qué puntadas tienen sentido según la prenda (ej: trapillo no va en gorros).
+const COMPAT: Record<string, string[]> = {
+  "Top o blusa": ["calado", "firme", "granny", "acanalado"],
+  "Bolso o cartera": ["trapillo", "firme", "calado", "granny"],
+  "Gorro o accesorio": ["calado", "firme", "acanalado"],
+  Vestido: ["calado", "firme", "granny", "acanalado"],
+  Amigurumi: ["firme"],
+  "Otra cosa": ["calado", "firme", "trapillo", "granny", "acanalado"],
+}
+
+function texturasPara(prenda?: string): Textura[] {
+  if (!prenda) return TEXTURAS
+  const ids = COMPAT[prenda] ?? TEXTURAS.map((t) => t.id)
+  return TEXTURAS.filter((t) => ids.includes(t.id))
+}
+
 const DETALLES = ["Flores tejidas", "Flecos", "Borlas / pompones", "Iniciales bordadas", "Forro de tela", "Aplicaciones"]
 
 export function Configurator() {
@@ -48,6 +67,14 @@ export function Configurator() {
 
   const toggle = (arr: string[], set: (v: string[]) => void, v: string) =>
     set(arr.includes(v) ? arr.filter((x) => x !== v) : [...arr, v])
+
+  // Al cambiar la prenda, si la textura elegida ya no aplica, se limpia.
+  const elegirPrenda = (p: string) => {
+    setPrenda(p)
+    const ids = COMPAT[p] ?? []
+    const actual = TEXTURAS.find((t) => t.nombre === textura)
+    if (actual && !ids.includes(actual.id)) setTextura(undefined)
+  }
 
   const detallesTexto = [...detallesSel, notas.trim()].filter(Boolean).join(", ")
   const waUrl = buildWhatsAppUrl(
@@ -94,22 +121,64 @@ export function Configurator() {
           {pasoActual.id === "prenda" && (
             <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
               {PRENDAS.map((p) => (
-                <SelectCard key={p} activo={prenda === p} onClick={() => setPrenda(p)}>
+                <SelectCard key={p} activo={prenda === p} onClick={() => elegirPrenda(p)}>
                   {p}
                 </SelectCard>
               ))}
             </div>
           )}
 
-          {/* Paso textura */}
+          {/* Paso textura — con foto y filtrado según la prenda elegida */}
           {pasoActual.id === "textura" && (
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-              {TEXTURAS.map((t) => (
-                <SelectCard key={t.nombre} activo={textura === t.nombre} onClick={() => setTextura(t.nombre)}>
-                  <span className="block font-medium">{t.nombre}</span>
-                  <span className="mt-0.5 block font-sans text-xs text-[#5C5347]">{t.desc}</span>
-                </SelectCard>
-              ))}
+            <div>
+              {prenda && (
+                <p className="mb-5 text-center font-sans text-sm text-[#5C5347]">
+                  Te mostramos las puntadas que combinan con{" "}
+                  <span className="font-medium text-[#2E4233]">{prenda.toLowerCase()}</span>.
+                </p>
+              )}
+              <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+                {texturasPara(prenda).map((t) => {
+                  const activo = textura === t.nombre
+                  return (
+                    <button
+                      key={t.id}
+                      onClick={() => setTextura(t.nombre)}
+                      aria-pressed={activo}
+                      className={`overflow-hidden rounded-xl border text-left transition-all duration-200 ${
+                        activo
+                          ? "border-[#2E4233] ring-2 ring-[#2E4233]"
+                          : "border-[#D9C9AE] hover:border-[#7C8450] hover:shadow-sm"
+                      }`}
+                    >
+                      <div className="relative aspect-square">
+                        <Image src={t.img} alt={t.nombre} fill sizes="(max-width:640px) 50vw, 200px" className="object-cover" />
+                        {activo && (
+                          <span className="absolute right-2 top-2 flex h-6 w-6 items-center justify-center rounded-full bg-[#2E4233] text-[#F5F0E6]">
+                            <Check className="h-4 w-4" />
+                          </span>
+                        )}
+                      </div>
+                      <div className="bg-white px-3 py-2.5">
+                        <span className="block font-display text-base text-[#2E4233]">{t.nombre}</span>
+                        <span className="mt-0.5 block font-sans text-xs text-[#5C5347]">{t.desc}</span>
+                      </div>
+                    </button>
+                  )
+                })}
+              </div>
+              {/* Opción "no estoy segura", siempre disponible */}
+              <button
+                onClick={() => setTextura("No estoy segura")}
+                aria-pressed={textura === "No estoy segura"}
+                className={`mt-3 w-full rounded-xl border px-5 py-3 font-sans text-sm transition-all ${
+                  textura === "No estoy segura"
+                    ? "border-[#2E4233] bg-[#2E4233] text-[#F5F0E6]"
+                    : "border-[#D9C9AE] text-[#2E4233] hover:border-[#7C8450]"
+                }`}
+              >
+                No estoy segura · nos cuentan y los guiamos
+              </button>
             </div>
           )}
 
