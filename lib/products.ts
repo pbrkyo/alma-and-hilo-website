@@ -31,8 +31,10 @@ export type Producto = {
   precioDesde: number
   /** Tiempo de elaboración, comunicado como valor */
   elaboracion: string
-  /** Primera imagen = principal. Rutas relativas a /public */
+  /** Primera imagen = principal (fondo limpio). Rutas relativas a /public */
   imagenes: string[]
+  /** Foto editorial (en escena) para el hover/móvil del catálogo */
+  escena?: string
   /** Texto alt descriptivo de la imagen principal */
   alt: string
   opciones: OpcionCustomizacion[]
@@ -84,6 +86,7 @@ export const PRODUCTOS: Producto[] = [
     precioDesde: 24000,
     elaboracion: "Se teje para vos en 7 a 10 días",
     imagenes: ["/products/top-margarita.webp"],
+    escena: "/products/beige_top.webp",
     alt: "Top halter de crochet en algodón crudo con margaritas tejidas",
     opciones: [tallasTop, hilosColor("crudo", "arena", "oliva", "rosa")],
     destacado: true,
@@ -99,6 +102,7 @@ export const PRODUCTOS: Producto[] = [
     precioDesde: 22000,
     elaboracion: "Se teje para vos en 5 a 8 días",
     imagenes: ["/products/bralette-helecho.webp"],
+    escena: "/products/green_white_top.webp",
     alt: "Bralette de crochet oliva con festón blanco y borla",
     opciones: [tallasTop, hilosColor("oliva", "bosque", "arena", "negro")],
     destacado: true,
@@ -114,6 +118,7 @@ export const PRODUCTOS: Producto[] = [
     precioDesde: 26000,
     elaboracion: "Se teje para vos en 10 a 14 días",
     imagenes: ["/products/top-jardin.webp"],
+    escena: "/products/black_blouse.webp",
     alt: "Top de crochet de cuadros granny con flores sobre fondo negro",
     opciones: [
       tallasTop,
@@ -140,6 +145,7 @@ export const PRODUCTOS: Producto[] = [
     precioDesde: 23000,
     elaboracion: "Se teje para vos en 7 a 10 días",
     imagenes: ["/products/top-brote.webp"],
+    escena: "/products/olive_top.webp",
     alt: "Crop top de crochet sin mangas en punto acanalado oliva",
     opciones: [tallasTop, hilosColor("oliva", "arena", "crudo", "terracota", "bosque")],
   },
@@ -154,6 +160,7 @@ export const PRODUCTOS: Producto[] = [
     precioDesde: 25000,
     elaboracion: "Se teje para vos en 8 a 12 días",
     imagenes: ["/products/blusa-espuma.webp"],
+    escena: "/products/white_blouse.webp",
     alt: "Blusa corta de crochet color crudo con mangas de volado",
     opciones: [tallasTop, hilosColor("crudo", "blanco", "arena", "oliva")],
   },
@@ -168,6 +175,7 @@ export const PRODUCTOS: Producto[] = [
     precioDesde: 20000,
     elaboracion: "Se teje para vos en 5 a 8 días",
     imagenes: ["/products/bolso-saco.webp"],
+    escena: "/products/green_shoulder_bag.webp",
     alt: "Bolso saco de trapillo verde oliva con cordón y pompones",
     opciones: [
       hilosColor("oliva", "arena", "terracota", "bosque", "crudo"),
@@ -217,6 +225,7 @@ export const PRODUCTOS: Producto[] = [
     precioDesde: 21000,
     elaboracion: "Se teje para vos en 6 a 9 días",
     imagenes: ["/products/cartera-nube.webp", "/products/cartera-nube-gris.webp"],
+    escena: "/products/cartera-nube-gris.webp",
     alt: "Cartera de trapillo grueso color crudo con asa de mano",
     opciones: [hilosColor("crudo", "arena", "negro", "oliva", "terracota")],
     destacado: true,
@@ -232,6 +241,7 @@ export const PRODUCTOS: Producto[] = [
     precioDesde: 24000,
     elaboracion: "Se teje para vos en 6 a 9 días",
     imagenes: ["/products/bolso-mercado.webp"],
+    escena: "/products/terracota_bag.webp",
     alt: "Bolso de red de crochet color café estilo mercado",
     opciones: [hilosColor("cafe", "terracota", "arena", "oliva", "crudo")],
   },
@@ -251,6 +261,7 @@ export const PRODUCTOS: Producto[] = [
       "/products/bolso-luna-rosa.webp",
       "/products/bolso-luna-lifestyle.webp",
     ],
+    escena: "/products/yellow_pink_lunar_hand_bags.webp",
     alt: "Bolso de trapillo con asa redonda en jaspeado, amarillo y rosa",
     opciones: [
       {
@@ -283,6 +294,7 @@ export const PRODUCTOS: Producto[] = [
       "/products/gorro-red-crudo.webp",
       "/products/gorro-red-negro.webp",
     ],
+    escena: "/products/black_white_brown_sand_mesh_hats.webp",
     alt: "Gorro de crochet en punto de red color arena",
     opciones: [
       {
