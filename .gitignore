@@ -28,6 +28,9 @@ yarn-error.log*
 # assets crudos generados (los procesados van en public/)
 /assets-raw/
 
+# assets de marca sin procesar (lifestyle Instagram, etc.)
+/instagram/
+
 # editor
 .cursor/
 
