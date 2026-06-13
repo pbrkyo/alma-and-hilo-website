@@ -3,7 +3,7 @@
 // Precios en colones (CRC) como "desde" — el cliente confirma el precio final
 // por WhatsApp (es hecho a mano y a medida). Ver DESIGN.md.
 
-export type Categoria = "Tops" | "Bolsos" | "Accesorios"
+export type Categoria = "Tops" | "Bolsos" | "Accesorios" | "Decoración"
 
 export type Hilo = { nombre: string; hex: string }
 
@@ -72,7 +72,7 @@ const tallasTop = {
   ayuda: "Si elegís «a medida», coordinamos tus medidas por WhatsApp.",
 }
 
-export const CATEGORIAS: Categoria[] = ["Tops", "Bolsos", "Accesorios"]
+export const CATEGORIAS: Categoria[] = ["Tops", "Bolsos", "Accesorios", "Decoración"]
 
 export const PRODUCTOS: Producto[] = [
   {
@@ -86,7 +86,7 @@ export const PRODUCTOS: Producto[] = [
     precioDesde: 24000,
     elaboracion: "Se teje para vos en 7 a 10 días",
     imagenes: ["/products/top-margarita.webp"],
-    escena: "/products/beige_top.webp",
+    escena: "/products/top-margarita-escena.webp",
     alt: "Top halter de crochet en algodón crudo con margaritas tejidas",
     opciones: [tallasTop, hilosColor("crudo", "arena", "oliva", "rosa")],
     destacado: true,
@@ -102,7 +102,7 @@ export const PRODUCTOS: Producto[] = [
     precioDesde: 22000,
     elaboracion: "Se teje para vos en 5 a 8 días",
     imagenes: ["/products/bralette-helecho.webp"],
-    escena: "/products/green_white_top.webp",
+    escena: "/products/bralette-helecho-escena.webp",
     alt: "Bralette de crochet oliva con festón blanco y borla",
     opciones: [tallasTop, hilosColor("oliva", "bosque", "arena", "negro")],
     destacado: true,
@@ -118,7 +118,7 @@ export const PRODUCTOS: Producto[] = [
     precioDesde: 26000,
     elaboracion: "Se teje para vos en 10 a 14 días",
     imagenes: ["/products/top-jardin.webp"],
-    escena: "/products/black_blouse.webp",
+    escena: "/products/top-jardin-escena.webp",
     alt: "Top de crochet de cuadros granny con flores sobre fondo negro",
     opciones: [
       tallasTop,
@@ -145,7 +145,7 @@ export const PRODUCTOS: Producto[] = [
     precioDesde: 23000,
     elaboracion: "Se teje para vos en 7 a 10 días",
     imagenes: ["/products/top-brote.webp"],
-    escena: "/products/olive_top.webp",
+    escena: "/products/top-brote-escena.webp",
     alt: "Crop top de crochet sin mangas en punto acanalado oliva",
     opciones: [tallasTop, hilosColor("oliva", "arena", "crudo", "terracota", "bosque")],
   },
@@ -160,7 +160,7 @@ export const PRODUCTOS: Producto[] = [
     precioDesde: 25000,
     elaboracion: "Se teje para vos en 8 a 12 días",
     imagenes: ["/products/blusa-espuma.webp"],
-    escena: "/products/white_blouse.webp",
+    escena: "/products/blusa-espuma-escena.webp",
     alt: "Blusa corta de crochet color crudo con mangas de volado",
     opciones: [tallasTop, hilosColor("crudo", "blanco", "arena", "oliva")],
   },
@@ -175,7 +175,7 @@ export const PRODUCTOS: Producto[] = [
     precioDesde: 20000,
     elaboracion: "Se teje para vos en 5 a 8 días",
     imagenes: ["/products/bolso-saco.webp"],
-    escena: "/products/green_shoulder_bag.webp",
+    escena: "/products/bolso-saco-escena.webp",
     alt: "Bolso saco de trapillo verde oliva con cordón y pompones",
     opciones: [
       hilosColor("oliva", "arena", "terracota", "bosque", "crudo"),
@@ -190,16 +190,17 @@ export const PRODUCTOS: Producto[] = [
     destacado: true,
   },
   {
-    slug: "bolso-noche",
-    nombre: "Bolso Noche",
+    slug: "bolso-negro",
+    nombre: "Bolso Negro",
     categoria: "Bolsos",
     gancho: "Bandolera negra con hilo metálico y flecos",
     descripcion:
-      "Bolso bandolera pequeño en trapillo negro, tejido con un hilo metálico plateado que destella, tapa con flecos y bandolera trenzada. Para salir de noche sin cargar de más.",
+      "Bolso bandolera pequeño en trapillo negro, tejido con un hilo metálico plateado que destella, argollas, tapa con flecos y bandolera trenzada. Para salir de noche sin cargar de más.",
     materiales: "Trapillo negro con hilo metálico",
     precioDesde: 19000,
     elaboracion: "Se teje para vos en 5 a 8 días",
-    imagenes: ["/products/black_bag.webp"],
+    imagenes: ["/products/bolso-negro.webp"],
+    escena: "/products/bolso-negro-escena.webp",
     alt: "Bolso bandolera de crochet negro con hilo metálico y flecos",
     opciones: [
       {
@@ -224,8 +225,8 @@ export const PRODUCTOS: Producto[] = [
     materiales: "Trapillo de algodón, punto grueso",
     precioDesde: 21000,
     elaboracion: "Se teje para vos en 6 a 9 días",
-    imagenes: ["/products/cartera-nube.webp", "/products/cartera-nube-gris.webp"],
-    escena: "/products/cartera-nube-gris.webp",
+    imagenes: ["/products/cartera-nube.webp"],
+    escena: "/products/cartera-nube-escena.webp",
     alt: "Cartera de trapillo grueso color crudo con asa de mano",
     opciones: [hilosColor("crudo", "arena", "negro", "oliva", "terracota")],
     destacado: true,
@@ -241,7 +242,7 @@ export const PRODUCTOS: Producto[] = [
     precioDesde: 24000,
     elaboracion: "Se teje para vos en 6 a 9 días",
     imagenes: ["/products/bolso-mercado.webp"],
-    escena: "/products/terracota_bag.webp",
+    escena: "/products/bolso-mercado-escena.webp",
     alt: "Bolso de red de crochet color café estilo mercado",
     opciones: [hilosColor("cafe", "terracota", "arena", "oliva", "crudo")],
   },
@@ -259,9 +260,8 @@ export const PRODUCTOS: Producto[] = [
       "/products/bolso-luna.webp",
       "/products/bolso-luna-amarillo.webp",
       "/products/bolso-luna-rosa.webp",
-      "/products/bolso-luna-lifestyle.webp",
     ],
-    escena: "/products/yellow_pink_lunar_hand_bags.webp",
+    escena: "/products/bolso-luna-escena.webp",
     alt: "Bolso de trapillo con asa redonda en jaspeado, amarillo y rosa",
     opciones: [
       {
@@ -280,11 +280,11 @@ export const PRODUCTOS: Producto[] = [
   },
   {
     slug: "gorro-red",
-    nombre: "Gorro Red",
+    nombre: "Gorro de Red",
     categoria: "Accesorios",
-    gancho: "Gorro calado, fresco y con estilo",
+    gancho: "Gorro calado en tonos tierra",
     descripcion:
-      "Gorro tejido en punto de red, calado y liviano, que se amolda a la cabeza. Un accesorio fresco para el clima de aquí, en varios colores. Cada uno se teje a mano puntada por puntada.",
+      "Gorro tejido en punto de red, calado y liviano, que se amolda a la cabeza. Un accesorio fresco para el clima de aquí, en tonos tierra: arena, café, crudo o negro. Cada uno se teje a mano puntada por puntada.",
     materiales: "Algodón, punto de red",
     precioDesde: 13000,
     elaboracion: "Se teje para vos en 3 a 5 días",
@@ -294,7 +294,7 @@ export const PRODUCTOS: Producto[] = [
       "/products/gorro-red-crudo.webp",
       "/products/gorro-red-negro.webp",
     ],
-    escena: "/products/black_white_brown_sand_mesh_hats.webp",
+    escena: "/products/gorro-red-escena.webp",
     alt: "Gorro de crochet en punto de red color arena",
     opciones: [
       {
@@ -303,8 +303,58 @@ export const PRODUCTOS: Producto[] = [
         tipo: "opcion",
         valores: [{ valor: "Niño" }, { valor: "Adulto" }],
       },
-      hilosColor("negro", "crudo", "cafe", "arena", "terracota", "oliva"),
+      hilosColor("arena", "crudo", "cafe", "negro", "terracota", "oliva"),
     ],
+  },
+  {
+    slug: "gorro-rubi",
+    nombre: "Gorro Rubí",
+    categoria: "Accesorios",
+    gancho: "El gorro de red, en rojo que enamora",
+    descripcion:
+      "El mismo gorro de red calado y liviano, ahora en un rojo rubí vibrante con destellos sutiles. Para quienes quieren un toque de color que se roba las miradas. Tejido a mano, puntada por puntada.",
+    materiales: "Algodón con hilo brillante, punto de red",
+    precioDesde: 13000,
+    elaboracion: "Se teje para vos en 3 a 5 días",
+    imagenes: ["/products/gorro-rubi.webp"],
+    escena: "/products/gorro-rubi-escena.webp",
+    alt: "Gorro de crochet en punto de red color rojo rubí",
+    opciones: [
+      {
+        id: "talla",
+        label: "Talla",
+        tipo: "opcion",
+        valores: [{ valor: "Niño" }, { valor: "Adulto" }],
+      },
+      hilosColor("terracota", "rosa", "miel", "negro"),
+    ],
+  },
+  {
+    slug: "canasta-flores",
+    nombre: "Canasta de Flores",
+    categoria: "Decoración",
+    gancho: "Flores de crochet que no se marchitan",
+    descripcion:
+      "Una canastita tejida llena de flores de crochet que florecen para siempre. Un detalle hecho a mano para alegrar un escritorio, una repisa o regalar con cariño. Disponible en tres paletas: verdes, rosados o tonos cálidos.",
+    materiales: "Algodón, relleno suave",
+    precioDesde: 15000,
+    elaboracion: "Se teje para vos en 5 a 8 días",
+    imagenes: [
+      "/products/flores-verde.webp",
+      "/products/flores-rosa.webp",
+      "/products/flores-tierra.webp",
+    ],
+    alt: "Canasta de crochet con flores tejidas en tonos verdes",
+    opciones: [
+      {
+        id: "paleta",
+        label: "Paleta de flores",
+        tipo: "opcion",
+        valores: [{ valor: "Verdes" }, { valor: "Rosados" }, { valor: "Cálidos" }],
+        ayuda: "Cada paleta combina varios tonos. ¿Querés colores a medida? Escribinos.",
+      },
+    ],
+    destacado: true,
   },
 ]
 
