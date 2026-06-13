@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { MessageCircle } from "lucide-react"
 import { buildWhatsAppUrl, WHATSAPP_GENERAL_MESSAGE } from "@/lib/whatsapp"
 
@@ -7,12 +8,8 @@ export function BrandBar() {
   return (
     <header className="sticky top-0 z-50 border-b border-[#D9C9AE]/60 bg-[#F5F0E6]/90 backdrop-blur-sm">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-12">
-        <Link href="/" className="flex flex-col leading-none">
-          <span className="font-display text-2xl text-[#2E4233]">Alma</span>
-          <span className="-mt-1 flex items-center gap-1.5">
-            <span className="font-light text-[#7C8450]">&</span>
-            <span className="font-display text-2xl text-[#2E4233]">Hilo</span>
-          </span>
+        <Link href="/" aria-label="Alma & Hilo — inicio">
+          <Image src="/logo-wordmark.png" alt="Alma & Hilo" width={725} height={227} priority className="h-9 w-auto md:h-10" />
         </Link>
         <a
           href={buildWhatsAppUrl(WHATSAPP_GENERAL_MESSAGE)}

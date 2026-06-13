@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { Menu, X } from "lucide-react"
 
 const navLinks = [
@@ -33,21 +34,16 @@ export function Header() {
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <nav className="flex items-center justify-between md:justify-center md:gap-12">
-          {/* Logo Text - Estilo del logo original */}
-          <Link href="/" className="relative z-10 group">
-            <div className="flex flex-col items-start">
-              <span className="text-3xl md:text-4xl font-display text-[#2E4233] tracking-tight leading-none">
-                Alma
-              </span>
-              <div className="flex items-center gap-2 -mt-1">
-                <span className="text-2xl md:text-3xl text-[#7C8450] font-light">
-                  &
-                </span>
-                <span className="text-3xl md:text-4xl font-display text-[#2E4233] tracking-tight">
-                  Hilo
-                </span>
-              </div>
-            </div>
+          {/* Logo de marca (wordmark) */}
+          <Link href="/" className="relative z-10" aria-label="Alma & Hilo — inicio">
+            <Image
+              src="/logo-wordmark.png"
+              alt="Alma & Hilo"
+              width={725}
+              height={227}
+              priority
+              className="h-9 w-auto md:h-11"
+            />
           </Link>
 
           {/* Desktop Navigation */}

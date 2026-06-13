@@ -81,9 +81,21 @@
   body {
     @apply bg-background text-foreground antialiased;
     font-family: var(--font-body), 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: 'kern' 1, 'liga' 1;
+    letter-spacing: 0.005em;
+    line-height: 1.65;
   }
   h1, h2, h3, h4 {
     font-family: var(--font-fraunces), 'Georgia', serif;
+    /* Fraunces variable: óptico alto + más "moldeado" en displays grandes */
+    font-variation-settings: 'opsz' 110, 'SOFT' 40, 'WONK' 0;
+    letter-spacing: -0.015em;
+    line-height: 1.08;
+  }
+  p {
+    text-wrap: pretty;
   }
   html {
     scroll-behavior: smooth;

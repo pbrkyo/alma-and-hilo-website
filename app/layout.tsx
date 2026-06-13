@@ -19,14 +19,29 @@ const karla = Karla({
 });
 
 export const metadata: Metadata = {
-  title: 'Alma & Hilo | Tejido con Amor - Crochet Artesanal de Costa Rica',
-  description: 'Ropa, bolsos y accesorios tejidos a mano con amor por una madre e hija en Costa Rica. Cada pieza es única, hecha con dedicación y tradición artesanal.',
-  keywords: ['crochet', 'artesanal', 'Costa Rica', 'hecho a mano', 'tejido', 'bolsos', 'accesorios'],
+  metadataBase: new URL('https://almayhilo.vercel.app'),
+  title: {
+    default: 'Alma & Hilo | Crochet artesanal hecho a mano en Costa Rica',
+    template: '%s',
+  },
+  description:
+    'Tops, bolsos y accesorios de crochet tejidos a mano por madre e hija en Cartago, Costa Rica. Elegí tu pieza o diseñá la tuya y la tejemos para vos. Pedidos por WhatsApp.',
+  keywords: ['crochet', 'artesanal', 'Costa Rica', 'Cartago', 'hecho a mano', 'tejido', 'trapillo', 'bolsos', 'tops', 'gorros', 'amigurumi'],
+  alternates: { canonical: '/' },
   openGraph: {
-    title: 'Alma & Hilo | Tejido con Amor',
-    description: 'Crochet artesanal hecho a mano en Costa Rica',
+    title: 'Alma & Hilo | Crochet artesanal hecho a mano',
+    description: 'Tops, bolsos y accesorios de crochet tejidos a mano en Costa Rica. Pedidos por WhatsApp.',
     type: 'website',
+    locale: 'es_CR',
+    siteName: 'Alma & Hilo',
+    url: 'https://almayhilo.vercel.app',
     images: [{ url: '/hero/estudio-poster.jpg', width: 1280, height: 720, alt: 'Taller de crochet Alma & Hilo' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Alma & Hilo | Crochet artesanal hecho a mano',
+    description: 'Tops, bolsos y accesorios de crochet tejidos a mano en Costa Rica.',
+    images: ['/hero/estudio-poster.jpg'],
   },
 }
 
