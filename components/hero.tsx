@@ -88,7 +88,6 @@ export function Hero() {
           <video
             ref={videoRef}
             className="absolute inset-0 h-full w-full object-cover object-[center_30%]"
-            src="/hero/estudio.mp4"
             poster="/hero/estudio-poster.jpg"
             autoPlay
             muted
@@ -96,7 +95,11 @@ export function Hero() {
             preload="auto"
             onEnded={() => setEnded(true)}
             aria-label="Video entrando al taller de crochet de Alma & Hilo en Cartago"
-          />
+          >
+            {/* Móvil: 720p liviano · Desktop: 1080p alta calidad */}
+            <source src="/hero/estudio-mobile.mp4" media="(max-width: 767px)" type="video/mp4" />
+            <source src="/hero/estudio.mp4" type="video/mp4" />
+          </video>
           <img
             src="/hero/estudio-poster.jpg"
             alt=""

@@ -16,31 +16,51 @@ const BASE = "https://generativelanguage.googleapis.com/v1beta"
 // no se permite negativePrompt — el "sin personas" va en el prompt)
 const MODELS = ["veo-3.1-generate-preview"]
 
-// Fotos reales de producto (máx 3 referencias en Veo 3.1)
+// Fotos reales de producto como referencia (máx 3 en Veo 3.1). Elegidas
+// por cobertura de categoría y fidelidad a la paleta: bolso, top y gorros.
+// El resto del catálogo se describe con precisión en el prompt.
 const REFERENCE_PHOTOS = [
   "products/green_shoulder_bag.jpeg",
   "products/beige_top.jpeg",
   "products/black_white_brown_sand_mesh_hats.jpeg",
 ]
 
-const PROMPT =
-  "Cinematic drone-glide camera moving forward through a beautiful, completely empty artisanal crochet " +
-  "studio in Cartago, Costa Rica — the space is unoccupied, no people anywhere in the entire video. " +
-  "The studio displays the exact handmade crochet pieces from the reference images: the sage green " +
-  "drawstring bag with pompom cords, the beige halter crochet top with small flowers, and the open-mesh " +
-  "crochet hats in black, white, brown and sand — placed naturally on wooden shelves, hanging racks and stands. " +
-  "Beige and sage green color palette, tastefully decorated with lush green potted plants (monstera, ferns, " +
-  "pothos), warm soft window light. The camera glides in through the entrance, passes close to a wooden work " +
-  "table with crochet tools laid out — wooden crochet hooks, sage and beige yarn balls, scissors, measuring " +
-  "tape — and then pulls back to end in a steady, perfectly composed wide shot of the empty studio, " +
-  "usable as a website hero background. Editorial interior cinematography, smooth gimbal movement. " +
-  "The studio is completely unoccupied from the first frame to the last: no people, no person, no woman, " +
-  "no man, no hands, no faces, no silhouettes, no human figures of any kind. No text, no captions, no watermark."
+const PROMPT = [
+  // Calidad y cámara
+  "Ultra high quality, photorealistic, razor-sharp 4K detail, cinematic interior film look.",
+  "A single smooth gimbal drone-glide shot moving slowly forward through the front door and into a beautiful,",
+  "completely empty artisanal crochet studio in Cartago, Costa Rica. No people, ever.",
+  // Atmósfera y paleta
+  "Warm soft natural window light, calm and inviting. Strict color palette of beige, ecru, cream, sage green,",
+  "olive and warm terracotta accents, on whitewashed walls with natural oak wood furniture and a tile floor.",
+  "Tastefully decorated with lush green potted plants — large monstera, trailing pothos and ferns — on the floor,",
+  "on shelves and hanging in macrame holders.",
+  // Productos reales (referencias + catálogo descrito con precisión)
+  "The studio displays a rich collection of handmade crochet pieces, exactly in the brand's style:",
+  "— a sage green crochet drawstring pouch bag with pompom cord ties (from the reference image),",
+  "— a beige halter crochet top decorated with small crochet daisies at the neckline (from the reference image),",
+  "— open-mesh crochet bucket hats in black, brown, sand and cream displayed on wooden head stands (from the reference image),",
+  "— a cream ivory crochet crop blouse with delicate ruffled cap sleeves on a linen dress form,",
+  "— an olive green ribbed sleeveless crop top on another bust stand,",
+  "— a black granny-square crochet bralette with small flower motifs in brown, sage and sand,",
+  "— a terracotta open-mesh market tote bag hanging on a hook,",
+  "— a small black crossbody crochet bag with subtle silver metallic thread and fringe,",
+  "— assorted balls of sage, ecru and terracotta yarn in woven baskets.",
+  "Everything arranged naturally and elegantly on floating oak shelves, a hanging clothing rack, bust forms and a display table.",
+  // Recorrido y plano final
+  "Mid-way, the camera passes close over a wooden work table with crochet tools neatly laid out: wooden crochet",
+  "hooks, sage and beige yarn balls, scissors and a measuring tape. Then the camera pulls back and settles into a",
+  "steady, perfectly composed, symmetrical wide shot of the whole empty studio — ideal as a website hero background.",
+  // Restricciones duras
+  "The studio is completely unoccupied from the first frame to the very last: absolutely no people, no person,",
+  "no woman, no man, no hands, no faces, no silhouettes, no reflections of people, no human figures of any kind.",
+  "No text, no captions, no logos, no watermark.",
+].join(" ")
 
-// Reducir las fotos para el payload (1024px JPEG)
+// Preparar las fotos de referencia (1280px JPEG de buena calidad)
 const referenceImages = []
 for (const file of REFERENCE_PHOTOS) {
-  const buf = await sharp(file).resize({ width: 1024 }).jpeg({ quality: 85 }).toBuffer()
+  const buf = await sharp(file).resize({ width: 1280 }).jpeg({ quality: 90 }).toBuffer()
   referenceImages.push({
     image: { bytesBase64Encoded: buf.toString("base64"), mimeType: "image/jpeg" },
     referenceType: "asset",
@@ -54,7 +74,8 @@ async function startOperation(model) {
     headers: { "Content-Type": "application/json", "x-goog-api-key": KEY },
     body: JSON.stringify({
       instances: [{ prompt: PROMPT, referenceImages }],
-      parameters: { aspectRatio: "16:9" },
+      // 1080p = máxima resolución de Veo 3.1 en 16:9
+      parameters: { aspectRatio: "16:9", resolution: "1080p" },
     }),
   })
   const body = await res.text()
