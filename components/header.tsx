@@ -5,10 +5,10 @@ import Link from "next/link"
 import { Menu, X } from "lucide-react"
 
 const navLinks = [
-  { href: "#historia", label: "Nuestra Historia" },
-  { href: "#coleccion", label: "Colección" },
-  { href: "#proceso", label: "Proceso" },
-  { href: "#contacto", label: "Contacto" },
+  { href: "/#coleccion", label: "Colección" },
+  { href: "/#como-funciona", label: "Cómo funciona" },
+  { href: "/#historia", label: "Historia" },
+  { href: "/#contacto", label: "Contacto" },
 ]
 
 export function Header() {
@@ -51,7 +51,7 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <ul className="hidden md:flex items-center gap-8 lg:gap-12">
+          <ul className="hidden md:flex items-center gap-8 lg:gap-10">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
@@ -62,6 +62,14 @@ export function Header() {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link
+                href="/hace-tu-pieza"
+                className="rounded-lg bg-[#2E4233] px-5 py-2.5 text-[#F5F0E6] text-sm tracking-widest uppercase font-sans hover:bg-[#3D5743] transition-colors duration-300"
+              >
+                Hacé tu pieza
+              </Link>
+            </li>
           </ul>
 
           {/* Mobile Menu Button */}
@@ -91,6 +99,13 @@ export function Header() {
                 {link.label}
               </Link>
             ))}
+            <Link
+              href="/hace-tu-pieza"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="mt-2 rounded-lg bg-[#2E4233] px-7 py-3.5 text-[#F5F0E6] text-lg tracking-widest uppercase font-sans hover:bg-[#3D5743] transition-colors duration-300"
+            >
+              Hacé tu pieza
+            </Link>
           </div>
         </div>
       </div>

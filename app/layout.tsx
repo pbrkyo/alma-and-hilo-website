@@ -26,8 +26,8 @@ export const metadata: Metadata = {
     title: 'Alma & Hilo | Tejido con Amor',
     description: 'Crochet artesanal hecho a mano en Costa Rica',
     type: 'website',
+    images: [{ url: '/hero/estudio-poster.jpg', width: 1280, height: 720, alt: 'Taller de crochet Alma & Hilo' }],
   },
-    generator: 'v0.app'
 }
 
 export default function RootLayout({

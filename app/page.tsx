@@ -3,6 +3,7 @@ import { Hero } from "@/components/hero"
 import { StorySection } from "@/components/story-section"
 import { ValuesSection } from "@/components/values-section"
 import { ProductsSection } from "@/components/products-section"
+import { HowItWorks } from "@/components/how-it-works"
 import { ProcessSection } from "@/components/process-section"
 import { InstagramSection } from "@/components/instagram-section"
 import { ContactSection } from "@/components/contact-section"
@@ -16,6 +17,7 @@ export default function HomePage() {
       <StorySection />
       <ValuesSection />
       <ProductsSection />
+      <HowItWorks />
       <ProcessSection />
       <InstagramSection />
       <ContactSection />

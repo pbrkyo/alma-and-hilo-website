@@ -1,155 +1,122 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useMemo, useState } from "react"
 import Image from "next/image"
-import { MessageCircle } from "lucide-react"
-import { buildWhatsAppUrl, buildProductMessage } from "@/lib/whatsapp"
+import Link from "next/link"
+import { ArrowUpRight } from "lucide-react"
+import { CATEGORIAS, PRODUCTOS, formatColones, type Categoria } from "@/lib/products"
 
-const products = [
-  {
-    id: 1,
-    name: "Bolso Amanecer",
-    category: "Bolsos",
-    description: "Tejido en punto calado con hilos de algodón natural",
-    image: "/images/product-bag.jpg",
-  },
-  {
-    id: 2,
-    name: "Top Brisa Marina",
-    category: "Ropa",
-    description: "Crop top tejido a mano con detalles florales",
-    image: "/images/product-top.jpg",
-  },
-  {
-    id: 3,
-    name: "Accesorios Naturales",
-    category: "Accesorios",
-    description: "Detalles artesanales para complementar tu estilo",
-    image: "/images/product-accessory.jpg",
-  },
-  {
-    id: 4,
-    name: "Vestido Jardín",
-    category: "Ropa",
-    description: "Vestido midi con patrones botánicos únicos",
-    image: "/images/product-dress.jpg",
-  },
-]
+type Filtro = Categoria | "Todos"
+const FILTROS: Filtro[] = ["Todos", ...CATEGORIAS]
+
+// Encuadre por foto: las tomas anchas con la pieza descentrada necesitan ayuda
+const FOCO: Record<string, string> = {
+  "bolso-mercado-terracota": "object-[50%_55%]",
+  "bolso-luna": "object-[50%_60%]",
+}
 
 export function ProductsSection() {
-  const [isVisible, setIsVisible] = useState(false)
-  const sectionRef = useRef<HTMLElement>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
-      },
-      { threshold: 0.1 }
-    )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
-    return () => observer.disconnect()
-  }, [])
+  const [filtro, setFiltro] = useState<Filtro>("Todos")
+  const productos = useMemo(
+    () => (filtro === "Todos" ? PRODUCTOS : PRODUCTOS.filter((p) => p.categoria === filtro)),
+    [filtro],
+  )
 
   return (
-    <section
-      id="coleccion"
-      ref={sectionRef}
-      className="py-24 md:py-32 bg-[#F5F0E6]"
-    >
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        {/* Section Header */}
-        <div className="text-center mb-16 md:mb-24">
-          <span className="inline-block text-[#7C8450] text-sm tracking-[0.3em] uppercase font-sans mb-4">
+    <section id="coleccion" className="bg-[#F5F0E6] py-24 md:py-32">
+      <div className="mx-auto max-w-7xl px-6 lg:px-12">
+        {/* Encabezado */}
+        <div className="mb-12 text-center md:mb-16">
+          <span className="mb-4 inline-block font-sans text-sm uppercase tracking-[0.3em] text-[#7C8450]">
             Colección
           </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-light text-[#2E4233] mb-6">
-            Piezas <span className="italic">únicas</span>
+          <h2 className="mb-5 font-display text-4xl font-medium text-[#2E4233] md:text-5xl lg:text-6xl">
+            Piezas <span className="italic font-light">únicas</span>
           </h2>
-          <p className="text-[#5C5347] font-sans font-light max-w-2xl mx-auto">
-            Cada creación es irrepetible. Tejidas con dedicación, nuestras piezas 
-            llevan consigo la esencia de lo artesanal y el valor de lo hecho a mano.
+          <p className="mx-auto max-w-2xl font-sans text-[#5C5347]">
+            Cada creación es irrepetible. Elegí la tuya, personalizala a tu gusto y la tejemos para vos.
           </p>
         </div>
 
-        {/* Products Grid */}
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-          {products.map((product, index) => (
-            <div
-              key={product.id}
-              className={`group cursor-pointer transition-all duration-700 ${
-                isVisible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-12"
-              }`}
-              style={{ transitionDelay: `${index * 150}ms` }}
+        {/* Filtros por categoría */}
+        <div className="mb-12 flex flex-wrap justify-center gap-3">
+          {FILTROS.map((f) => {
+            const activo = filtro === f
+            return (
+              <button
+                key={f}
+                onClick={() => setFiltro(f)}
+                aria-pressed={activo}
+                className={`rounded-full border px-5 py-2 font-sans text-sm tracking-wide transition-all duration-300 ${
+                  activo
+                    ? "border-[#2E4233] bg-[#2E4233] text-[#F5F0E6]"
+                    : "border-[#D9C9AE] bg-transparent text-[#2E4233] hover:border-[#7C8450] hover:text-[#7C8450]"
+                }`}
+              >
+                {f}
+              </button>
+            )
+          })}
+        </div>
+
+        {/* Grid */}
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+          {productos.map((producto) => (
+            <Link
+              key={producto.slug}
+              href={`/producto/${producto.slug}`}
+              className="group block"
             >
-              <div className="relative aspect-[4/5] bg-[#FFFFFF] overflow-hidden mb-6">
+              <div className="relative mb-4 aspect-[4/5] overflow-hidden rounded-xl bg-white">
                 <Image
-                  src={product.image || "/placeholder.svg"}
-                  alt={product.name}
+                  src={producto.imagenes[0]}
+                  alt={producto.alt}
                   fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className={`object-cover transition-transform duration-700 group-hover:scale-105 ${
+                    FOCO[producto.slug] ?? "object-center"
+                  }`}
                 />
-                
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-[#2E4233]/0 group-hover:bg-[#2E4233]/10 transition-all duration-500" />
-                
-                {/* Category Tag */}
-                <span className="absolute top-4 left-4 bg-[#F5F0E6] px-3 py-1 text-[#2E4233] text-xs tracking-wider uppercase font-sans">
-                  {product.category}
+                <span className="absolute left-4 top-4 rounded-full bg-[#F5F0E6]/90 px-3 py-1 font-sans text-xs uppercase tracking-wider text-[#2E4233] backdrop-blur-sm">
+                  {producto.categoria}
+                </span>
+                {/* Flecha al hover */}
+                <span className="absolute bottom-4 right-4 flex h-10 w-10 translate-y-2 items-center justify-center rounded-full bg-[#2E4233] text-[#F5F0E6] opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                  <ArrowUpRight className="h-5 w-5" />
                 </span>
               </div>
 
-              <div className="space-y-3">
-                <h3 className="text-2xl font-display text-[#2E4233] group-hover:text-[#7C8450] transition-colors duration-300">
-                  {product.name}
-                </h3>
-                <p className="text-[#5C5347] font-sans text-sm font-light">
-                  {product.description}
-                </p>
-                <a
-                  href={buildWhatsAppUrl(buildProductMessage(product.name, product.category))}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 mt-2 px-5 py-2.5 bg-[#25D366] text-white text-xs tracking-wider uppercase font-sans hover:bg-[#1ebe5b] transition-all duration-300 rounded-sm"
-                >
-                  <MessageCircle className="w-4 h-4" />
-                  <span>Comprar por WhatsApp</span>
-                </a>
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <h3 className="font-display text-xl text-[#2E4233] transition-colors duration-300 group-hover:text-[#7C8450]">
+                    {producto.nombre}
+                  </h3>
+                  <p className="mt-1 font-sans text-sm text-[#5C5347]">{producto.gancho}</p>
+                </div>
+                <span className="shrink-0 whitespace-nowrap pt-1 font-sans text-sm text-[#5C5347]">
+                  desde <span className="font-semibold text-[#2E4233]">{formatColones(producto.precioDesde)}</span>
+                </span>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 
-        {/* CTA */}
-        <div className="text-center mt-16 flex flex-col sm:flex-row items-center justify-center gap-6">
-          <a
-            href={buildWhatsAppUrl("Hola! Me gustaría ver más piezas de la colección de Alma & Hilo. ¿Qué tienen disponible?")}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-[#2E4233] text-[#F5F0E6] text-sm tracking-widest uppercase font-sans hover:bg-[#3D5743] transition-all duration-300"
+        {/* CTA al configurador */}
+        <div className="mt-16 rounded-2xl bg-[#2E4233] px-8 py-12 text-center md:mt-20 md:py-16">
+          <h3 className="mx-auto max-w-2xl font-display text-3xl font-light text-[#F5F0E6] md:text-4xl">
+            ¿No encontrás lo que buscás? <span className="italic">Hacelo a tu manera.</span>
+          </h3>
+          <p className="mx-auto mt-4 max-w-xl font-sans text-[#D9C9AE]">
+            Diseñá tu pieza desde cero: elegí el tipo, la textura, los colores y los detalles.
+            Nosotros la tejemos para vos.
+          </p>
+          <Link
+            href="/hace-tu-pieza"
+            className="mt-8 inline-flex items-center gap-2 rounded-lg bg-[#F5F0E6] px-8 py-4 font-sans text-sm uppercase tracking-widest text-[#2E4233] transition-all duration-300 hover:scale-[1.03] hover:bg-white"
           >
-            <MessageCircle className="w-4 h-4" />
-            <span>Consultar disponibilidad</span>
-          </a>
-          <a
-            href="https://instagram.com/almayhilo"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-[#2E4233] text-sm tracking-widest uppercase font-sans hover:text-[#7C8450] transition-colors duration-300"
-          >
-            <span>Ver más en Instagram</span>
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </a>
+            Hacé tu pieza
+            <ArrowUpRight className="h-4 w-4" />
+          </Link>
         </div>
       </div>
     </section>
