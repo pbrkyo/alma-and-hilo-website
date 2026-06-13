@@ -61,18 +61,25 @@ export function HowItWorks() {
             return (
               <div
                 key={paso.titulo}
-                className={`relative text-center transition-all duration-700 ${
-                  visible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
+                className={`group/paso relative text-center transition-all duration-700 ease-out ${
+                  visible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
                 }`}
-                style={{ transitionDelay: `${i * 120}ms` }}
+                style={{ transitionDelay: `${i * 140}ms` }}
               >
-                {/* Conector */}
+                {/* Conector que se "dibuja" al entrar (scaleX) */}
                 {i < pasos.length - 1 && (
-                  <div className="absolute left-[calc(50%+2.5rem)] top-8 hidden h-px w-[calc(100%-5rem)] bg-[#D9C9AE] lg:block" />
+                  <div className="absolute left-[calc(50%+2.5rem)] top-8 hidden h-px w-[calc(100%-5rem)] origin-left bg-[#7C8450]/40 transition-transform duration-700 ease-out lg:block"
+                    style={{ transform: visible ? "scaleX(1)" : "scaleX(0)", transitionDelay: `${i * 140 + 300}ms` }}
+                  />
                 )}
-                <div className="relative mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-[#2E4233]">
+                <div className="relative mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-[#2E4233] transition-transform duration-300 group-hover/paso:-translate-y-1 group-hover/paso:scale-105">
                   <Icon className="h-7 w-7 text-[#F5F0E6]" />
-                  <span className="absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-[#7C8450] font-sans text-xs font-bold text-[#F5F0E6]">
+                  <span
+                    className={`absolute -right-1 -top-1 flex h-6 w-6 items-center justify-center rounded-full bg-[#7C8450] font-sans text-xs font-bold text-[#F5F0E6] transition-all duration-500 ${
+                      visible ? "scale-100 opacity-100" : "scale-0 opacity-0"
+                    }`}
+                    style={{ transitionDelay: `${i * 140 + 250}ms` }}
+                  >
                     {i + 1}
                   </span>
                 </div>

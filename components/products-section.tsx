@@ -65,25 +65,25 @@ export function ProductsSection() {
               href={`/producto/${producto.slug}`}
               className="group block"
             >
-              <div className="relative mb-4 aspect-[4/5] overflow-hidden rounded-xl bg-white">
-                {/* Capa con zoom sutil al hover; cruza de foto limpia a escena */}
+              <div className="relative mb-4 aspect-[4/5] overflow-hidden rounded-xl bg-[#EDE6D8]">
+                {/* Capa con zoom sutil al hover. Por defecto la escena editorial;
+                    al hover (desktop) cruza a la foto de catálogo (fondo limpio). */}
                 <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-[1.04]">
                   <Image
-                    src={producto.imagenes[0]}
+                    src={producto.escena ?? producto.imagenes[0]}
                     alt={producto.alt}
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className={`object-cover ${FOCO[producto.slug] ?? "object-center"}`}
                   />
-                  {/* Escena editorial: visible en móvil (sin hover) y al hover en desktop */}
                   {producto.escena && (
                     <Image
-                      src={producto.escena}
+                      src={producto.imagenes[0]}
                       alt=""
                       aria-hidden="true"
                       fill
                       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className="object-cover object-center opacity-100 transition-opacity duration-500 ease-out md:opacity-0 md:group-hover:opacity-100"
+                      className="object-cover object-center opacity-0 transition-opacity duration-500 ease-out md:group-hover:opacity-100"
                     />
                   )}
                 </div>
@@ -91,12 +91,6 @@ export function ProductsSection() {
                 <span className="absolute left-4 top-4 z-10 rounded-full bg-[#F5F0E6]/90 px-3 py-1 font-sans text-xs uppercase tracking-wider text-[#2E4233] backdrop-blur-sm">
                   {producto.categoria}
                 </span>
-                {/* Chip "en escena" — aparece al hover en desktop */}
-                {producto.escena && (
-                  <span className="absolute left-4 bottom-4 z-10 hidden rounded-full bg-[#2E4233]/85 px-3 py-1 font-sans text-[0.7rem] uppercase tracking-wider text-[#F5F0E6] opacity-0 backdrop-blur-sm transition-opacity duration-300 md:block md:group-hover:opacity-100">
-                    En escena
-                  </span>
-                )}
                 {/* Flecha al hover */}
                 <span className="absolute bottom-4 right-4 z-10 flex h-10 w-10 translate-y-2 items-center justify-center rounded-full bg-[#2E4233] text-[#F5F0E6] opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
                   <ArrowUpRight className="h-5 w-5" />

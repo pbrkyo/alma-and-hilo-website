@@ -8,6 +8,10 @@ import { buildProductPedido, buildWhatsAppUrl } from "@/lib/whatsapp"
 import { formatColones, type Producto } from "@/lib/products"
 
 export function ProductDetail({ producto }: { producto: Producto }) {
+  // Galería = fotos limpias + la editorial (en escena), sin duplicar
+  const galeria = producto.escena && !producto.imagenes.includes(producto.escena)
+    ? [...producto.imagenes, producto.escena]
+    : producto.imagenes
   const [imagenActiva, setImagenActiva] = useState(0)
   const [selecciones, setSelecciones] = useState<Record<string, string>>(() =>
     Object.fromEntries(producto.opciones.map((op) => [op.id, op.valores[0].valor])),
@@ -33,17 +37,17 @@ export function ProductDetail({ producto }: { producto: Producto }) {
         <div>
           <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-white">
             <Image
-              src={producto.imagenes[imagenActiva]}
+              src={galeria[imagenActiva]}
               alt={producto.alt}
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover"
+              className="object-cover object-center"
               priority
             />
           </div>
-          {producto.imagenes.length > 1 && (
-            <div className="mt-4 flex gap-3">
-              {producto.imagenes.map((img, i) => (
+          {galeria.length > 1 && (
+            <div className="mt-4 flex flex-wrap gap-3">
+              {galeria.map((img, i) => (
                 <button
                   key={img}
                   onClick={() => setImagenActiva(i)}
@@ -53,7 +57,7 @@ export function ProductDetail({ producto }: { producto: Producto }) {
                     i === imagenActiva ? "ring-2 ring-[#2E4233]" : "opacity-70 hover:opacity-100"
                   }`}
                 >
-                  <Image src={img} alt="" fill sizes="80px" className="object-cover" />
+                  <Image src={img} alt="" fill sizes="80px" className="object-cover object-center" />
                 </button>
               ))}
             </div>

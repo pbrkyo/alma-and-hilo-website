@@ -77,7 +77,7 @@ export const CATEGORIAS: Categoria[] = ["Tops", "Bolsos", "Accesorios", "Decorac
 export const PRODUCTOS: Producto[] = [
   {
     slug: "top-margarita",
-    nombre: "Top Margarita",
+    nombre: "Top Halter · Crudo",
     categoria: "Tops",
     gancho: "Halter de algodón con margaritas tejidas",
     descripcion:
@@ -93,7 +93,7 @@ export const PRODUCTOS: Producto[] = [
   },
   {
     slug: "bralette-helecho",
-    nombre: "Bralette Helecho",
+    nombre: "Bralette · Oliva",
     categoria: "Tops",
     gancho: "Bralette oliva con festón blanco y borla",
     descripcion:
@@ -109,7 +109,7 @@ export const PRODUCTOS: Producto[] = [
   },
   {
     slug: "top-jardin",
-    nombre: "Top Jardín",
+    nombre: "Top Granny · Negro",
     categoria: "Tops",
     gancho: "Granny squares con flores café, verde y arena",
     descripcion:
@@ -136,7 +136,7 @@ export const PRODUCTOS: Producto[] = [
   },
   {
     slug: "top-brote",
-    nombre: "Top Brote",
+    nombre: "Top Acanalado · Oliva",
     categoria: "Tops",
     gancho: "Crop sin mangas en punto acanalado",
     descripcion:
@@ -151,7 +151,7 @@ export const PRODUCTOS: Producto[] = [
   },
   {
     slug: "blusa-espuma",
-    nombre: "Blusa Espuma",
+    nombre: "Blusa de Volados · Crudo",
     categoria: "Tops",
     gancho: "Crop crudo con mangas de volado",
     descripcion:
@@ -166,7 +166,7 @@ export const PRODUCTOS: Producto[] = [
   },
   {
     slug: "bolso-saco-olivo",
-    nombre: "Bolso Saco Olivo",
+    nombre: "Bolso Saco · Oliva",
     categoria: "Bolsos",
     gancho: "Bolso saco de trapillo con pompones",
     descripcion:
@@ -191,7 +191,7 @@ export const PRODUCTOS: Producto[] = [
   },
   {
     slug: "bolso-negro",
-    nombre: "Bolso Negro",
+    nombre: "Bolso Bandolera · Negro",
     categoria: "Bolsos",
     gancho: "Bandolera negra con hilo metálico y flecos",
     descripcion:
@@ -217,7 +217,7 @@ export const PRODUCTOS: Producto[] = [
   },
   {
     slug: "cartera-nube",
-    nombre: "Cartera Nube",
+    nombre: "Cartera de Trapillo · Crudo",
     categoria: "Bolsos",
     gancho: "Clutch de trapillo grueso con asa de mano",
     descripcion:
@@ -233,7 +233,7 @@ export const PRODUCTOS: Producto[] = [
   },
   {
     slug: "bolso-mercado-terracota",
-    nombre: "Bolso Mercado",
+    nombre: "Bolso de Red · Café",
     categoria: "Bolsos",
     gancho: "Bolso de red estilo mercado",
     descripcion:
@@ -248,7 +248,7 @@ export const PRODUCTOS: Producto[] = [
   },
   {
     slug: "bolso-luna",
-    nombre: "Bolso Luna",
+    nombre: "Bolso de Mano · Trapillo",
     categoria: "Bolsos",
     gancho: "Clutch de trapillo en colores vivos",
     descripcion:
@@ -258,8 +258,11 @@ export const PRODUCTOS: Producto[] = [
     elaboracion: "Se teje para vos en 4 a 7 días",
     imagenes: [
       "/products/bolso-luna.webp",
+      "/products/bolso-luna-lunar-escena.webp",
       "/products/bolso-luna-amarillo.webp",
+      "/products/bolso-luna-amarillo-escena.webp",
       "/products/bolso-luna-rosa.webp",
+      "/products/bolso-luna-rosa-escena.webp",
     ],
     escena: "/products/bolso-luna-escena.webp",
     alt: "Bolso de trapillo con asa redonda en jaspeado, amarillo y rosa",
@@ -280,7 +283,7 @@ export const PRODUCTOS: Producto[] = [
   },
   {
     slug: "gorro-red",
-    nombre: "Gorro de Red",
+    nombre: "Gorro de Red · Tierra",
     categoria: "Accesorios",
     gancho: "Gorro calado en tonos tierra",
     descripcion:
@@ -308,7 +311,7 @@ export const PRODUCTOS: Producto[] = [
   },
   {
     slug: "gorro-rubi",
-    nombre: "Gorro Rubí",
+    nombre: "Gorro de Red · Rojo",
     categoria: "Accesorios",
     gancho: "El gorro de red, en rojo que enamora",
     descripcion:

@@ -4,7 +4,6 @@ import { StorySection } from "@/components/story-section"
 import { ValuesSection } from "@/components/values-section"
 import { ProductsSection } from "@/components/products-section"
 import { HowItWorks } from "@/components/how-it-works"
-import { ProcessSection } from "@/components/process-section"
 import { InstagramSection } from "@/components/instagram-section"
 import { ContactSection } from "@/components/contact-section"
 import { Footer } from "@/components/footer"
@@ -18,7 +17,6 @@ export default function HomePage() {
       <ValuesSection />
       <ProductsSection />
       <HowItWorks />
-      <ProcessSection />
       <InstagramSection />
       <ContactSection />
       <Footer />

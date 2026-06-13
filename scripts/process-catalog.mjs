@@ -34,11 +34,14 @@ const MAP = {
   "bolso-negro-escena.webp": "products/bolso-negro.jpeg",
   "cartera-nube.webp": "products/catalog/cartera-beige.png",
   "cartera-nube-escena.webp": "products/cartera-beige.png",
-  // Bolso Luna (3 colores) + escena editorial grupal
+  // Bolso Luna (3 colores) limpia + editorial de cada uno + escena grupal
   "bolso-luna.webp": "products/catalog/duskbag-lunar.png",
-  "bolso-luna-amarillo.webp": "products/catalog/duskbag-amarillo.png",
-  "bolso-luna-rosa.webp": "products/catalog/duskbag-rosa.png",
   "bolso-luna-escena.webp": "products/duskbags.jpeg",
+  "bolso-luna-lunar-escena.webp": "products/duskbag-lunar.png",
+  "bolso-luna-amarillo.webp": "products/catalog/duskbag-amarillo.png",
+  "bolso-luna-amarillo-escena.webp": "products/duskbag-amarillo.png",
+  "bolso-luna-rosa.webp": "products/catalog/duskbag-rosa.png",
+  "bolso-luna-rosa-escena.webp": "products/duskbag-rosa.png",
   // Gorros: dos colores con sus escenas editoriales
   "gorro-red.webp": "products/catalog/mesh-hat2.png",
   "gorro-red-negro.webp": "products/catalog/mesh-hat1.png",
