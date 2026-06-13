@@ -29,7 +29,7 @@ export function ContactSection() {
     <section
       id="contacto"
       ref={sectionRef}
-      className="py-24 md:py-32 bg-[#FFFFFF]"
+      className="py-24 md:py-32 bg-[#FFFDF8]"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
@@ -146,7 +146,7 @@ export function ContactSection() {
                     type="text"
                     id="name"
                     name="name"
-                    className="w-full px-4 py-3 bg-[#FFFFFF] border border-[#D9C9AE] text-[#2E4233] font-sans text-sm focus:outline-none focus:border-[#7C8450] transition-colors duration-300"
+                    className="w-full px-4 py-3 bg-[#FFFDF8] border border-[#D9C9AE] text-[#2E4233] font-sans text-sm focus:outline-none focus:border-[#7C8450] transition-colors duration-300"
                     placeholder="Tu nombre"
                   />
                 </div>
@@ -161,7 +161,7 @@ export function ContactSection() {
                     id="message"
                     name="message"
                     rows={5}
-                    className="w-full px-4 py-3 bg-[#FFFFFF] border border-[#D9C9AE] text-[#2E4233] font-sans text-sm focus:outline-none focus:border-[#7C8450] transition-colors duration-300 resize-none"
+                    className="w-full px-4 py-3 bg-[#FFFDF8] border border-[#D9C9AE] text-[#2E4233] font-sans text-sm focus:outline-none focus:border-[#7C8450] transition-colors duration-300 resize-none"
                     placeholder="¿Qué pieza te interesa? ¿Tenés alguna consulta?"
                   />
                 </div>

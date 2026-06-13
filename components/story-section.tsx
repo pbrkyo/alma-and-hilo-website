@@ -28,7 +28,7 @@ export function StorySection() {
     <section
       id="historia"
       ref={sectionRef}
-      className="py-24 md:py-32 bg-[#FFFFFF]"
+      className="py-24 md:py-32 bg-[#FFFDF8]"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Section Header */}

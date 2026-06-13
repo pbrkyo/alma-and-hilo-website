@@ -9,9 +9,18 @@ import { CATEGORIAS, PRODUCTOS, formatColones, type Categoria } from "@/lib/prod
 type Filtro = Categoria | "Todos"
 const FILTROS: Filtro[] = ["Todos", ...CATEGORIAS]
 
-// Encuadre por foto (si alguna pieza queda descentrada). Las fotos del
-// catálogo nuevo están centradas, así que por defecto va object-center.
-const FOCO: Record<string, string> = {}
+// Encuadre por foto: la escena editorial recorta a 4:5, así que centramos
+// horizontalmente donde realmente está la pieza (verificado foto por foto).
+const FOCO: Record<string, string> = {
+  "bralette-helecho": "object-[44%_50%]",
+  "top-jardin": "object-[38%_50%]",
+  "top-brote": "object-[46%_50%]",
+  "blusa-espuma": "object-[45%_50%]",
+  "bolso-saco-olivo": "object-[58%_50%]",
+  "bolso-negro": "object-[42%_50%]",
+  "bolso-mercado-terracota": "object-[40%_50%]",
+  "gorro-rubi": "object-[46%_50%]",
+}
 
 export function ProductsSection() {
   const [filtro, setFiltro] = useState<Filtro>("Todos")
