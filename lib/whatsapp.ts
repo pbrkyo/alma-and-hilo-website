@@ -42,7 +42,6 @@ export function buildProductPedido(
 
 export type PedidoCustom = {
   prenda?: string
-  textura?: string
   colores?: string
   detalles?: string
 }
@@ -51,7 +50,6 @@ export type PedidoCustom = {
 export function buildCustomPedido(pedido: PedidoCustom): string {
   const lineas = [
     pedido.prenda && `• Tipo de pieza: ${pedido.prenda}`,
-    pedido.textura && `• Textura / material: ${pedido.textura}`,
     pedido.colores && `• Colores: ${pedido.colores}`,
     pedido.detalles && `• Detalles especiales: ${pedido.detalles}`,
   ].filter(Boolean)
