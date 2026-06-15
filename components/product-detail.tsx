@@ -35,13 +35,13 @@ export function ProductDetail({ producto }: { producto: Producto }) {
       <div className="grid gap-10 lg:grid-cols-2 lg:gap-16">
         {/* Galería */}
         <div>
-          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-white">
+          <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-[#FFFDF8]">
             <Image
               src={galeria[imagenActiva]}
               alt={producto.alt}
               fill
               sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover object-center"
+              className="object-contain"
               priority
             />
           </div>
