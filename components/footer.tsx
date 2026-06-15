@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { Instagram, MessageCircle } from "lucide-react"
 import { buildWhatsAppUrl, WHATSAPP_GENERAL_MESSAGE } from "@/lib/whatsapp"
 
@@ -11,20 +12,14 @@ export function Footer() {
         <div className="grid md:grid-cols-3 gap-12 md:gap-8 mb-12">
           {/* Brand */}
           <div className="md:col-span-1">
-            <Link href="/" className="inline-block mb-4">
-              <div className="flex flex-col items-start">
-                <span className="text-3xl font-display text-[#2E4233] tracking-tight leading-none">
-                  Alma
-                </span>
-                <div className="flex items-center gap-2 -mt-1">
-                  <span className="text-2xl text-[#7C8450] font-light">
-                    &
-                  </span>
-                  <span className="text-3xl font-display text-[#2E4233] tracking-tight">
-                    Hilo
-                  </span>
-                </div>
-              </div>
+            <Link href="/" className="mb-4 inline-block" aria-label="Alma & Hilo — inicio">
+              <Image
+                src="/logo-wordmark.png"
+                alt="Alma & Hilo"
+                width={725}
+                height={227}
+                className="h-12 w-auto"
+              />
             </Link>
             <p className="text-[#5C5347] font-sans text-sm font-light leading-relaxed max-w-xs">
               Tejido con amor en Costa Rica. Cada puntada cuenta una historia de 

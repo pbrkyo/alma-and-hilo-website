@@ -256,7 +256,14 @@ export const PRODUCTOS: Producto[] = [
     materiales: "Trapillo de algodón, punto grueso",
     precioDesde: 22000,
     elaboracion: "Se teje para vos en 4 a 7 días",
-    imagenes: ["/products/bolso-luna.webp"],
+    imagenes: [
+      "/products/bolso-luna.webp",
+      "/products/bolso-luna-lunar-escena.webp",
+      "/products/bolso-luna-amarillo.webp",
+      "/products/bolso-luna-amarillo-escena.webp",
+      "/products/bolso-luna-rosa.webp",
+      "/products/bolso-luna-rosa-escena.webp",
+    ],
     escena: "/products/bolso-luna-escena.webp",
     alt: "Clutch de trapillo con asa redonda en varios colores",
     opciones: [
@@ -286,7 +293,14 @@ export const PRODUCTOS: Producto[] = [
     materiales: "Algodón, punto de red",
     precioDesde: 8000,
     elaboracion: "Se teje para vos en 3 a 5 días",
-    imagenes: ["/products/gorro-red.webp"],
+    imagenes: [
+      "/products/gorro-red.webp",
+      "/products/gorro-red-cafe.webp",
+      "/products/gorro-red-crudo.webp",
+      "/products/gorro-red-negro.webp",
+      "/products/gorro-rubi.webp",
+      "/products/gorro-rubi-escena.webp",
+    ],
     escena: "/products/gorro-red-escena.webp",
     alt: "Gorro de crochet en punto de red",
     opciones: [
