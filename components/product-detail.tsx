@@ -66,7 +66,7 @@ export function ProductDetail({ producto }: { producto: Producto }) {
 
         {/* Info + opciones */}
         <div>
-          <span className="font-sans text-sm uppercase tracking-[0.3em] text-[#7C8450]">
+          <span className="font-sans text-sm uppercase tracking-[0.3em] text-[#5F6740]">
             {producto.categoria}
           </span>
           <h1 className="mt-3 font-display text-4xl font-medium text-[#2E4233] md:text-5xl">
@@ -81,7 +81,7 @@ export function ProductDetail({ producto }: { producto: Producto }) {
               <span className="text-base text-[#5C5347]">desde </span>
               <span className="font-semibold">{formatColones(producto.precioDesde)}</span>
             </span>
-            <span className="inline-flex items-center gap-2 font-sans text-sm text-[#7C8450]">
+            <span className="inline-flex items-center gap-2 font-sans text-sm text-[#5F6740]">
               <Clock className="h-4 w-4" />
               {producto.elaboracion}
             </span>
@@ -99,7 +99,7 @@ export function ProductDetail({ producto }: { producto: Producto }) {
                   <span className="font-sans text-sm font-medium uppercase tracking-wider text-[#2E4233]">
                     {op.label}
                   </span>
-                  <span className="font-sans text-sm text-[#7C8450]">{selecciones[op.id]}</span>
+                  <span className="font-sans text-sm text-[#5F6740]">{selecciones[op.id]}</span>
                 </div>
 
                 {op.tipo === "color" ? (

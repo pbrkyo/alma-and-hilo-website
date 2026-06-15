@@ -70,7 +70,7 @@ export function Configurator() {
       {!esUltimo ? (
         <div>
           <div className="mb-8 text-center">
-            <span className="font-sans text-sm uppercase tracking-[0.3em] text-[#7C8450]">
+            <span className="font-sans text-sm uppercase tracking-[0.3em] text-[#5F6740]">
               Paso {paso + 1} de {PASOS.length}
             </span>
             <h1 className="mt-3 font-display text-3xl font-medium text-[#2E4233] md:text-4xl">
@@ -146,7 +146,7 @@ export function Configurator() {
                 onChange={(e) => setNotas(e.target.value)}
                 rows={3}
                 placeholder="¿Algo más en mente? Contanos acá (medidas, inspiración, una foto que tengás…)"
-                className="mt-6 w-full rounded-xl border border-[#D9C9AE] bg-white px-4 py-3 font-sans text-sm text-[#2E4233] placeholder:text-[#5C5347]/60 focus:border-[#7C8450] focus:outline-none focus:ring-1 focus:ring-[#7C8450]"
+                className="mt-6 w-full rounded-2xl border border-[#D9C9AE] bg-white px-4 py-3 font-sans text-sm text-[#2E4233] placeholder:text-[#5C5347]/60 focus:border-[#7C8450] focus:outline-none focus:ring-1 focus:ring-[#7C8450]"
               />
             </div>
           )}
@@ -190,10 +190,10 @@ export function Configurator() {
             href={waUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-8 inline-flex items-center justify-center gap-3 rounded-xl bg-[#25D366] px-8 py-4 font-sans text-base font-medium uppercase tracking-wider text-white transition-all duration-300 hover:scale-[1.02] hover:bg-[#1ebe5b]"
+            className="mt-8 inline-flex items-center justify-center gap-3 rounded-2xl bg-[#25D366] px-8 py-4 font-sans text-base font-medium uppercase tracking-wider text-white transition-all duration-300 hover:scale-[1.02] hover:bg-[#1ebe5b]"
           >
             <MessageCircle className="h-5 w-5" />
-            Enviar mi pedido por WhatsApp
+            Pedir por WhatsApp
           </a>
           <div>
             <button
@@ -222,7 +222,7 @@ function SelectCard({
     <button
       onClick={onClick}
       aria-pressed={activo}
-      className={`rounded-xl border p-5 text-center font-display text-lg transition-all duration-200 ${
+      className={`rounded-2xl border p-5 text-center font-display text-lg transition-all duration-200 ${
         activo
           ? "border-[#2E4233] bg-[#2E4233] text-[#F5F0E6]"
           : "border-[#D9C9AE] bg-white text-[#2E4233] hover:border-[#7C8450] hover:shadow-sm"
@@ -238,7 +238,7 @@ function Resumen({ label, valor }: { label: string; valor?: string }) {
     <div className="flex justify-between gap-4 border-b border-[#F5F0E6] pb-2 last:border-0 last:pb-0">
       <dt className="font-sans text-sm text-[#5C5347]">{label}</dt>
       <dd className="text-right font-sans text-sm font-medium text-[#2E4233]">
-        {valor || <span className="font-normal text-[#5C5347]/60">—</span>}
+        {valor || <span className="font-normal text-[#5C5347]/60">Sin elegir</span>}
       </dd>
     </div>
   )

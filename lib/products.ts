@@ -68,7 +68,7 @@ const tallasTop = {
   id: "talla",
   label: "Talla",
   tipo: "opcion" as const,
-  valores: [{ valor: "XS–S" }, { valor: "M" }, { valor: "L" }, { valor: "A medida" }],
+  valores: [{ valor: "XS-S" }, { valor: "M" }, { valor: "L" }, { valor: "A medida" }],
   ayuda: "Si elegís «a medida», coordinamos tus medidas por WhatsApp.",
 }
 

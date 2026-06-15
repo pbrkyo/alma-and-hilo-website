@@ -35,7 +35,7 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <nav className="flex items-center justify-between md:justify-center md:gap-12">
           {/* Logo de marca (wordmark) */}
-          <Link href="/" className="relative z-10" aria-label="Alma & Hilo — inicio">
+          <Link href="/" className="relative z-10" aria-label="Alma & Hilo, inicio">
             <Image
               src="/logo-wordmark.png"
               alt="Alma & Hilo"

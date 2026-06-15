@@ -8,7 +8,7 @@ export function BrandBar() {
   return (
     <header className="sticky top-0 z-50 border-b border-[#D9C9AE]/60 bg-[#F5F0E6]/90 backdrop-blur-sm">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-12">
-        <Link href="/" aria-label="Alma & Hilo — inicio">
+        <Link href="/" aria-label="Alma & Hilo, inicio">
           <Image src="/logo-wordmark.png" alt="Alma & Hilo" width={725} height={227} priority className="h-9 w-auto md:h-10" />
         </Link>
         <a

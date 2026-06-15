@@ -9,102 +9,69 @@ export function StorySection() {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true)
-        }
-      },
-      { threshold: 0.2 }
+      ([entry]) => entry.isIntersecting && setIsVisible(true),
+      { threshold: 0.2 },
     )
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current)
-    }
-
+    if (sectionRef.current) observer.observe(sectionRef.current)
     return () => observer.disconnect()
   }, [])
 
   return (
-    <section
-      id="historia"
-      ref={sectionRef}
-      className="py-24 md:py-32 bg-[#FFFDF8]"
-    >
-      <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        {/* Section Header */}
-        <div className="text-center mb-16 md:mb-24">
-          <span className="inline-block text-[#7C8450] text-sm tracking-[0.3em] uppercase font-sans mb-4">
-            Nuestra Historia
-          </span>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-light text-[#2E4233]">
-            Un lazo de <span className="italic">amor</span>
-          </h2>
-        </div>
-
-        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-          {/* Images */}
+    <section id="historia" ref={sectionRef} className="bg-[#FFFDF8] py-24 md:py-32">
+      <div className="mx-auto max-w-7xl px-6 lg:px-12">
+        <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+          {/* Imagen — madre e hija */}
           <div
-            className={`relative transition-all duration-1000 ${
-              isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
+            className={`relative lg:col-span-5 transition-all duration-1000 ${
+              isVisible ? "translate-x-0 opacity-100" : "-translate-x-8 opacity-0"
             }`}
           >
-            {/* Main Image - Mother and Daughter */}
-            <div className="relative aspect-[3/4] overflow-hidden">
+            <div className="relative aspect-[3/4] overflow-hidden rounded-2xl">
               <Image
                 src="/images/madreehija.png"
-                alt="Velia y Yen - Fundadoras de Alma & Hilo"
+                alt="Velia y Yen, fundadoras de Alma & Hilo"
                 fill
+                sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover"
-                quality={95}
+                quality={90}
               />
             </div>
-            {/* Decorative Element */}
-            <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-[#7C8450]/20 rounded-full -z-10" />
-            <div className="absolute -top-6 -left-6 w-16 h-16 bg-[#D9C9AE]/30 rounded-full -z-10" />
           </div>
 
-          {/* Content */}
+          {/* Contenido */}
           <div
-            className={`transition-all duration-1000 delay-200 ${
-              isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"
+            className={`lg:col-span-6 lg:col-start-7 transition-all duration-1000 delay-200 ${
+              isVisible ? "translate-x-0 opacity-100" : "translate-x-8 opacity-0"
             }`}
           >
-            <div className="space-y-6 text-[#5C5347] font-sans font-light leading-relaxed">
-              <p className="text-lg md:text-xl text-[#2E4233] font-display italic">
-                "Alma & Hilo nació de la conexión más pura: el amor entre una madre y su hija."
-              </p>
-              
-              <p>
-                En un pequeño rincón de Costa Rica, entre hilos de colores y agujas de crochet, 
-                comenzamos a tejer no solo prendas, sino sueños y memorias. Lo que empezó como 
-                tardes compartidas aprendiendo las técnicas tradicionales de nuestras abuelas, 
-                se convirtió en una misión: preservar el arte del tejido a mano y compartirlo 
-                con el mundo.
-              </p>
-              
-              <p>
-                Cada pieza que creamos lleva consigo horas de dedicación, conversaciones 
-                entre puntada y puntada, y el deseo genuino de que quien la use sienta 
-                ese cariño tejido en cada hilo.
-              </p>
+            <span className="font-sans text-sm uppercase tracking-[0.3em] text-[#5F6740]">
+              Nuestra historia
+            </span>
+            <h2 className="mt-3 font-display text-4xl font-medium text-[#2E4233] md:text-5xl lg:text-6xl">
+              Un lazo de <span className="italic font-light">amor</span>
+            </h2>
 
+            <blockquote className="mt-8 border-l-2 border-[#7C8450]/50 pl-5 font-display text-xl italic leading-snug text-[#2E4233] md:text-2xl">
+              &ldquo;Alma &amp; Hilo nació de la conexión más pura: el amor entre una madre y su hija.&rdquo;
+            </blockquote>
+
+            <div className="mt-6 space-y-5 font-sans leading-relaxed text-[#5C5347]">
               <p>
-                Somos más que una marca; somos la continuación de una tradición familiar, 
-                un puente entre generaciones unidas por la pasión de crear con las manos 
-                y el corazón.
+                En un pequeño rincón de Costa Rica, entre hilos de colores y agujas de crochet,
+                empezamos a tejer no solo prendas, sino sueños y memorias. Lo que nació como tardes
+                compartidas aprendiendo las técnicas de nuestras abuelas se volvió una misión:
+                preservar el arte del tejido a mano y compartirlo con el mundo.
+              </p>
+              <p>
+                Cada pieza lleva horas de dedicación, conversaciones entre puntada y puntada, y el
+                deseo genuino de que quien la use sienta ese cariño tejido en cada hilo.
               </p>
             </div>
 
-            {/* Signature */}
-            <div className="mt-10 pt-8 border-t border-[#D9C9AE]">
-              <p className="text-[#2E4233] font-display text-xl italic">
-                Con amor,
-              </p>
-              <p className="text-[#2E4233] font-display text-2xl mt-2">
-                Velia & Yen
-              </p>
-              <p className="text-[#7C8450] font-sans text-sm tracking-wider uppercase mt-1">
-                Fundadoras de Alma & Hilo
+            <div className="mt-10 flex items-baseline gap-3 border-t border-[#D9C9AE] pt-8">
+              <p className="font-display text-2xl text-[#2E4233]">Velia &amp; Yen</p>
+              <p className="font-sans text-xs uppercase tracking-[0.25em] text-[#5F6740]">
+                Fundadoras
               </p>
             </div>
           </div>

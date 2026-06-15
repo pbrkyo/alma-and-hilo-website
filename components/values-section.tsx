@@ -109,7 +109,7 @@ export function ValuesSection() {
 
         {/* Fila 1: imagen izquierda + tarjeta que se superpone a la derecha */}
         <div className="relative lg:grid lg:grid-cols-12 lg:items-center">
-          <div className="relative aspect-[4/3] overflow-hidden rounded-3xl lg:col-span-7">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-2xl lg:col-span-7">
             <div className="parallax-img absolute inset-x-0 -top-[14%] h-[128%]">
               <Image
                 src="/valores/manos-tejiendo.webp"
@@ -124,7 +124,7 @@ export function ValuesSection() {
               Hecho a mano · Cartago
             </span>
           </div>
-          <div className="reveal-up relative z-10 -mt-10 mx-4 space-y-8 rounded-3xl bg-[#FFFDF8] p-8 shadow-[0_30px_80px_-40px_rgba(46,66,51,0.55)] sm:mx-10 md:p-10 lg:col-span-6 lg:col-start-7 lg:-ml-16 lg:mt-0">
+          <div className="reveal-up relative z-10 -mt-10 mx-4 space-y-8 rounded-2xl bg-[#FFFDF8] p-8 shadow-[0_30px_80px_-40px_rgba(46,66,51,0.55)] sm:mx-10 md:p-10 lg:col-span-6 lg:col-start-7 lg:-ml-16 lg:mt-0">
             <ValorItem data={valor.amor} />
             <ValorItem data={valor.materiales} />
           </div>
@@ -132,7 +132,7 @@ export function ValuesSection() {
 
         {/* Fila 2: tarjeta a la izquierda que se superpone + imagen a la derecha */}
         <div className="relative mt-6 lg:mt-16 lg:grid lg:grid-cols-12 lg:items-center">
-          <div className="relative order-1 aspect-[4/3] overflow-hidden rounded-3xl lg:order-2 lg:col-span-7 lg:col-start-6">
+          <div className="relative order-1 aspect-[4/3] overflow-hidden rounded-2xl lg:order-2 lg:col-span-7 lg:col-start-6">
             <div className="parallax-img absolute inset-x-0 -top-[14%] h-[128%]">
               <Image
                 src="/valores/hilos-naturales.webp"
@@ -143,7 +143,7 @@ export function ValuesSection() {
               />
             </div>
           </div>
-          <div className="reveal-up relative z-10 order-2 -mt-10 mx-4 space-y-8 rounded-3xl bg-[#FFFDF8] p-8 shadow-[0_30px_80px_-40px_rgba(46,66,51,0.55)] sm:mx-10 md:p-10 lg:order-1 lg:col-span-6 lg:col-start-1 lg:-mr-16 lg:mt-0">
+          <div className="reveal-up relative z-10 order-2 -mt-10 mx-4 space-y-8 rounded-2xl bg-[#FFFDF8] p-8 shadow-[0_30px_80px_-40px_rgba(46,66,51,0.55)] sm:mx-10 md:p-10 lg:order-1 lg:col-span-6 lg:col-start-1 lg:-mr-16 lg:mt-0">
             <ValorItem data={valor.unicas} />
             <ValorItem data={valor.slow} />
           </div>
@@ -158,7 +158,7 @@ export function ValuesSection() {
             El tiempo que toma crear algo hermoso es parte de su valor
           </p>
           <span className="mx-auto mt-8 block h-px w-16 bg-[#7C8450]/60" />
-          <footer className="mt-4 font-sans text-xs uppercase tracking-[0.3em] text-[#7C8450]">
+          <footer className="mt-4 font-sans text-xs uppercase tracking-[0.3em] text-[#5F6740]">
             Alma &amp; Hilo
           </footer>
         </blockquote>

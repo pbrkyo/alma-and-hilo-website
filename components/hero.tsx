@@ -166,18 +166,6 @@ export function Hero() {
             </div>
           </div>
         </div>
-
-        {/* Indicador de scroll */}
-        <a
-          href="#historia"
-          aria-label="Bajar a Nuestra Historia"
-          className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 text-[#C9D1A8] motion-safe:animate-bounce"
-        >
-          <svg width="22" height="30" viewBox="0 0 22 30" fill="none" aria-hidden="true">
-            <path d="M2 8 L11 16 L20 8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeDasharray="3 3" />
-            <path d="M2 17 L11 25 L20 17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeDasharray="3 3" opacity="0.5" />
-          </svg>
-        </a>
       </div>
     </section>
   )

@@ -12,7 +12,7 @@ export function Footer() {
         <div className="grid md:grid-cols-3 gap-12 md:gap-8 mb-12">
           {/* Brand */}
           <div className="md:col-span-1">
-            <Link href="/" className="mb-4 inline-block" aria-label="Alma & Hilo — inicio">
+            <Link href="/" className="mb-4 inline-block" aria-label="Alma & Hilo, inicio">
               <Image
                 src="/logo-wordmark.png"
                 alt="Alma & Hilo"
@@ -90,10 +90,10 @@ export function Footer() {
 
         {/* Bottom */}
         <div className="pt-8 border-t border-[#D9C9AE] flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-[#7C8450] font-sans text-xs">
+          <p className="text-[#5F6740] font-sans text-xs">
             © {currentYear} Alma & Hilo. Todos los derechos reservados.
           </p>
-          <p className="text-[#7C8450] font-sans text-xs">
+          <p className="text-[#5F6740] font-sans text-xs">
             Hecho a mano con amor en Costa Rica
           </p>
         </div>

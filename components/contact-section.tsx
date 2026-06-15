@@ -39,16 +39,13 @@ export function ContactSection() {
               isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"
             }`}
           >
-            <span className="inline-block text-[#7C8450] text-sm tracking-[0.3em] uppercase font-sans mb-4">
-              Contacto
-            </span>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-light text-[#2E4233] mb-6">
               Conectemos
             </h2>
             <p className="text-[#5C5347] font-sans font-light leading-relaxed mb-8 max-w-lg">
-              Nos encantaría saber de ti. Ya sea que busques una pieza especial, 
-              tengas una idea para un pedido personalizado, o simplemente quieras 
-              saludarnos, estamos aquí para ti.
+              Nos encantaría saber de vos. Ya sea que busques una pieza especial,
+              tengas una idea para un pedido personalizado, o simplemente quieras
+              saludarnos, estamos acá para vos.
             </p>
 
             {/* Contact Info */}
@@ -59,7 +56,7 @@ export function ContactSection() {
                 </div>
                 <div>
                   <p className="text-[#2E4233] font-display">Costa Rica</p>
-                  <p className="text-[#7C8450] font-sans text-sm">Hecho con amor local</p>
+                  <p className="text-[#5F6740] font-sans text-sm">Hecho con amor local</p>
                 </div>
               </div>
 
@@ -69,7 +66,7 @@ export function ContactSection() {
                 </div>
                 <div>
                   <p className="text-[#2E4233] font-display">hola@almayhilo.com</p>
-                  <p className="text-[#7C8450] font-sans text-sm">Te responderemos pronto</p>
+                  <p className="text-[#5F6740] font-sans text-sm">Te responderemos pronto</p>
                 </div>
               </div>
             </div>
@@ -146,7 +143,7 @@ export function ContactSection() {
                     type="text"
                     id="name"
                     name="name"
-                    className="w-full px-4 py-3 bg-[#FFFDF8] border border-[#D9C9AE] text-[#2E4233] font-sans text-sm focus:outline-none focus:border-[#7C8450] transition-colors duration-300"
+                    className="w-full px-4 py-3 bg-[#FFFDF8] border border-[#D9C9AE] text-[#2E4233] font-sans text-sm focus:outline-none focus:border-[#5F6740] transition-colors duration-300"
                     placeholder="Tu nombre"
                   />
                 </div>
@@ -161,7 +158,7 @@ export function ContactSection() {
                     id="message"
                     name="message"
                     rows={5}
-                    className="w-full px-4 py-3 bg-[#FFFDF8] border border-[#D9C9AE] text-[#2E4233] font-sans text-sm focus:outline-none focus:border-[#7C8450] transition-colors duration-300 resize-none"
+                    className="w-full px-4 py-3 bg-[#FFFDF8] border border-[#D9C9AE] text-[#2E4233] font-sans text-sm focus:outline-none focus:border-[#5F6740] transition-colors duration-300 resize-none"
                     placeholder="¿Qué pieza te interesa? ¿Tenés alguna consulta?"
                   />
                 </div>

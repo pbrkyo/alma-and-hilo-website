@@ -25,9 +25,6 @@ export function ProductsSection() {
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         {/* Encabezado */}
         <div className="mb-12 text-center md:mb-16">
-          <span className="mb-4 inline-block font-sans text-sm uppercase tracking-[0.3em] text-[#7C8450]">
-            Colección
-          </span>
           <h2 className="mb-5 font-display text-4xl font-medium text-[#2E4233] md:text-5xl lg:text-6xl">
             Piezas <span className="italic font-light">únicas</span>
           </h2>
@@ -65,7 +62,7 @@ export function ProductsSection() {
               href={`/producto/${producto.slug}`}
               className="group block"
             >
-              <div className="relative mb-4 aspect-[4/5] overflow-hidden rounded-xl bg-[#EDE6D8]">
+              <div className="relative mb-4 aspect-[4/5] overflow-hidden rounded-2xl bg-[#EDE6D8]">
                 {/* Capa con zoom sutil al hover. Por defecto la escena editorial;
                     al hover (desktop) cruza a la foto de catálogo (fondo limpio). */}
                 <div className="absolute inset-0 transition-transform duration-700 group-hover:scale-[1.04]">
@@ -118,7 +115,7 @@ export function ProductsSection() {
             ¿No encontrás lo que buscás? <span className="italic">Hacelo a tu manera.</span>
           </h3>
           <p className="mx-auto mt-4 max-w-xl font-sans text-[#D9C9AE]">
-            Diseñá tu pieza desde cero: elegí el tipo, la textura, los colores y los detalles.
+            Diseñá tu pieza desde cero: elegí el tipo, los colores y los detalles.
             Nosotros la tejemos para vos.
           </p>
           <Link

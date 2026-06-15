@@ -43,7 +43,7 @@ export function HowItWorks() {
     <section ref={ref} id="como-funciona" className="bg-[#F5F0E6] py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         <div className="mb-14 text-center md:mb-20">
-          <span className="mb-4 inline-block font-sans text-sm uppercase tracking-[0.3em] text-[#7C8450]">
+          <span className="mb-4 inline-block font-sans text-sm uppercase tracking-[0.3em] text-[#5F6740]">
             Cómo funciona
           </span>
           <h2 className="font-display text-4xl font-medium text-[#2E4233] md:text-5xl">
