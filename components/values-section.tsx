@@ -1,160 +1,160 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useRef } from "react"
 import Image from "next/image"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { Heart, Leaf, Sparkles, Clock, type LucideIcon } from "lucide-react"
 
-type Valor = {
-  id: string
-  icon: LucideIcon
-  title: string
-  description: string
-}
+gsap.registerPlugin(ScrollTrigger)
 
-const valores: Valor[] = [
-  {
-    id: "amor",
+type Valor = { icon: LucideIcon; title: string; description: string }
+
+const valor: Record<string, Valor> = {
+  amor: {
     icon: Heart,
     title: "Hecho con amor",
-    description: "Cada pieza nace en nuestro taller de Cartago, tejida a mano puntada por puntada, con cariño y calma.",
+    description:
+      "Cada pieza nace en nuestro taller de Cartago, tejida a mano puntada por puntada, con cariño y calma.",
   },
-  {
-    id: "materiales",
+  materiales: {
     icon: Leaf,
     title: "Materiales naturales",
-    description: "Priorizamos fibras de algodón y trapillo reciclado, y procesos respetuosos con el ambiente.",
+    description:
+      "Priorizamos fibras de algodón y trapillo reciclado, y procesos respetuosos con el ambiente.",
   },
-  {
-    id: "unicas",
+  unicas: {
     icon: Sparkles,
     title: "Piezas únicas",
     description: "No hay dos iguales. Elegís color, talla y detalles: tu pieza se teje para vos.",
   },
-  {
-    id: "slow",
+  slow: {
     icon: Clock,
     title: "Slow fashion",
-    description: "Creemos en la moda consciente: prendas atemporales hechas para durar y ser atesoradas.",
+    description:
+      "Creemos en la moda consciente: prendas atemporales hechas para durar y ser atesoradas.",
   },
-]
+}
 
-// Tile interactivo: muestra ícono + título; revela la descripción al hover
-// (desktop) o al tocar (móvil). Spans del bento por tile.
-function ValorTile({
-  valor,
-  visible,
-  delay,
-  className,
-  dark,
-}: {
-  valor: Valor
-  visible: boolean
-  delay: number
-  className?: string
-  dark?: boolean
-}) {
-  const [abierto, setAbierto] = useState(false)
-  const Icon = valor.icon
+function ValorItem({ data }: { data: Valor }) {
+  const Icon = data.icon
   return (
-    <button
-      type="button"
-      onClick={() => setAbierto((v) => !v)}
-      aria-expanded={abierto}
-      className={`group/tile relative flex flex-col justify-end overflow-hidden rounded-2xl border p-6 text-left transition-all duration-700 ${
-        dark
-          ? "border-transparent bg-[#2E4233] text-[#F5F0E6]"
-          : "border-[#E2D9C7] bg-[#FFFDF8] text-[#2E4233] hover:border-[#7C8450]"
-      } ${visible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"} ${className ?? ""}`}
-      style={{ transitionDelay: `${delay}ms` }}
-    >
-      <span
-        className={`mb-4 flex h-12 w-12 items-center justify-center rounded-full transition-transform duration-300 group-hover/tile:scale-110 ${
-          dark ? "bg-[#F5F0E6]/15 text-[#C9D1A8]" : "bg-[#EDE6D8] text-[#7C8450]"
-        }`}
-      >
-        <Icon className="h-6 w-6" />
+    <div className="flex gap-4">
+      <span className="mt-1 flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#EDE6D8] text-[#7C8450]">
+        <Icon className="h-5 w-5" />
       </span>
-      <h3 className="font-display text-xl md:text-2xl">{valor.title}</h3>
-      {/* Descripción: se despliega al hover (desktop) o al tocar (móvil) */}
-      <p
-        className={`grid font-sans text-sm leading-relaxed transition-all duration-500 ease-out ${
-          dark ? "text-[#D9C9AE]" : "text-[#5C5347]"
-        } ${abierto ? "mt-3 grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0 group-hover/tile:mt-3 group-hover/tile:grid-rows-[1fr] group-hover/tile:opacity-100"}`}
-      >
-        <span className="overflow-hidden">{valor.description}</span>
-      </p>
-    </button>
+      <div>
+        <h3 className="font-display text-xl text-[#2E4233] md:text-2xl">{data.title}</h3>
+        <p className="mt-1 font-sans text-sm leading-relaxed text-[#5C5347]">{data.description}</p>
+      </div>
+    </div>
   )
 }
 
 export function ValuesSection() {
-  const [visible, setVisible] = useState(false)
-  const ref = useRef<HTMLElement>(null)
+  const root = useRef<HTMLElement>(null)
 
   useEffect(() => {
-    const obs = new IntersectionObserver(([e]) => e.isIntersecting && setVisible(true), {
-      threshold: 0.15,
-    })
-    if (ref.current) obs.observe(ref.current)
-    return () => obs.disconnect()
+    const el = root.current
+    if (!el) return
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+
+    const ctx = gsap.context(() => {
+      if (!reduce) {
+        // Parallax: la capa de imagen (sobredimensionada) deriva con el scroll
+        gsap.utils.toArray<HTMLElement>(".parallax-img").forEach((img) => {
+          gsap.fromTo(
+            img,
+            { yPercent: -12 },
+            {
+              yPercent: 12,
+              ease: "none",
+              scrollTrigger: {
+                trigger: img.parentElement,
+                start: "top bottom",
+                end: "bottom top",
+                scrub: true,
+              },
+            },
+          )
+        })
+      }
+      // Reveal de las tarjetas de texto
+      gsap.utils.toArray<HTMLElement>(".reveal-up").forEach((c) => {
+        gsap.from(c, {
+          y: reduce ? 0 : 44,
+          opacity: 0,
+          duration: 0.9,
+          ease: "power3.out",
+          scrollTrigger: { trigger: c, start: "top 85%" },
+        })
+      })
+    }, el)
+
+    return () => ctx.revert()
   }, [])
 
   return (
-    <section ref={ref} className="bg-[#F5F0E6] py-20 md:py-28">
+    <section ref={root} className="overflow-hidden bg-[#F5F0E6] py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
-        <div className="mb-12 max-w-2xl">
+        {/* Encabezado */}
+        <div className="mb-14 max-w-2xl md:mb-20">
           <h2 className="font-display text-3xl font-medium text-[#2E4233] md:text-5xl">
             Tejido a mano, <span className="italic font-light">con intención</span>
           </h2>
           <p className="mt-4 font-sans text-[#5C5347]">
-            Tocá cada bloque para conocer lo que hay detrás de cada pieza.
+            Detrás de cada pieza hay un taller, unas manos y una forma de hacer las cosas.
           </p>
         </div>
 
-        {/* Bento: imagen (2x2) + 4 valores (1x1) + frase (full). Sin celdas vacías. */}
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:auto-rows-[180px]">
-          {/* Imagen atmósfera (taller) — celda alta 2x2 */}
-          <div
-            className={`group relative overflow-hidden rounded-2xl transition-all duration-700 sm:col-span-2 sm:row-span-2 lg:col-span-2 lg:row-span-2 ${
-              visible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-            }`}
-          >
-            <Image
-              src="/hero/estudio-poster.jpg"
-              alt="Taller de crochet de Alma & Hilo en Cartago"
-              fill
-              sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#1E2D22]/85 via-[#2E4233]/20 to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 p-6 md:p-8">
-              <span className="font-sans text-xs uppercase tracking-[0.3em] text-[#C9D1A8]">
-                Cartago, Costa Rica
-              </span>
-              <p className="mt-2 max-w-sm font-display text-2xl leading-snug text-[#F5F0E6] md:text-3xl">
-                Un taller de madre e hija donde nace cada puntada.
-              </p>
+        {/* Fila 1: imagen izquierda + tarjeta que se superpone a la derecha */}
+        <div className="relative lg:grid lg:grid-cols-12 lg:items-center">
+          <div className="relative aspect-[4/3] overflow-hidden rounded-3xl lg:col-span-7">
+            <div className="parallax-img absolute inset-x-0 -top-[14%] h-[128%]">
+              <Image
+                src="/valores/manos-tejiendo.webp"
+                alt="Manos tejiendo a crochet con hilo sage y crudo"
+                fill
+                sizes="(max-width: 1024px) 100vw, 60vw"
+                className="object-cover"
+              />
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-t from-[#1E2D22]/55 via-transparent to-transparent" />
+            <span className="absolute bottom-6 left-6 font-sans text-xs uppercase tracking-[0.3em] text-[#F5F0E6]/90">
+              Hecho a mano · Cartago
+            </span>
+          </div>
+          <div className="reveal-up relative z-10 -mt-10 mx-4 space-y-8 rounded-3xl bg-[#FFFDF8] p-8 shadow-[0_30px_80px_-40px_rgba(46,66,51,0.55)] sm:mx-10 md:p-10 lg:col-span-6 lg:col-start-7 lg:-ml-16 lg:mt-0">
+            <ValorItem data={valor.amor} />
+            <ValorItem data={valor.materiales} />
+          </div>
+        </div>
+
+        {/* Fila 2: tarjeta a la izquierda que se superpone + imagen a la derecha */}
+        <div className="relative mt-6 lg:mt-16 lg:grid lg:grid-cols-12 lg:items-center">
+          <div className="relative order-1 aspect-[4/3] overflow-hidden rounded-3xl lg:order-2 lg:col-span-7 lg:col-start-6">
+            <div className="parallax-img absolute inset-x-0 -top-[14%] h-[128%]">
+              <Image
+                src="/valores/hilos-naturales.webp"
+                alt="Ovillos de algodón natural en tonos sage, crudo y terracota"
+                fill
+                sizes="(max-width: 1024px) 100vw, 60vw"
+                className="object-cover"
+              />
             </div>
           </div>
-
-          {/* 4 valores (1x1 cada uno, llenan el bloque derecho 2x2) */}
-          <ValorTile valor={valores[0]} visible={visible} delay={80} className="min-h-[160px]" />
-          <ValorTile valor={valores[1]} visible={visible} delay={160} className="min-h-[160px]" />
-          <ValorTile valor={valores[2]} visible={visible} delay={240} className="min-h-[160px]" />
-          <ValorTile valor={valores[3]} visible={visible} delay={320} dark className="min-h-[160px]" />
-
-          {/* Frase destacada (conservada), full-width */}
-          <blockquote
-            className={`flex items-center justify-center rounded-2xl bg-[#7C8450] p-8 text-center transition-all duration-700 sm:col-span-2 lg:col-span-4 ${
-              visible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
-            }`}
-            style={{ transitionDelay: "400ms" }}
-          >
-            <p className="max-w-2xl font-display text-xl italic leading-snug text-[#F5F0E6] md:text-2xl">
-              "El tiempo que toma crear algo hermoso es parte de su valor"
-            </p>
-          </blockquote>
+          <div className="reveal-up relative z-10 order-2 -mt-10 mx-4 space-y-8 rounded-3xl bg-[#FFFDF8] p-8 shadow-[0_30px_80px_-40px_rgba(46,66,51,0.55)] sm:mx-10 md:p-10 lg:order-1 lg:col-span-6 lg:col-start-1 lg:-mr-16 lg:mt-0">
+            <ValorItem data={valor.unicas} />
+            <ValorItem data={valor.slow} />
+          </div>
         </div>
+
+        {/* Frase, banda completa */}
+        <blockquote className="reveal-up mt-12 rounded-3xl bg-[#7C8450] px-8 py-14 text-center md:mt-20 md:py-20">
+          <p className="mx-auto max-w-3xl font-display text-2xl italic leading-snug text-[#F5F0E6] md:text-4xl">
+            "El tiempo que toma crear algo hermoso es parte de su valor"
+          </p>
+        </blockquote>
       </div>
     </section>
   )
