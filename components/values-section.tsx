@@ -149,11 +149,18 @@ export function ValuesSection() {
           </div>
         </div>
 
-        {/* Frase, banda completa */}
-        <blockquote className="reveal-up mt-12 rounded-3xl bg-[#7C8450] px-8 py-14 text-center md:mt-20 md:py-20">
-          <p className="mx-auto max-w-3xl font-display text-2xl italic leading-snug text-[#F5F0E6] md:text-4xl">
-            "El tiempo que toma crear algo hermoso es parte de su valor"
+        {/* Frase — pull-quote editorial */}
+        <blockquote className="reveal-up mx-auto mt-20 max-w-4xl text-center md:mt-28">
+          <span aria-hidden="true" className="block font-display text-7xl leading-none text-[#7C8450]/35 md:text-8xl">
+            &ldquo;
+          </span>
+          <p className="mx-auto -mt-6 max-w-3xl font-display text-3xl font-light italic leading-[1.25] text-[#2E4233] md:-mt-8 md:text-5xl">
+            El tiempo que toma crear algo hermoso es parte de su valor
           </p>
+          <span className="mx-auto mt-8 block h-px w-16 bg-[#7C8450]/60" />
+          <footer className="mt-4 font-sans text-xs uppercase tracking-[0.3em] text-[#7C8450]">
+            Alma &amp; Hilo
+          </footer>
         </blockquote>
       </div>
     </section>

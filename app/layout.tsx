@@ -1,14 +1,15 @@
 import React from "react"
 import type { Metadata } from 'next'
-import { Fraunces, Karla } from 'next/font/google'
+import { Cormorant_Garamond, Karla } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { WhatsAppFab } from '@/components/whatsapp-fab'
 import './globals.css'
 
-const fraunces = Fraunces({
+const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
-  axes: ['SOFT', 'WONK', 'opsz'],
-  variable: '--font-fraunces',
+  weight: ['400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+  variable: '--font-cormorant',
   display: 'swap',
 });
 
@@ -52,7 +53,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className="scroll-smooth">
-      <body className={`${fraunces.variable} ${karla.variable} antialiased`}>
+      <body className={`${cormorant.variable} ${karla.variable} antialiased`}>
         {children}
         <WhatsAppFab />
         <Analytics />

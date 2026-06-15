@@ -37,7 +37,7 @@
 
 @theme inline {
   --font-sans: var(--font-body), 'Helvetica Neue', sans-serif;
-  --font-display: var(--font-fraunces), 'Georgia', serif;
+  --font-display: var(--font-cormorant), 'Georgia', serif;
   --font-body: var(--font-karla), 'Helvetica Neue', sans-serif;
 
   --color-background: var(--background);
@@ -88,11 +88,10 @@
     line-height: 1.65;
   }
   h1, h2, h3, h4 {
-    font-family: var(--font-fraunces), 'Georgia', serif;
-    /* Fraunces variable: óptico alto + más "moldeado" en displays grandes */
-    font-variation-settings: 'opsz' 110, 'SOFT' 40, 'WONK' 0;
-    letter-spacing: -0.015em;
-    line-height: 1.08;
+    font-family: var(--font-cormorant), 'Georgia', serif;
+    /* Cormorant Garamond: serif delicada, mejor con tracking casi normal */
+    letter-spacing: -0.005em;
+    line-height: 1.1;
   }
   p {
     text-wrap: pretty;
@@ -112,7 +111,7 @@
     text-wrap: balance;
   }
   .font-display {
-    font-family: var(--font-fraunces), 'Georgia', serif;
+    font-family: var(--font-cormorant), 'Georgia', serif;
   }
   /* Textura de grano sutil para fondos (sin imágenes) */
   .bg-grano {
