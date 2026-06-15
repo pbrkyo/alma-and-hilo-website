@@ -28,12 +28,12 @@ export function StorySection() {
           >
             <div className="relative aspect-[3/4] overflow-hidden rounded-2xl">
               <Image
-                src="/images/madreehija.png"
-                alt="Velia y Yen, fundadoras de Alma & Hilo"
+                src="/images/yen-velia.webp"
+                alt="Yen y Velia, fundadoras de Alma & Hilo, en su taller con la pared de hilos"
                 fill
                 sizes="(max-width: 1024px) 100vw, 40vw"
-                className="object-cover"
-                quality={90}
+                className="object-cover object-center"
+                quality={88}
               />
             </div>
           </div>
