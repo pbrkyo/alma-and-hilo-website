@@ -114,8 +114,7 @@ export function Hero() {
               data-hero-seq
               className="mb-9 max-w-xl font-sans text-base leading-relaxed text-[#F5F0E6]/85 opacity-0 md:text-lg"
             >
-              Bolsos, tops y gorros de crochet hechos a mano por madre e hija.
-              Elegís tu pieza, nos escribís por WhatsApp y la tejemos para vos.
+              Piezas de crochet tejidas a mano por madre e hija.
             </p>
 
             <div data-hero-seq className="flex flex-col gap-4 opacity-0 sm:flex-row">
