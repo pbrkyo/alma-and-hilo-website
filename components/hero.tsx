@@ -100,7 +100,7 @@ export function Hero() {
               className="mb-5 flex items-center gap-3 font-sans text-xs uppercase tracking-[0.3em] text-[#C9D1A8] opacity-0 md:text-sm"
             >
               <span className="h-px w-8 bg-[#C9D1A8]/70" aria-hidden="true" />
-              Taller de crochet · Cartago, Costa Rica
+              Crochet hecho a mano · Cartago, Costa Rica
             </span>
 
             <h1
