@@ -17,7 +17,11 @@ export function StorySection() {
   }, [])
 
   return (
-    <section id="historia" ref={sectionRef} className="bg-[#FFFDF8] py-24 md:py-32">
+    <section
+      id="historia"
+      ref={sectionRef}
+      className="relative z-10 rounded-t-[2rem] bg-[#FFFDF8] pb-24 pt-28 shadow-[0_-32px_70px_-32px_rgba(30,45,34,0.5)] md:rounded-t-[3rem] md:pb-32 md:pt-40"
+    >
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
           {/* Imagen — madre e hija */}
