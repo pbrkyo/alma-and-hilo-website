@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   },
   description:
     'Tops, bolsos y accesorios de crochet tejidos a mano por madre e hija en Cartago, Costa Rica. Elegí tu pieza o diseñá la tuya y la tejemos para vos. Pedidos por WhatsApp.',
-  keywords: ['crochet', 'artesanal', 'Costa Rica', 'Cartago', 'hecho a mano', 'tejido', 'trapillo', 'bolsos', 'tops', 'gorros', 'amigurumi'],
+  keywords: ['crochet', 'artesanal', 'Costa Rica', 'Cartago', 'hecho a mano', 'tejido', 'trapillo', 'bolsos', 'tops', 'gorros'],
   alternates: { canonical: '/' },
   openGraph: {
     title: 'Alma & Hilo | Crochet artesanal hecho a mano',

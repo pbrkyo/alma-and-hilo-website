@@ -17,7 +17,7 @@ const PASOS: Paso[] = [
   { id: "detalles", titulo: "Los detalles que la hacen tuya", subtitulo: "Sumá toques especiales (opcional)." },
 ]
 
-const PRENDAS = ["Top o blusa", "Bolso o cartera", "Gorro o accesorio", "Vestido", "Amigurumi", "Otra cosa"]
+const PRENDAS = ["Top o blusa", "Bolso o cartera", "Gorro o accesorio", "Vestido", "Otra cosa"]
 
 const DETALLES = ["Flecos", "Borlas / pompones", "Forro de tela"]
 

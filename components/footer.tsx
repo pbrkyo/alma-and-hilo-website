@@ -67,7 +67,7 @@ export function Footer() {
             </h4>
             <div className="flex gap-4">
               <a
-                href="https://instagram.com/almayhilo"
+                href="https://instagram.com/almayhilocr"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-[#2E4233] flex items-center justify-center hover:bg-[#7C8450] transition-colors duration-300"

@@ -78,7 +78,7 @@ export function ContactSection() {
               </p>
               <div className="flex gap-4">
                 <a
-                  href="https://instagram.com/almayhilo"
+                  href="https://instagram.com/almayhilocr"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group flex items-center gap-3 px-6 py-3 bg-[#F5F0E6] hover:bg-[#2E4233] transition-all duration-300"
@@ -86,7 +86,7 @@ export function ContactSection() {
                 >
                   <Instagram className="w-5 h-5 text-[#2E4233] group-hover:text-[#F5F0E6] transition-colors duration-300" />
                   <span className="text-[#2E4233] group-hover:text-[#F5F0E6] font-sans text-sm transition-colors duration-300">
-                    @almayhilo
+                    @almayhilocr
                   </span>
                 </a>
                 <a
