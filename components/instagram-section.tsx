@@ -5,12 +5,12 @@ import Image from "next/image"
 import { Instagram } from "lucide-react"
 
 const instagramPosts = [
-  { id: 1, alt: "Bolso tejido a mano", image: "/images/product-bag.jpg" },
-  { id: 2, alt: "Proceso de tejido", image: "/images/hands-crochet.png" },
-  { id: 3, alt: "Top de crochet", image: "/images/product-top.jpg" },
-  { id: 4, alt: "Materiales naturales", image: "/images/yarn-materials.png" },
-  { id: 5, alt: "Accesorios artesanales", image: "/images/product-accessory.jpg" },
-  { id: 6, alt: "Vestido artesanal", image: "/images/product-dress.jpg" },
+  { id: 1, alt: "Top acanalado de crochet en verde olivo", image: "/instagram/ig-top-oliva.webp" },
+  { id: 2, alt: "Bolso saco tejido a mano en olivo", image: "/instagram/ig-bolso-verde.webp" },
+  { id: 3, alt: "Gorro de red de crochet sobre soporte de latón", image: "/instagram/ig-mesh-hat.webp" },
+  { id: 4, alt: "Cartera de trapillo en crudo bajo olivos", image: "/instagram/ig-cartera-beige.webp" },
+  { id: 5, alt: "Blusa de volados de crochet en crudo", image: "/instagram/ig-blusa-blanca.webp" },
+  { id: 6, alt: "Imán de flores tejidas a mano", image: "/instagram/ig-flores.webp" },
 ]
 
 export function InstagramSection() {
