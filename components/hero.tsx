@@ -95,15 +95,7 @@ export function Hero() {
       <div className="relative z-10 flex h-full items-end">
         <div ref={contentRef} className="mx-auto w-full max-w-7xl px-6 pb-24 md:px-12 md:pb-28">
           <div className="max-w-2xl">
-            <span
-              data-hero-seq
-              className="mb-5 flex items-center gap-3 font-sans text-xs uppercase tracking-[0.3em] text-[#C9D1A8] opacity-0 md:text-sm"
-            >
-              <span className="h-px w-8 bg-[#C9D1A8]/70" aria-hidden="true" />
-              Crochet hecho a mano · Cartago, Costa Rica
-            </span>
-
-            <h1
+<h1
               data-hero-seq
               className="mb-5 font-display text-5xl font-medium leading-[1.05] text-[#F5F0E6] opacity-0 text-balance md:text-7xl"
             >
