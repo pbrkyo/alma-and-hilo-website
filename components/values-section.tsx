@@ -8,31 +8,27 @@ import { Heart, Leaf, Sparkles, Clock, type LucideIcon } from "lucide-react"
 
 gsap.registerPlugin(ScrollTrigger)
 
-type Valor = { num: string; icon: LucideIcon; title: string; description: string }
+type Valor = { icon: LucideIcon; title: string; description: string }
 
 const VALORES: Valor[] = [
   {
-    num: "01",
     icon: Heart,
     title: "Hecho con amor",
     description:
       "Cada pieza nace en nuestro taller de Cartago, tejida a mano puntada por puntada, con cariño y calma.",
   },
   {
-    num: "02",
     icon: Leaf,
     title: "Materiales naturales",
     description:
       "Priorizamos fibras de algodón y trapillo reciclado, y procesos respetuosos con el ambiente.",
   },
   {
-    num: "03",
     icon: Sparkles,
     title: "Piezas únicas",
     description: "No hay dos iguales. Elegís color, talla y detalles: tu pieza se teje para vos.",
   },
   {
-    num: "04",
     icon: Clock,
     title: "Slow fashion",
     description:
@@ -51,7 +47,7 @@ export function ValuesSection() {
     const ctx = gsap.context(() => {
       gsap.utils.toArray<HTMLElement>(".reveal-up").forEach((c) => {
         gsap.from(c, {
-          y: reduce ? 0 : 40,
+          y: reduce ? 0 : 36,
           opacity: 0,
           duration: 0.9,
           ease: "power3.out",
@@ -59,51 +55,38 @@ export function ValuesSection() {
         })
       })
 
-      if (reduce) {
-        gsap.utils.toArray<HTMLElement>(".valor").forEach((v) => v.classList.add("is-active"))
-        return
-      }
-
-      // Realce del valor activo (barra lateral + opacidad) según el scroll
-      gsap.utils.toArray<HTMLElement>(".valor").forEach((v) => {
-        ScrollTrigger.create({
-          trigger: v,
-          start: "top 55%",
-          end: "bottom 45%",
-          onToggle: (self) => v.classList.toggle("is-active", self.isActive),
-        })
+      // Reveal escalonado de los 4 valores
+      gsap.from(".valor", {
+        y: reduce ? 0 : 32,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
+        stagger: 0.12,
+        scrollTrigger: { trigger: ".valores-grid", start: "top 80%" },
       })
 
-      // Crossfade de la imagen fija a medida que avanzan los valores
-      gsap.fromTo(
-        ".values-img-b",
-        { opacity: 0 },
-        {
-          opacity: 1,
-          ease: "none",
-          scrollTrigger: { trigger: ".valores-track", start: "top 35%", end: "bottom 65%", scrub: true },
-        },
-      )
-      // Parallax/scale sutil del conjunto de imagen
-      gsap.fromTo(
-        ".values-img",
-        { scale: 1.06 },
-        {
-          scale: 1,
-          ease: "none",
-          scrollTrigger: { trigger: ".valores-track", start: "top bottom", end: "top top", scrub: true },
-        },
-      )
+      if (!reduce) {
+        // Parallax sutil de la imagen feature
+        gsap.fromTo(
+          ".feature-img-inner",
+          { yPercent: -10 },
+          {
+            yPercent: 10,
+            ease: "none",
+            scrollTrigger: { trigger: ".feature-img", start: "top bottom", end: "bottom top", scrub: true },
+          },
+        )
+      }
     }, el)
 
     return () => ctx.revert()
   }, [])
 
   return (
-    <section ref={root} className="relative bg-[#F5F0E6] py-20 md:py-28">
+    <section ref={root} className="bg-[#F5F0E6] py-20 md:py-28">
       <div className="mx-auto max-w-7xl px-6 lg:px-12">
         {/* Encabezado */}
-        <div className="reveal-up mb-12 max-w-2xl md:mb-16">
+        <div className="reveal-up mb-10 max-w-2xl md:mb-14">
           <h2 className="font-display text-3xl font-medium text-[#2E4233] md:text-5xl">
             Tejido a mano, <span className="italic font-light">con intención</span>
           </h2>
@@ -112,64 +95,39 @@ export function ValuesSection() {
           </p>
         </div>
 
-        {/* Scrollytelling: imagen fija + valores que avanzan */}
-        <div className="lg:grid lg:grid-cols-12 lg:gap-16">
-          {/* Imagen fija (sticky en desktop; banda normal en móvil) */}
-          <div className="lg:col-span-5">
-            <div className="lg:sticky lg:top-[12vh]">
-              <div className="values-img relative aspect-[4/3] overflow-hidden rounded-2xl shadow-[0_30px_80px_-50px_rgba(46,66,51,0.6)] lg:aspect-auto lg:h-[76vh]">
-                <Image
-                  src="/valores/manos-tejiendo.webp"
-                  alt="Manos tejiendo a crochet con hilo sage y crudo"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 42vw"
-                  className="object-cover"
-                />
-                <Image
-                  src="/valores/hilos-naturales.webp"
-                  alt="Ovillos de algodón natural en tonos sage, crudo y terracota"
-                  fill
-                  sizes="(max-width: 1024px) 100vw, 42vw"
-                  className="values-img-b object-cover opacity-0"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1E2D22]/45 via-transparent to-transparent" />
-                <span className="absolute bottom-6 left-6 font-sans text-xs uppercase tracking-[0.3em] text-[#F5F0E6]/90">
-                  Hecho a mano · Cartago
-                </span>
-              </div>
-            </div>
+        {/* Imagen feature ancha */}
+        <div className="reveal-up feature-img relative aspect-[16/9] overflow-hidden rounded-2xl md:aspect-[21/9]">
+          <div className="feature-img-inner absolute inset-x-0 -top-[12%] h-[124%]">
+            <Image
+              src="/valores/manos-tejiendo.webp"
+              alt="Manos tejiendo a crochet con hilo sage y crudo en el taller"
+              fill
+              sizes="(max-width: 1024px) 100vw, 80vw"
+              className="object-cover"
+            />
           </div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1E2D22]/45 via-transparent to-transparent" />
+          <span className="absolute bottom-6 left-6 font-sans text-xs uppercase tracking-[0.3em] text-[#F5F0E6]/90">
+            Hecho a mano · Cartago
+          </span>
+        </div>
 
-          {/* Valores 01–04 */}
-          <div className="valores-track mt-10 lg:col-span-6 lg:col-start-7 lg:mt-0">
-            {VALORES.map((v) => {
-              const Icon = v.icon
-              return (
-                <div
-                  key={v.num}
-                  className="valor group relative border-t border-[#D9C9AE]/70 py-10 lg:flex lg:min-h-[80vh] lg:flex-col lg:justify-center lg:border-t-0 lg:pl-8"
-                >
-                  {/* Barra lateral del activo (desktop) */}
-                  <span
-                    aria-hidden="true"
-                    className="absolute left-0 top-1/2 hidden h-40 w-[3px] origin-center -translate-y-1/2 scale-y-0 rounded bg-[#7C8450] opacity-0 transition-all duration-500 group-[.is-active]:scale-y-100 group-[.is-active]:opacity-100 lg:block"
-                  />
-                  <div className="transition-opacity duration-500 lg:opacity-45 lg:group-[.is-active]:opacity-100">
-                    <div className="flex items-center gap-4">
-                      <span className="font-display text-3xl text-[#7C8450]/70 md:text-4xl">{v.num}</span>
-                      <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[#EDE6D8] text-[#7C8450]">
-                        <Icon className="h-5 w-5" />
-                      </span>
-                    </div>
-                    <h3 className="mt-5 font-display text-2xl text-[#2E4233] md:text-3xl">{v.title}</h3>
-                    <p className="mt-3 max-w-md font-sans leading-relaxed text-[#5C5347]">
-                      {v.description}
-                    </p>
-                  </div>
-                </div>
-              )
-            })}
-          </div>
+        {/* Grilla 2×2 de valores con divisores finos */}
+        <div className="valores-grid mt-12 grid gap-x-12 gap-y-10 md:mt-16 md:grid-cols-2 md:gap-y-12">
+          {VALORES.map((v) => {
+            const Icon = v.icon
+            return (
+              <div key={v.title} className="valor border-t border-[#D9C9AE] pt-6">
+                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[#EDE6D8] text-[#7C8450]">
+                  <Icon className="h-5 w-5" />
+                </span>
+                <h3 className="mt-4 font-display text-2xl text-[#2E4233] md:text-3xl">{v.title}</h3>
+                <p className="mt-2 max-w-md font-sans leading-relaxed text-[#5C5347]">
+                  {v.description}
+                </p>
+              </div>
+            )
+          })}
         </div>
 
         {/* Frase — pull-quote editorial (beat de cierre) */}
