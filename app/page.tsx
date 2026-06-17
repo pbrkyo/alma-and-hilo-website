@@ -14,8 +14,11 @@ export default async function HomePage() {
   return (
     <main className="relative min-h-screen">
       <Header />
-      <Hero />
-      <StorySection />
+      {/* Sticky-stack: el Hero queda fijo y la Historia sube y se apila encima */}
+      <div className="relative">
+        <Hero />
+        <StorySection />
+      </div>
       <ValuesSection />
       <ProductsSection productos={productos} />
       <HowItWorks />
