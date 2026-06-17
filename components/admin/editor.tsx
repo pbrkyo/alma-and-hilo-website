@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useTransition, useRef } from "react"
+import { useState, useRef } from "react"
 import { useRouter } from "next/navigation"
 import { Plus, Trash2, ArrowUp, ArrowDown, Loader2, ImagePlus } from "lucide-react"
 import { saveProducto } from "@/app/admin/actions"
@@ -53,7 +53,7 @@ export function AdminEditor({
 }) {
   const router = useRouter()
   const [p, setP] = useState<Producto>(inicial)
-  const [saving, startSave] = useTransition()
+  const [saving, setSaving] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const originalSlug = isNew ? undefined : inicial.slug
 
@@ -61,16 +61,17 @@ export function AdminEditor({
 
   function guardar() {
     setError(null)
-    if (!p.nombre.trim()) return setError("Poné un nombre.")
-    startSave(async () => {
-      try {
-        await saveProducto(p, originalSlug)
-        router.push("/admin")
-        router.refresh()
-      } catch (e) {
+    if (!p.nombre.trim()) {
+      setError("Poné un nombre.")
+      return
+    }
+    setSaving(true)
+    saveProducto(p, originalSlug)
+      .then(() => router.push("/admin")) // navega al guardar; el botón se desmonta
+      .catch((e) => {
         setError(e instanceof Error ? e.message : "No se pudo guardar")
-      }
-    })
+        setSaving(false)
+      })
   }
 
   return (
