@@ -1,6 +1,5 @@
 import "server-only"
 import { put } from "@vercel/blob"
-import sharp from "sharp"
 import { PRODUCTOS_SEED, type Producto } from "@/lib/products"
 
 // Helpers de Vercel Blob para el admin. El SDK toma BLOB_READ_WRITE_TOKEN del
@@ -41,6 +40,7 @@ export async function uploadProductImage(
   slug: string,
   input: Buffer | Uint8Array,
 ): Promise<string> {
+  const sharp = (await import("sharp")).default
   const webp = await sharp(input)
     .rotate() // respeta orientación EXIF del celular
     .resize({ width: 1600, withoutEnlargement: true })

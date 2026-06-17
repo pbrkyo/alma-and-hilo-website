@@ -1,6 +1,5 @@
 "use client"
 
-import Image from "next/image"
 import Link from "next/link"
 import { useState, useTransition } from "react"
 import { useRouter } from "next/navigation"
@@ -21,7 +20,8 @@ export function AdminRow({ producto }: { producto: Producto }) {
         className="relative h-16 w-16 shrink-0 overflow-hidden rounded-lg bg-[#EDE6D8]"
       >
         {img ? (
-          <Image src={img} alt="" fill sizes="64px" className="object-cover" />
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={img} alt="" className="absolute inset-0 h-full w-full object-cover" />
         ) : (
           <span className="flex h-full w-full items-center justify-center text-[#9b9384]">
             <ImageOff className="h-5 w-5" />

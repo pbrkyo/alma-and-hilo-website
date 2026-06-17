@@ -1,7 +1,6 @@
 "use client"
 
 import { useState, useTransition, useRef } from "react"
-import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { Plus, Trash2, ArrowUp, ArrowDown, Loader2, ImagePlus } from "lucide-react"
 import { saveProducto } from "@/app/admin/actions"
@@ -196,7 +195,10 @@ function SingleImage({
   return (
     <div className="flex items-center gap-3">
       <div className="relative h-28 w-24 shrink-0 overflow-hidden rounded-lg bg-[#EDE6D8]">
-        {value && <Image src={value} alt="" fill sizes="96px" className="object-cover" />}
+        {value && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={value} alt="" className="absolute inset-0 h-full w-full object-cover" />
+        )}
         {busy && (
           <span className="absolute inset-0 flex items-center justify-center bg-black/20">
             <Loader2 className="h-5 w-5 animate-spin text-white" />
@@ -259,7 +261,8 @@ function Gallery({
       <div className="flex flex-wrap gap-3">
         {values.map((url, i) => (
           <div key={url + i} className="relative h-24 w-20 overflow-hidden rounded-lg bg-[#EDE6D8]">
-            <Image src={url} alt="" fill sizes="80px" className="object-cover" />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src={url} alt="" className="absolute inset-0 h-full w-full object-cover" />
             <div className="absolute inset-x-0 bottom-0 flex justify-between bg-black/40 px-1 py-0.5">
               <button onClick={() => move(i, -1)} aria-label="Mover izquierda" className="text-white disabled:opacity-30" disabled={i === 0}>
                 <ArrowUp className="h-3.5 w-3.5 -rotate-90" />
