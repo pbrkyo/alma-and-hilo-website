@@ -56,7 +56,7 @@ export function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="sticky top-0 h-[100svh] w-full overflow-hidden bg-[#2E4233]"
+      className="relative h-[100svh] w-full overflow-hidden bg-[#2E4233]"
     >
       {/* Video: entrada al taller (termina y cruza al plano limpio) */}
       <div className="absolute inset-0">
