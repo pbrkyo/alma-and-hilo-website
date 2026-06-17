@@ -67,7 +67,7 @@ export function AdminEditor({
     }
     setSaving(true)
     saveProducto(p, originalSlug)
-      .then(() => router.push("/admin")) // navega al guardar; el botón se desmonta
+      .then(() => router.push("/admin?guardado=1")) // confirma en la lista; el botón se desmonta
       .catch((e) => {
         setError(e instanceof Error ? e.message : "No se pudo guardar")
         setSaving(false)

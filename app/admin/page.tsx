@@ -3,15 +3,22 @@ import { Plus } from "lucide-react"
 import { readCatalog } from "@/lib/blob"
 import { AdminBar } from "@/components/admin/admin-bar"
 import { AdminRow } from "@/components/admin/admin-row"
+import { SavedBanner } from "@/components/admin/saved-banner"
 
 export const dynamic = "force-dynamic"
 
-export default async function AdminHome() {
+export default async function AdminHome({
+  searchParams,
+}: {
+  searchParams: Promise<{ guardado?: string }>
+}) {
   const productos = await readCatalog()
+  const { guardado } = await searchParams
   return (
     <>
       <AdminBar title="Catálogo" />
       <main className="mx-auto max-w-2xl px-5 py-6">
+        {guardado && <SavedBanner />}
         <Link
           href="/admin/nuevo"
           className="mb-5 flex items-center justify-center gap-2 rounded-lg bg-[#2E4233] px-5 py-3.5 font-sans text-sm uppercase tracking-widest text-[#F5F0E6] transition-colors hover:bg-[#3D5743]"
