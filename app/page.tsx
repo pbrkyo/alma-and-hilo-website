@@ -7,8 +7,10 @@ import { HowItWorks } from "@/components/how-it-works"
 import { InstagramSection } from "@/components/instagram-section"
 import { ContactSection } from "@/components/contact-section"
 import { Footer } from "@/components/footer"
+import { getProductos } from "@/lib/catalog"
 
-export default function HomePage() {
+export default async function HomePage() {
+  const productos = await getProductos()
   return (
     <main className="relative min-h-screen">
       <Header />
@@ -18,7 +20,7 @@ export default function HomePage() {
         <StorySection />
       </div>
       <ValuesSection />
-      <ProductsSection />
+      <ProductsSection productos={productos} />
       <HowItWorks />
       <InstagramSection />
       <ContactSection />

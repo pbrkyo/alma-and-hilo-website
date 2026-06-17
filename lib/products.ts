@@ -74,7 +74,10 @@ const tallasTop = {
 
 export const CATEGORIAS: Categoria[] = ["Tops", "Bolsos", "Accesorios", "Decoración"]
 
-export const PRODUCTOS: Producto[] = [
+// Catálogo semilla: se usa como fallback en local/dev y como base de la
+// migración a Vercel Blob. En producción el sitio lee catalog.json (ver
+// lib/catalog.ts). No importar esto directo en componentes — usar getProductos().
+export const PRODUCTOS_SEED: Producto[] = [
   {
     slug: "top-margarita",
     nombre: "Top Halter · Crudo",
@@ -341,15 +344,6 @@ export const PRODUCTOS: Producto[] = [
     destacado: true,
   },
 ]
-
-export function getProducto(slug: string): Producto | undefined {
-  return PRODUCTOS.find((p) => p.slug === slug)
-}
-
-export function productosPorCategoria(categoria: Categoria | "Todos"): Producto[] {
-  if (categoria === "Todos") return PRODUCTOS
-  return PRODUCTOS.filter((p) => p.categoria === categoria)
-}
 
 /** Formatea un precio en colones: 24000 -> "₡24.000" */
 export function formatColones(monto: number): string {

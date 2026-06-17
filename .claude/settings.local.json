@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(wsl -d Ubuntu-22.04 -- bash -lc \"source ~/.nvm/nvm.sh; cd /mnt/c/Users/p_bre/Clientes/alma-and-hilo-website; npx pnpm@10 add @vercel/blob 2>&1 | tail -8\")",
+      "PowerShell(wsl -d Ubuntu-22.04 -- bash -lc \"source ~/.nvm/nvm.sh; cd /mnt/c/Users/p_bre/Clientes/alma-and-hilo-website; npx pnpm@10 exec next build 2>&1 | tail -20\")",
+      "PowerShell(wsl -d Ubuntu-22.04 -- bash -lc \"source ~/.nvm/nvm.sh; cd /mnt/c/Users/p_bre/Clientes/alma-and-hilo-website; npx pnpm@10 exec next build 2>&1 | tail -35\")",
+      "PowerShell(wsl -d Ubuntu-22.04 -- bash -lc \"source ~/.nvm/nvm.sh; cd /mnt/c/Users/p_bre/Clientes/alma-and-hilo-website; npx pnpm@10 exec next build 2>&1 | tail -30\")"
+    ]
+  }
+}

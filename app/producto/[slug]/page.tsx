@@ -3,10 +3,12 @@ import { notFound } from "next/navigation"
 import { BrandBar } from "@/components/brand-bar"
 import { ProductDetail } from "@/components/product-detail"
 import { Footer } from "@/components/footer"
-import { getProducto, PRODUCTOS, formatColones } from "@/lib/products"
+import { formatColones } from "@/lib/products"
+import { getProducto, getProductos } from "@/lib/catalog"
 
-export function generateStaticParams() {
-  return PRODUCTOS.map((p) => ({ slug: p.slug }))
+export async function generateStaticParams() {
+  const productos = await getProductos()
+  return productos.map((p) => ({ slug: p.slug }))
 }
 
 export async function generateMetadata({
@@ -15,7 +17,7 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>
 }): Promise<Metadata> {
   const { slug } = await params
-  const producto = getProducto(slug)
+  const producto = await getProducto(slug)
   if (!producto) return { title: "Pieza no encontrada · Alma & Hilo" }
 
   const titulo = `${producto.nombre} · Alma & Hilo`
@@ -41,7 +43,7 @@ export default async function ProductoPage({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-  const producto = getProducto(slug)
+  const producto = await getProducto(slug)
   if (!producto) notFound()
 
   // Structured data para SEO (Product + Offer)

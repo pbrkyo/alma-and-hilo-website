@@ -4,7 +4,7 @@ import { useMemo, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowUpRight } from "lucide-react"
-import { CATEGORIAS, PRODUCTOS, formatColones, type Categoria } from "@/lib/products"
+import { CATEGORIAS, formatColones, type Categoria, type Producto } from "@/lib/products"
 
 type Filtro = Categoria | "Todos"
 const FILTROS: Filtro[] = ["Todos", ...CATEGORIAS]
@@ -13,11 +13,11 @@ const FILTROS: Filtro[] = ["Todos", ...CATEGORIAS]
 // (scripts/recrop-escenas.mjs), así que va object-center parejo.
 const FOCO: Record<string, string> = {}
 
-export function ProductsSection() {
+export function ProductsSection({ productos: todos }: { productos: Producto[] }) {
   const [filtro, setFiltro] = useState<Filtro>("Todos")
   const productos = useMemo(
-    () => (filtro === "Todos" ? PRODUCTOS : PRODUCTOS.filter((p) => p.categoria === filtro)),
-    [filtro],
+    () => (filtro === "Todos" ? todos : todos.filter((p) => p.categoria === filtro)),
+    [filtro, todos],
   )
 
   return (
