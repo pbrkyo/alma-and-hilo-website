@@ -22,6 +22,10 @@ via `middleware.ts`.
   - `DEPLOY_HOOK_URL` — crear en Settings → Git → **Deploy Hooks** (branch `master`)
   y pegar la URL que genera.
   - `CATALOG_URL` — se obtiene en el paso 4.
+  - `VERCEL_API_TOKEN` *(opcional)* — token de lectura (Account Settings → Tokens)
+    para el indicador "Publicando…/Publicado" del admin. Sin él, el indicador
+    simplemente no aparece (todo lo demás funciona igual). Opcional también
+    `VERCEL_PROJECT_ID` / `VERCEL_TEAM_ID` (ya tienen fallback en el código).
 3. **Traer el token al entorno local** (para migrar): `vercel env pull .env.local`
   (o copiar `BLOB_READ_WRITE_TOKEN` del dashboard).
 4. **Migrar las imágenes actuales** a Blob (WSL):
