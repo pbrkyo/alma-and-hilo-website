@@ -38,7 +38,7 @@ export async function writeCatalog(productos: Producto[]): Promise<string> {
 /** Sube una imagen de producto ya procesada (webp/jpg desde el cliente). */
 export async function uploadProductImage(
   slug: string,
-  input: Buffer | Uint8Array,
+  input: Buffer,
   ext = "webp",
   contentType = "image/webp",
 ): Promise<string> {
