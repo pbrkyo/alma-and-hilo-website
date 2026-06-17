@@ -3,6 +3,7 @@
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { ArrowLeft, LogOut } from "lucide-react"
+import { PublishStatus } from "@/components/admin/publish-status"
 
 export function AdminBar({ title, backHref }: { title: string; backHref?: string }) {
   const router = useRouter()
@@ -23,13 +24,16 @@ export function AdminBar({ title, backHref }: { title: string; backHref?: string
           )}
           <h1 className="truncate font-display text-xl text-[#2E4233]">{title}</h1>
         </div>
-        <button
-          onClick={logout}
-          className="inline-flex shrink-0 items-center gap-1.5 font-sans text-sm text-[#5C5347] hover:text-[#2E4233]"
-        >
-          <LogOut className="h-4 w-4" />
-          Salir
-        </button>
+        <div className="flex shrink-0 items-center gap-3">
+          <PublishStatus />
+          <button
+            onClick={logout}
+            className="inline-flex shrink-0 items-center gap-1.5 font-sans text-sm text-[#5C5347] hover:text-[#2E4233]"
+          >
+            <LogOut className="h-4 w-4" />
+            Salir
+          </button>
+        </div>
       </div>
     </header>
   )
