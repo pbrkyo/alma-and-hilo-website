@@ -10,9 +10,34 @@ import {
   type OpcionCustomizacion,
 } from "@/lib/products"
 
+// Redimensiona y codifica en el navegador (máx 1600px, webp) para no depender de
+// sharp en el servidor y subir archivos livianos. Respeta la orientación EXIF.
+async function processImage(file: File): Promise<{ blob: Blob; ext: string }> {
+  const bitmap = await createImageBitmap(file, { imageOrientation: "from-image" })
+  const max = 1600
+  const scale = Math.min(1, max / Math.max(bitmap.width, bitmap.height))
+  const w = Math.round(bitmap.width * scale)
+  const h = Math.round(bitmap.height * scale)
+  const canvas = document.createElement("canvas")
+  canvas.width = w
+  canvas.height = h
+  const ctx = canvas.getContext("2d")
+  if (!ctx) throw new Error("No se pudo procesar la imagen")
+  ctx.drawImage(bitmap, 0, 0, w, h)
+  bitmap.close()
+  const toBlob = (type: string, q: number) =>
+    new Promise<Blob | null>((res) => canvas.toBlob(res, type, q))
+  const webp = await toBlob("image/webp", 0.82)
+  if (webp) return { blob: webp, ext: "webp" }
+  const jpg = await toBlob("image/jpeg", 0.85)
+  if (jpg) return { blob: jpg, ext: "jpg" }
+  throw new Error("No se pudo procesar la imagen")
+}
+
 async function uploadFile(file: File, slug: string): Promise<string> {
+  const { blob, ext } = await processImage(file)
   const fd = new FormData()
-  fd.append("file", file)
+  fd.append("file", blob, `${slug || "img"}.${ext}`)
   fd.append("slug", slug)
   const res = await fetch("/api/admin/upload", { method: "POST", body: fd })
   if (!res.ok) throw new Error("No se pudo subir la imagen")

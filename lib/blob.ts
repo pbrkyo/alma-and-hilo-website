@@ -35,23 +35,19 @@ export async function writeCatalog(productos: Producto[]): Promise<string> {
   return url
 }
 
-/** Procesa (webp ~1600px) y sube una imagen de producto; devuelve su URL CDN. */
+/** Sube una imagen de producto ya procesada (webp/jpg desde el cliente). */
 export async function uploadProductImage(
   slug: string,
   input: Buffer | Uint8Array,
+  ext = "webp",
+  contentType = "image/webp",
 ): Promise<string> {
-  const sharp = (await import("sharp")).default
-  const webp = await sharp(input)
-    .rotate() // respeta orientación EXIF del celular
-    .resize({ width: 1600, withoutEnlargement: true })
-    .webp({ quality: 82 })
-    .toBuffer()
-  const name = `products/${slug || "img"}-${Date.now()}-${Math.random().toString(36).slice(2, 7)}.webp`
-  const { url } = await put(name, webp, {
+  const name = `products/${slug || "img"}-${Date.now()}-${Math.random().toString(36).slice(2, 7)}.${ext}`
+  const { url } = await put(name, input, {
     access: "public",
     addRandomSuffix: false,
     allowOverwrite: true,
-    contentType: "image/webp",
+    contentType,
   })
   return url
 }

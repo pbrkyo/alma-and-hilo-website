@@ -16,7 +16,9 @@ export async function POST(req: Request) {
   }
   try {
     const buf = Buffer.from(await file.arrayBuffer())
-    const url = await uploadProductImage(slug, buf)
+    const ext = file.type === "image/jpeg" ? "jpg" : "webp"
+    const contentType = file.type || "image/webp"
+    const url = await uploadProductImage(slug, buf, ext, contentType)
     return NextResponse.json({ url })
   } catch (e) {
     return NextResponse.json(
