@@ -102,13 +102,13 @@ export function ValuesSection() {
       </div>
 
       {/* Cartas apiladas (sticky-stack) */}
-      <div className="stack relative mx-auto mt-10 max-w-4xl px-6 md:mt-14 lg:px-12">
+      <div className="stack relative mx-auto mt-6 max-w-4xl px-6 md:mt-8 lg:px-12">
         {VALORES.map((v, i) => {
           const Icon = v.icon
           return (
             <div
               key={v.num}
-              className="stack-card sticky top-0 flex min-h-[100svh] items-center"
+              className="stack-card sticky top-0 flex min-h-[100svh] items-start pt-[10vh] md:pt-[12vh]"
               style={{ zIndex: i + 1 }}
             >
               <div
