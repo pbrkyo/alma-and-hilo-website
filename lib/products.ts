@@ -74,6 +74,19 @@ const tallasTop = {
 
 export const CATEGORIAS: Categoria[] = ["Tops", "Bolsos", "Accesorios", "Decoración"]
 
+// Guía de tallas para ropa (categoría "Tops"), en centímetros. Se muestra en el
+// detalle de cada prenda. Son medidas estándar de referencia; ajustá los valores
+// a tus medidas reales acá (una sola fuente para toda la ropa).
+export const GUIA_TALLAS_TOPS = {
+  columnas: ["Talla", "Busto", "Cintura", "Largo"],
+  filas: [
+    ["S", "82-87", "62-67", "38"],
+    ["M", "88-93", "68-73", "40"],
+    ["L", "94-100", "74-80", "42"],
+    ["XL", "101-107", "81-88", "44"],
+  ],
+} as const
+
 // Catálogo semilla: se usa como fallback en local/dev y como base de la
 // migración a Vercel Blob. En producción el sitio lee catalog.json (ver
 // lib/catalog.ts). No importar esto directo en componentes — usar getProductos().

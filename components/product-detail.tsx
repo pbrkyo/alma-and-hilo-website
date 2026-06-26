@@ -3,9 +3,9 @@
 import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowLeft, Check, Clock, MessageCircle, Sparkles } from "lucide-react"
+import { ArrowLeft, Check, ChevronDown, Clock, MessageCircle, Ruler, Sparkles } from "lucide-react"
 import { buildProductPedido, buildWhatsAppUrl } from "@/lib/whatsapp"
-import { formatColones, type Producto } from "@/lib/products"
+import { formatColones, GUIA_TALLAS_TOPS, type Producto } from "@/lib/products"
 
 export function ProductDetail({ producto }: { producto: Producto }) {
   // Galería = fotos limpias + la editorial (en escena), sin duplicar
@@ -156,6 +156,52 @@ export function ProductDetail({ producto }: { producto: Producto }) {
               </div>
             ))}
           </div>
+
+          {/* Guía de tallas — solo ropa (Tops) */}
+          {producto.categoria === "Tops" && (
+            <details className="group mt-6 overflow-hidden rounded-xl border border-[#D9C9AE] bg-[#FFFDF8]">
+              <summary className="flex cursor-pointer list-none items-center justify-between px-4 py-3.5 [&::-webkit-details-marker]:hidden">
+                <span className="flex items-center gap-2 font-sans text-sm font-medium text-[#2E4233]">
+                  <Ruler className="h-4 w-4 text-[#7C8450]" />
+                  Guía de tallas (cm)
+                </span>
+                <ChevronDown className="h-4 w-4 text-[#5F6740] transition-transform duration-300 group-open:rotate-180" />
+              </summary>
+              <div className="px-4 pb-4">
+                <table className="w-full border-collapse text-left font-sans text-sm">
+                  <thead>
+                    <tr className="border-b border-[#D9C9AE] text-xs uppercase tracking-wider text-[#5F6740]">
+                      {GUIA_TALLAS_TOPS.columnas.map((c) => (
+                        <th key={c} className="py-2 pr-3 font-medium">
+                          {c}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {GUIA_TALLAS_TOPS.filas.map((fila) => (
+                      <tr key={fila[0]} className="border-b border-[#EDE6D8] last:border-0">
+                        {fila.map((celda, i) => (
+                          <td
+                            key={i}
+                            className={`py-2.5 pr-3 ${
+                              i === 0 ? "font-medium text-[#2E4233]" : "text-[#5C5347]"
+                            }`}
+                          >
+                            {celda}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                <p className="mt-3 font-sans text-xs text-[#5C5347]">
+                  Medidas de referencia en centímetros. ¿Estás entre dos tallas o la querés a medida?
+                  Escribinos y la ajustamos a vos.
+                </p>
+              </div>
+            </details>
+          )}
 
           {/* CTA WhatsApp */}
           <a
